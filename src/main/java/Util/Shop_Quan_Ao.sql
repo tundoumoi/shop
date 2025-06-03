@@ -1,11 +1,11 @@
-﻿USE Shop_Quan_Ao;
+USE Shop_Quan_Ao;
 GO
 
 -- 1. USERS
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY IDENTITY,
+    id INT PRIMARY KEY IDENTITY,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) ,
+    password VARCHAR(100) NOT NULL,
     full_name NVARCHAR(100),
     role VARCHAR(20) DEFAULT 'user',
     facebook_id VARCHAR(100) UNIQUE NULL,
@@ -21,8 +21,8 @@ CREATE TABLE products (
     description NVARCHAR(1000),
     price DECIMAL(10,2) NOT NULL,
     category NVARCHAR(50),
+	status bit not null,
     created_at DATETIME DEFAULT GETDATE()
-
 );
 CREATE INDEX idx_products_category ON products(category);
 
@@ -105,16 +105,40 @@ CREATE TABLE revenue_forecast (
   method VARCHAR(20)   NOT NULL,      -- 'MA3'
   created_at DATETIME DEFAULT GETDATE()
 );
+-- 11. PROMOTION
+CREATE TABLE promotions (
+  id INT PRIMARY KEY IDENTITY,
+  promo_code      VARCHAR(50) UNIQUE NOT NULL,   -- Mã hoặc tên chương trình
+  description     NVARCHAR(255)    NULL,
+  start_date      DATETIME         NOT NULL,
+  end_date        DATETIME         NOT NULL,
+  discount_type   VARCHAR(20)      NOT NULL,    -- 'percentage' hoặc 'fixed_amount'
+  discount_value  DECIMAL(10,2)    NOT NULL,    -- Nếu percentage thì lưu 10 = 10%; nếu fixed_amount, lưu ví dụ 100000 = 100k VND
+  condition_threshold DECIMAL(12,2) NULL,        -- Ví dụ: >= 500000 để được áp dụng
+  applicable_category_id NVARCHAR(50)       NULL,         -- Nếu khuyến mãi cho 1 category (FK sang bảng categories, nếu có)
+  applicable_product_id  INT       NULL,         -- Nếu khuyến mãi cho 1 product (FK sang products)
+  status          VARCHAR(20)      DEFAULT 'active',  -- 'active', 'expired', 'pending'
+  created_at      DATETIME         DEFAULT GETDATE()
+);
+-- 12. business_reports
+CREATE TABLE business_reports (
+  id            INT PRIMARY KEY IDENTITY,
+  report_date   DATE         NOT NULL,      -- Ngày agent chạy và tạo report
+  report_type   VARCHAR(50)  NOT NULL,      -- 'weekly', 'monthly', 'advice'
+  content       NVARCHAR(MAX) NOT NULL,     -- JSON hoặc text tóm tắt đề xuất
+  generated_by  VARCHAR(50)  DEFAULT 'advisor_agent',
+  status        VARCHAR(20)  DEFAULT 'new', -- 'new', 'reviewed', 'executed'
+  created_at    DATETIME     DEFAULT GETDATE()
+);
+-- 13. action_log
+CREATE TABLE action_logs (
+  id          INT PRIMARY KEY IDENTITY,
+  report_id   INT     NOT NULL FOREIGN KEY REFERENCES business_reports(id),
+  action_type VARCHAR(50) NOT NULL,         -- 'create_facebook_campaign', 'apply_discount', v.v.
+  status      VARCHAR(20) DEFAULT 'pending', -- 'pending', 'success', 'failed'
+  payload     NVARCHAR(MAX) NOT NULL,        -- JSON input cho hành động
+  response    NVARCHAR(MAX) NULL,            -- JSON phản hồi từ API (nếu có)
+  executed_at DATETIME DEFAULT GETDATE()
+);
+
 go
-
--- 11. REPORTING VIEWS
-CREATE VIEW vw_MonthlyRevenue AS
-SELECT
-    YEAR(order_date) AS [Year],
-    MONTH(order_date) AS [Month],
-    SUM(total_amount) AS Revenue
-FROM orders
-WHERE payment_status = 'Paid'
-GROUP BY YEAR(order_date), MONTH(order_date);
-GO
-
