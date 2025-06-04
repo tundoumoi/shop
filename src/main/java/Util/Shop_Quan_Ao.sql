@@ -9,8 +9,8 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     full_name NVARCHAR(100),
     role VARCHAR(20) DEFAULT 'user',
-    facebook_id VARCHAR(100) UNIQUE NULL,
-    google_id   VARCHAR(100) UNIQUE NULL,
+    facebook_id VARCHAR(100) NULL,
+    google_id   VARCHAR(100) NULL,
     address       NVARCHAR(500) NULL,
     created_at DATETIME DEFAULT GETDATE()
 );
@@ -556,3 +556,193 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Logo Round Handle Thermos Duo', 'Souvenir', 14.99, 'Bottles'),
 ('MU Hydration Lock Bottle Set', 'Souvenir', 13.49, 'Bottles');
  
+go
+ -- product_variants 
+INSERT INTO product_variants (product_id, size, quantity)
+SELECT p.id, s.size, 20
+FROM products p
+CROSS JOIN (VALUES ('S'), ('M'), ('L'), ('XL')) AS s(size);
+
+go
+
+-- 1) Thêm 5 người dùng mẫu
+INSERT INTO users (email, password, full_name, role, address)
+VALUES
+  ('alice@example.com','$2y$10$xxxxx','Alice Nguyen','user','Hanoi, Vietnam'),
+  ('bob@example.com','$2y$10$xxxxx','Bob Tran','user','Hanoi, Vietnam'),
+  ('carol@example.com','$2y$10$xxxxx','Carol Le','user','Ho Chi Minh City, Vietnam'),
+  ('david@example.com','$2y$10$xxxxx','David Pham','user','Da Nang, Vietnam'),
+  ('eve@example.com','$2y$10$xxxxx','Eve Ho','user','Hue, Vietnam');
+
+go
+
+-- 2) Thêm product_views (lượt xem) cho mỗi user
+INSERT INTO product_views (user_id, product_id, view_time) VALUES
+  -- Alice (user_id=1)
+  (1, 1, '2025-05-10 10:00:00'),
+  (1, 2, '2025-05-11 12:30:00'),
+  (1, 3, '2025-05-12 15:45:00'),
+  -- Bob (user_id=2)
+  (2, 2, '2025-05-10 11:20:00'),
+  (2, 3, '2025-05-11 14:00:00'),
+  (2, 4, '2025-05-12 17:15:00'),
+  -- Carol (user_id=3)
+  (3, 1, '2025-05-09 09:30:00'),
+  (3, 4, '2025-05-11 10:45:00'),
+  (3, 5, '2025-05-12 13:00:00'),
+  -- David (user_id=4)
+  (4, 1, '2025-05-10 08:50:00'),
+  (4, 2, '2025-05-11 09:10:00'),
+  (4, 5, '2025-05-12 16:25:00'),
+  -- Eve (user_id=5)
+  (5, 3, '2025-05-10 14:30:00'),
+  (5, 5, '2025-05-11 15:00:00'),
+  (5, 6, '2025-05-12 18:00:00');
+
+-- 3) Tạo orders và order_items (lịch sử mua hàng)
+-- Ví dụ mỗi user mua 2 sản phẩm khác nhau
+
+-- Alice (user_id = 1)
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (1, '2025-05-13 10:00:00', 159.98, 'Paid', 'Completed');  -- tạm tổng: 79.99 + 79.99
+
+-- Giả sử sản phẩm 1 (size M, variant_id = 2) và sản phẩm 3 (size L, variant_id = 11)
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY(), 2, 1, 79.99),   -- product_id=1, size=M => variant_id=2, giá 79.99
+  (SCOPE_IDENTITY(), 11, 1, 79.99);  -- product_id=3, size=L => variant_id=11, giá 79.99
+
+-- Bob (user_id = 2)
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (2, '2025-05-14 11:30:00', 139.98, 'Paid', 'Completed');  -- 59.99 + 79.99
+
+-- Sản phẩm 2 (size S, variant_id = 5) và 4 (size M, variant_id = 14)
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY(), 5, 1, 59.99),   -- product_id=2, size=S => variant_id=5, giá 59.99
+  (SCOPE_IDENTITY(), 14,1, 79.99);   -- product_id=4, size=M => variant_id=14, giá 79.99
+
+-- Carol (user_id = 3)
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (3, '2025-05-15 14:00:00', 159.98, 'Paid', 'Completed');
+
+-- Sản phẩm 1 (size L, variant_id = 3) và 5 (size M, variant_id = 18)
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY(), 3, 1, 59.99),   -- product_id=1, size=L => variant_id=3, giá 59.99
+  (SCOPE_IDENTITY(), 18,1, 99.99);   -- product_id=5, size=M => variant_id=18, giá 99.99
+  -- Tùy chỉnh unit_price cho đúng giá product_id=5 nếu khác 79.99.
+
+-- David (user_id = 4)
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (4, '2025-05-16 09:20:00', 159.98, 'Paid', 'Completed');
+
+-- Sản phẩm 1 (size XL, variant_id = 4) và 2 (size M, variant_id = 6)
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY(), 4, 1, 79.99),
+  (SCOPE_IDENTITY(), 6, 1, 79.99);
+
+-- Eve (user_id = 5)
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (5, '2025-05-17 16:45:00', 139.98, 'Paid', 'Completed');
+
+-- Sản phẩm 3 (size S, variant_id = 9) và 6 (size L, variant_id = 26)
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY(), 9, 1, 59.99),  -- product_id=3, size=S => variant_id=9
+  (SCOPE_IDENTITY(), 26,1, 79.99); -- product_id=6, size=L => variant_id=26
+
+go
+-- 4) Thêm dữ liệu revenue_forecast (6 tháng: 2025-01 → 2025-06)
+INSERT INTO revenue_forecast (month, predicted_revenue, method)
+VALUES
+  ('2025-01', 2000000.00, 'MA3'),
+  ('2025-02', 1800000.00, 'MA3'),
+  ('2025-03', 2400000.00, 'MA3'),
+  ('2025-04', 2100000.00, 'MA3'),
+  ('2025-05', 1500000.00, 'MA3'),
+  ('2025-06', 2300000.00, 'MA3');
+
+go
+-- 5) (Tùy chọn) Thêm một số chương trình khuyến mãi mẫu
+INSERT INTO promotions (promo_code, description, start_date, end_date, discount_type, discount_value, condition_threshold, applicable_category_id, status)
+VALUES
+  ('SUMMER20','Giảm 20% mùa hè','2025-06-01','2025-06-30','percentage',20.00,500000,NULL,'active'),
+  ('SPORTS10','Giảm 10% cho nhóm Trainingwear','2025-05-10','2025-05-20','percentage',10.00,null,'Trainingwear','active'),
+  ('SOCK5','Giảm 5k cho socks','2025-05-01','2025-05-31','fixed_amount',5000.00,NULL,'Socks & Underwear','active');
+
+go
+-- 6) Thêm một số product_views rải rác lên tháng 04 và tháng 06
+--    Giúp TrendAgent tổng hợp doanh số theo tháng, category và lượt xem
+INSERT INTO product_views (user_id, product_id, view_time) VALUES
+  -- Tháng 04/2025
+  (1, 7, '2025-04-05 10:15:00'),  -- product_id=7 (đến từ category 'Jersey')
+  (2, 8, '2025-04-06 11:20:00'),
+  (3, 15,'2025-04-07 12:25:00'),  -- product_id=15 (Trainingwear)
+  (4, 21,'2025-04-08 13:30:00'),
+  (5, 28,'2025-04-09 14:35:00'),
+  -- Tháng 06/2025
+  (1, 7, '2025-06-02 09:10:00'),
+  (2, 8, '2025-06-03 10:45:00'),
+  (3, 15,'2025-06-04 11:50:00'),
+  (4, 21,'2025-06-05 12:55:00'),
+  (5, 28,'2025-06-06 14:00:00');
+
+-- 7) Thêm orders/ order_items vào tháng 04/2025
+-- Example: Alice (1) mua 1 chiếc product_id=7 size M (variant_id = (7-1)*4+2 = 26 )
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (1, '2025-04-10 10:00:00', 79.99, 'Paid', 'Completed'),
+  (2, '2025-04-11 11:00:00', 59.99, 'Paid', 'Completed'),
+  (3, '2025-04-12 12:00:00', 49.99, 'Paid', 'Completed');
+
+-- Order_items cho 3 đơn trên:
+-- Đơn 1: user_id=1, product_id=7, size M => variant_id = (7-1)*4 + 2 = 26
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY() - 2, 26, 1, 79.99),  -- của order đầu tiên (ăn gian 2 đơn sau nhưng dùng SCOPE_IDENTITY()-2)
+  -- Cách an toàn hơn: tách từng INSERT order, rồi lấy SCOPE_IDENTITY() sau mỗi INSERT
+  -- Đơn 2: user_id=2, product_id=8, size S => variant_id = (8-1)*4 + 1 = 29
+  (SCOPE_IDENTITY() - 1, 29, 1, 59.99),
+  -- Đơn 3: user_id=3, product_id=15, size L => variant_id = (15-1)*4 + 3 = 63
+  (SCOPE_IDENTITY(), 63, 1, 49.99);
+
+-- 8) Thêm orders/ order_items vào tháng 06/2025
+INSERT INTO orders (user_id, order_date, total_amount, payment_status, order_status)
+VALUES
+  (4, '2025-06-10 16:00:00', 89.99, 'Paid', 'Completed'),
+  (5, '2025-06-11 17:00:00', 69.99, 'Paid', 'Completed'),
+  (1, '2025-06-12 18:00:00', 59.99, 'Paid', 'Completed');
+
+-- Chèn order_items cho 3 đơn trên:
+-- Đơn 1: user_id=4, product_id=21 (MU Training Zip Jacket Red), size L => variant_id = (21-1)*4 + 3 = 83
+INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+VALUES
+  (SCOPE_IDENTITY() - 2, 83, 1, 89.99),
+  -- Đơn 2: user_id=5, product_id=28 (MU Training Base Tee Grey), size S => variant_id = (28-1)*4 + 1 = 109
+  (SCOPE_IDENTITY() - 1, 109,1, 69.99),
+  -- Đơn 3: user_id=1, product_id=15 (MU Training Tee Grey), size M => variant_id = (15-1)*4 + 2 = 62
+  (SCOPE_IDENTITY(), 62, 1, 59.99);
+
+go
+-- 9) Giả lập recommendations đã có sẵn cho user_id=1,2
+INSERT INTO recommendations (user_id, recommended_product_id, score, algorithm)
+VALUES
+  (1, 4, 0.85, 'collaborative'),
+  (1, 5, 0.75, 'collaborative'),
+  (2, 3, 0.90, 'collaborative'),
+  (2, 1, 0.65, 'collaborative');
+
+-- 10) Giả lập 1 báo cáo trend cũ và 1 báo cáo tư vấn (advice)
+INSERT INTO business_reports (report_date, report_type, content, generated_by, status)
+VALUES
+  ('2025-05-01', 'trend', N'{"summary":"Tháng 04/2025: Category Trainingwear tăng 20%, Category Jersey giảm 5%..."}', 'trend_agent', 'new'),
+  ('2025-05-15', 'advice', N'{"advice":"Đề xuất tăng budget marketing cho sản phẩm 7,8; Xem xét chương trình giảm giá"}', 'advisor_agent', 'executed');
+
+go
