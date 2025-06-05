@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="/HOMES/header.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,3 +16,4 @@
         <h1>Chào mừng đến với trang chủ!</h1>
     </body>
 </html>
+<%@ include file="/HOMES/footer.jsp" %>
