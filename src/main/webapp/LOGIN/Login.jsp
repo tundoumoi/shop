@@ -62,18 +62,22 @@
         </form>
       </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form id="signInForm" action="${pageContext.request.contextPath}/login?action=login" method="post">
                 <h1>Sign in</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Facebook Login -->
+                    <a href="javascript:void(0)" class="social" id="fbLoginBtn">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <!-- Google Login -->
+                    <a href="javascript:void(0)" class="social" id="googleLoginBtn">
+                      <i class="fab fa-google"></i>
+                    </a>
                 </div>
                 <span>or use your account</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button type="submit">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">

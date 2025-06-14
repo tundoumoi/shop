@@ -1,10 +1,13 @@
+Controller\loginServlet.class
+Controller\registerServlet.class
+Util\DatabaseConnection.class
+Service\loginService.class
+DAO\customerDAO.class
+com\mycompany\shop\resources\JakartaEE10Resource.class
 DAO\registerDAO.class
 Service\customerService.class
 Service\registerService$DuplicateAuthException.class
-Controller\registerServlet.class
-Util\DatabaseConnection.class
-DAO\customerDAO.class
 com\mycompany\shop\JakartaRestConfiguration.class
-com\mycompany\shop\resources\JakartaEE10Resource.class
+DAO\loginDAO.class
 Service\registerService.class
 Model\customer.class

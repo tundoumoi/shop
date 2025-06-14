@@ -39,7 +39,7 @@ import org.json.JSONObject;
  *
  * @author LENOVO Ideapad 3
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/register"})
+@WebServlet(name = "registerServlet", urlPatterns = {"/register"})
 public class registerServlet extends HttpServlet {
     
     private registerService service = new registerService();
@@ -74,9 +74,9 @@ public class registerServlet extends HttpServlet {
             else {
               // Đăng ký bằng email/password
               customer input = new customer(
-                req.getParameter("fullName"),
                 req.getParameter("email"),
                 req.getParameter("password"),
+                req.getParameter("fullName"),
                 req.getParameter("address")
               );
               c = service.registerEmail(input);

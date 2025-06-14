@@ -28,6 +28,15 @@ public class customer {
         this.createdAt = new Date();
     }
 
+    public customer(int id, String email, String password, String fullName, String role, String address) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.role = role;
+        this.address = address;
+    }
+
     // Getters and setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
