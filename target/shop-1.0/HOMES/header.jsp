@@ -64,7 +64,7 @@
 
   <!-- Logo giữa (mobile) -->
   <a class="navbar-brand d-lg-none center-logo" href="#">
-    <img src="images/others/logomu.png" alt="MU Logo">
+    <img src="images/others/logomu.png" >
   </a>
 
   <!-- Icons bên phải (mobile) -->
@@ -81,7 +81,7 @@
     <!-- Logo bên trái (desktop) -->
     <a class="navbar-brand d-none d-lg-flex align-items-center" href="#">
       <span>UNITED</span>
-      <img src="images/others/logomu.png" alt="MU Logo">
+      <img src="images/others/logomu.png" >
       <span>STORE</span>
     </a>
 
