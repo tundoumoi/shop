@@ -811,6 +811,11 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Black-White Panel Jacket', 'Fashion', 49.99, 'Retro'),
 ('MU White Zip Hoodie with Red Stripe', 'Fashion', 49.99, 'Retro');
 
+
+
+
+
+
 INSERT INTO products (name, category, price, description) VALUES
 ('MU Red Plaid Pajama Set', 'Fashion', 39.99, 'Nightwear'),
 ('MU Red Vertical Stripe Pajama Set', 'Fashion', 39.99, 'Nightwear'),
@@ -820,6 +825,26 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Red Oversized Hoodie Pajama Set', 'Fashion', 39.99, 'Nightwear'),
 ('MU Black Oversized Hoodie Pajama Set', 'Fashion', 39.99, 'Nightwear'),
 ('MU Classic Gray Button-Up Pajama Set', 'Fashion', 39.99, 'Nightwear');
+
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(201, '../images/afashion/nightware/1.jpg', 1),
+(201, '../images/afashion/nightware/2.jpg', 0),
+(202, '../images/afashion/nightware/3.jpg', 1),
+(202, '../images/afashion/nightware/4.jpg', 0),
+(203, '../images/afashion/nightware/5.jpg', 1),
+(203, '../images/afashion/nightware/6.jpg', 0),
+(204, '../images/afashion/nightware/7.jpg', 1),
+(204, '../images/afashion/nightware/8.jpg', 0),
+(205, '../images/afashion/nightware/9.jpg', 1),
+(205, '../images/afashion/nightware/10.jpg', 0),
+(206, '../images/afashion/nightware/11.jpg', 1),
+(206, '../images/afashion/nightware/12.jpg', 0),
+(207, '../images/afashion/nightware/13.jpg', 1),
+(207, '../images/afashion/nightware/14.jpg', 0),
+(208, '../images/afashion/nightware/15.jpg', 1),
+(208, '../images/afashion/nightware/16.jpg', 0);
+
 
 INSERT INTO products (name, category, price, description) VALUES
 ('MU Olive Jogger and Sweatpants Set', 'Fashion', 39.99, 'Shorts and pants'),
@@ -851,6 +876,66 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Red Plaid Pajama Tee and Bottoms Set', 'Fashion', 39.99, 'Shorts and pants'),
 ('MU Black Long Sleeve Pajama Shorts and Pants Set', 'Fashion', 39.99, 'Shorts and pants'),
 ('MU Classic Gray Button-Up Pajama Set', 'Fashion', 39.99, 'Shorts and pants');
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(209, '../images/afashion/short/quan01.jpg', 1),
+(209, '../images/afashion/short/quan02.jpg', 0),
+(210, '../images/afashion/short/quan03.jpg', 1),
+(210, '../images/afashion/short/quan04.jpg', 0),
+(211, '../images/afashion/short/quan05.jpg', 1),
+(211, '../images/afashion/short/quan06.jpg', 0),
+(212, '../images/afashion/short/quan07.jpg', 1),
+(212, '../images/afashion/short/quan08.jpg', 0),
+(213, '../images/afashion/short/quan09.jpg', 1),
+(213, '../images/afashion/short/quan10.jpg', 0),
+(214, '../images/afashion/short/quan11.jpg', 1),
+(214, '../images/afashion/short/quan12.jpg', 0),
+(215, '../images/afashion/short/quan13.jpg', 1),
+(215, '../images/afashion/short/quan14.jpg', 0),
+(216, '../images/afashion/short/quan15.jpg', 1),
+(216, '../images/afashion/short/quan16.jpg', 0),
+(217, '../images/afashion/short/quan17.jpg', 1),
+(217, '../images/afashion/short/quan18.jpg', 0),
+(218, '../images/afashion/short/quan19.jpg', 1),
+(218, '../images/afashion/short/quan20.jpg', 0),
+(219, '../images/afashion/short/quan21.jpg', 1),
+(219, '../images/afashion/short/quan22.jpg', 0),
+(220, '../images/afashion/short/quan23.jpg', 1),
+(220, '../images/afashion/short/quan24.jpg', 0),
+(221, '../images/afashion/short/quan25.jpg', 1),
+(221, '../images/afashion/short/quan26.jpg', 0),
+(222, '../images/afashion/short/quan27.jpg', 1),
+(222, '../images/afashion/short/quan28.jpg', 0),
+(223, '../images/afashion/short/quan29.jpg', 1),
+(223, '../images/afashion/short/quan30.jpg', 0),
+(224, '../images/afashion/short/quan31.jpg', 1),
+(224, '../images/afashion/short/quan32.jpg', 0),
+(225, '../images/afashion/short/quan33.jpg', 1),
+(225, '../images/afashion/short/quan34.jpg', 0),
+(226, '../images/afashion/short/quan35.jpg', 1),
+(226, '../images/afashion/short/quan36.jpg', 0),
+(227, '../images/afashion/short/quan37.jpg', 1),
+(227, '../images/afashion/short/quan38.jpg', 0),
+(228, '../images/afashion/short/quan39.jpg', 1),
+(228, '../images/afashion/short/quan40.jpg', 0),
+(229, '../images/afashion/short/quan41.jpg', 1),
+(229, '../images/afashion/short/quan42.jpg', 0),
+(230, '../images/afashion/short/quan43.jpg', 1),
+(230, '../images/afashion/short/quan44.jpg', 0),
+(231, '../images/afashion/short/quan45.jpg', 1),
+(231, '../images/afashion/short/quan46.jpg', 0),
+(232, '../images/afashion/short/quan47.jpg', 1),
+(232, '../images/afashion/short/quan48.jpg', 0),
+(233, '../images/afashion/short/quan1.jpg', 1),
+(233, '../images/afashion/short/quan2.jpg', 0),
+(234, '../images/afashion/short/quan3.jpg', 1),
+(234, '../images/afashion/short/quan4.jpg', 0),
+(235, '../images/afashion/short/quan5.jpg', 1),
+(235, '../images/afashion/short/quan6.jpg', 0),
+(236, '../images/afashion/short/quan7.jpg', 1),
+(236, '../images/afashion/short/quan8.jpg', 0),
+(237, '../images/afashion/short/quan49.jpg', 1),
+(237, '../images/afashion/short/quan50.jpg', 0);
 
 INSERT INTO products (name, category, price, description) VALUES
 ('MU White Performance Socks Combo', 'Fashion', 14.99, 'Socks & Underwear'),
