@@ -9,6 +9,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>LOGIN/Login.jsp</welcome-file>
+        <welcome-file>CUSTOMER/customer.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

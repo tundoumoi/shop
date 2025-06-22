@@ -159,7 +159,7 @@ VALUES
     (5, '../images/jerseys/Home/man/man01.jpg', 0),
 	(6, '../images/jerseys/Home/man/man14.jpg', 1), 
     (6, '../images/jerseys/Home/man/man15.jpg', 0),
-(7, '../images/jerseys/Home/man/man20.jpg', 1), 
+(7, '../images/jerseys/Home/man/man05.jpg', 1), 
 (7, '../images/jerseys/Home/man/man06.jpg', 0),
 (8, '../images/jerseys/Home/man/man07.jpg', 1), 
 (8, '../images/jerseys/Home/man/man06.jpg', 0),
@@ -169,7 +169,7 @@ VALUES
 (10, '../images/jerseys/Home/man/man06.jpg', 0),
 (11, '../images/jerseys/Home/man/man10.jpg', 1), 
 (11, '../images/jerseys/Home/man/man06.jpg', 0),
-(12, '../images/jerseys/Home/man/man05.jpg', 1), 
+(12, '../images/jerseys/Home/man/man11.jpg', 1), 
 (12, '../images/jerseys/Home/man/man06.jpg', 0),
 (13, '../images/jerseys/Home/man/man16.jpg', 1), 
 (13, '../images/jerseys/Home/man/man06.jpg', 0),
@@ -216,7 +216,127 @@ VALUES
 ( 34, '../images/jerseys/away/manaway/awaym08.jpg', 1 ),
 ( 34, '../images/jerseys/away/manaway/awaym06.jpg', 0 );
 
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+( 35, '../images/jerseys/Thirdd/manT/a06.jpg', 1 ),
+( 35, '../images/jerseys/Thirdd/manT/a07.jpg', 0 ),
+( 36, '../images/jerseys/Thirdd/manT/a09.jpg', 1 ),
+( 36, '../images/jerseys/Thirdd/manT/a08.jpg', 0 ),
+( 37, '../images/jerseys/Thirdd/manT/a10.jpg', 1 ),
+( 37, '../images/jerseys/Thirdd/manT/a11.jpg', 0 ),
+( 38, '../images/jerseys/Thirdd/manT/a05.jpg', 1 ),
+( 38, '../images/jerseys/Thirdd/manT/a04.jpg', 0 ),
+( 39, '../images/jerseys/Thirdd/manT/a01 (1).jpg', 1 ),
+( 39, '../images/jerseys/Thirdd/manT/a02 (1).jpg', 0 ),
+( 40, '../images/jerseys/Thirdd/manT/a12.jpg', 1 ),
+( 40, '../images/jerseys/Thirdd/manT/a13.jpg', 0 ),
+( 41, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 41, '../images/jerseys/Thirdd/manT/a13 (1).jpg', 0 ),
+( 42, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 42, '../images/jerseys/Thirdd/manT/a08 (1).jpg', 0 ),
+( 43, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 43, '../images/jerseys/Thirdd/manT/a14.jpg', 0 ),
+( 44, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 44, '../images/jerseys/Thirdd/manT/a09 (1).jpg', 0 ),
+( 45, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 45, '../images/jerseys/Thirdd/manT/a11 (1).jpg', 0 ),
+( 46, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 46, '../images/jerseys/Thirdd/manT/a12 (1).jpg', 0 ),
+( 47, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 47, '../images/jerseys/Thirdd/manT/a03 (1).jpg', 0 ),
+( 48, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 48, '../images/jerseys/Thirdd/manT/a04 (1).jpg', 0 ),
+( 49, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 49, '../images/jerseys/Thirdd/manT/a15.jpg', 0 ),
+( 50, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 50, '../images/jerseys/Thirdd/manT/a06 (1).jpg', 0 ),
+( 51, '../images/jerseys/Thirdd/manT/a01.jpg', 1 ),
+( 51, '../images/jerseys/Thirdd/manT/a10 (1).jpg', 0 );
 
+
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+( 52, '../images/jerseys/GK/a1.jpg', 1 ),
+( 52, '../images/jerseys/GK/degea.png', 0 ),
+( 53, '../images/jerseys/GK/a3.jpg', 1 ),
+( 53, '../images/jerseys/GK/a4.jpg', 0 ),
+( 54, '../images/jerseys/GK/a7.jpg', 1 ),
+( 54, '../images/jerseys/GK/a8.jpg', 0 ),
+( 55, '../images/jerseys/GK/a5.jpg', 1 ),
+( 55, '../images/jerseys/GK/a6.jpg', 0 ),
+( 56, '../images/jerseys/GK/daiden.jpg', 1 ),
+( 56, '../images/jerseys/GK/daiden1.jpg', 0 ),
+( 57, '../images/jerseys/GK/tatden.jpg', 1 ),
+( 57, '../images/jerseys/GK/tatden1.jpg', 0 ),
+( 58, '../images/jerseys/GK/a1.jpg', 1 ),
+( 58, '../images/jerseys/GK/a2.jpg', 0 );
+
+
+
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+( 59, '../images/training/áo01.jpg', 1 ),
+( 59, '../images/training/áo02.jpg', 0 ),
+( 60, '../images/training/áo02.jpg', 1 ),
+( 60, '../images/training/áo03.jpg', 0 ),
+( 61, '../images/training/áo03.jpg', 1 ),
+( 61, '../images/training/áo04.jpg', 0 ),
+( 62, '../images/training/áo04.jpg', 1 ),
+( 62, '../images/training/áo07.jpg', 0 ),
+( 63, '../images/training/áo07.jpg', 1 ),
+( 63, '../images/training/áo08.jpg', 0 ),
+( 64, '../images/training/áo08.jpg', 1 ),
+( 64, '../images/training/áo09.jpg', 0 ),
+( 65, '../images/training/áo09.jpg', 1 ),
+( 65, '../images/training/áo10.jpg', 0 ),
+( 66, '../images/training/áo10.jpg', 1 ),
+( 66, '../images/training/áo11.jpg', 0 ),
+( 67, '../images/training/áo11.jpg', 1 ),
+( 67, '../images/training/áo12.jpg', 0 ),
+( 68, '../images/training/áo12.jpg', 1 ),
+( 68, '../images/training/áo13.jpg', 0 ),
+( 69, '../images/training/áo13.jpg', 1 ),
+( 69, '../images/training/áo14.jpg', 0 ),
+( 70, '../images/training/áo14.jpg', 1 ),
+( 70, '../images/training/áo15.jpg', 0 ),
+( 71, '../images/training/áo15.jpg', 1 ),
+( 71, '../images/training/áo16.jpg', 0 ),
+( 72, '../images/training/áo16.jpg', 1 ),
+( 72, '../images/training/áo17.jpg', 0 ),
+( 73, '../images/training/áo17.jpg', 1 ),
+( 73, '../images/training/áo18.jpg', 0 ),
+( 74, '../images/training/áo18.jpg', 1 ),
+( 74, '../images/training/áo19.jpg', 0 ),
+( 75, '../images/training/áo19.jpg', 1 ),
+( 75, '../images/training/áo20.jpg', 0 ),
+( 76, '../images/training/áo20.jpg', 1 ),
+( 76, '../images/training/áo21.jpg', 0 ),
+( 77, '../images/training/áo21.jpg', 1 ),
+( 77, '../images/training/áo22.jpg', 0 ),
+( 78, '../images/training/áo22.jpg', 1 ),
+( 78, '../images/training/áo23.jpg', 0 ),
+( 79, '../images/training/áo23.jpg', 1 ),
+( 79, '../images/training/áo24.jpg', 0 ),
+( 80, '../images/training/quần01.jpg', 1 ),
+( 80, '../images/training/quần02.jpg', 0 ),
+( 81, '../images/training/quần02.jpg', 1 ),
+( 81, '../images/training/quần03.jpg', 0 ),
+( 82, '../images/training/quần03.jpg', 1 ),
+( 82, '../images/training/quần04.jpg', 0 ),
+( 83, '../images/training/quần04.jpg', 1 ),
+( 83, '../images/training/quần05.jpg', 0 ),
+( 84, '../images/training/quần05.jpg', 1 ),
+( 84, '../images/training/quần06.jpg', 0 ),
+( 85, '../images/training/quần06.jpg', 1 ),
+( 85, '../images/training/quần07.jpg', 0 ),
+( 86, '../images/training/quần07.jpg', 1 ),
+( 86, '../images/training/quần08.jpg', 0 ),
+( 87, '../images/training/quần08.jpg', 1 ),
+( 87, '../images/training/quần09.jpg', 0 ),
+( 88, '../images/training/quần09.jpg', 1 ),
+( 88, '../images/training/quần10.jpg', 0 ),
+( 89, '../images/training/quần10.jpg', 1 ),
+( 89, '../images/training/quần11.jpg', 0 );
 
 INSERT INTO products (name, description, price, category)
 VALUES
@@ -293,7 +413,6 @@ VALUES
 ('black short', 'Goalkeeper', 59.99, 'Jersey');
 
 
-
 INSERT INTO products (name, description, price, category)
 VALUES
 -- Top (12)
@@ -332,6 +451,8 @@ VALUES
 ('MU Training Track Pants', 'Shorts & Trousers', 54.99, 'Trainingwear'),
 ('MU Training Joggers Logo', 'Shorts & Trousers', 54.99, 'Trainingwear'),
 ('MU Training Leggings Black', 'Shorts & Trousers', 49.99, 'Trainingwear');
+
+
 
 INSERT INTO products (name, category, price, description) VALUES
 ('Essential Black Tee', 'Fashion', 24.99, 'Tshirt'),
@@ -374,13 +495,7 @@ INSERT INTO products (name, category, price, description) VALUES
 ('White Daily Tee', 'Fashion', 24.99, 'Tshirt'),
 ('Navy Slim Polo', 'Fashion', 24.99, 'Tshirt'),
 ('Dream Backprint Tee', 'Fashion', 24.99, 'Tshirt'),
-('Blackout Modern Tee', 'Fashion', 24.99, 'Tshirt'),
-('1878 Heritage Tee', 'Fashion', 24.99, 'Tshirt'),
-('Olive Urban Tee', 'Fashion', 24.99, 'Tshirt'),
-('Team Logo White Tee', 'Fashion', 24.99, 'Tshirt'),
-('Vintage Gradient Tee', 'Fashion', 24.99, 'Tshirt'),
-('Minimal Clay Tee', 'Fashion', 24.99, 'Tshirt'),
-('Backline Clay Tee', 'Fashion', 24.99, 'Tshirt');
+('Blackout Modern Tee', 'Fashion', 24.99, 'Tshirt');
  
  
 
