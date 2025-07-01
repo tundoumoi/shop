@@ -4,9 +4,10 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class customer {
+public class customer implements Serializable{
     private int id;
     private String email;
     private String password;

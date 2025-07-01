@@ -4,11 +4,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LENOVO Ideapad 3
  */
-public class productVariant {
+public class productVariant implements Serializable{
     private int id;
     private int productId;
     private String size;

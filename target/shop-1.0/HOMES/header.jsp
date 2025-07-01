@@ -64,7 +64,7 @@
 
   <!-- Logo giữa (mobile) -->
   <a class="navbar-brand d-lg-none center-logo" href="#">
-    <img src="images/others/logomu.png" >
+      <img src="../images/others/logomu.png" >
   </a>
 
   <!-- Icons bên phải (mobile) -->

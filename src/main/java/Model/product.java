@@ -4,11 +4,12 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class product {
+public class product implements Serializable{
     private int id;
     private String name;
     private String description;

@@ -8,6 +8,7 @@ import Util.DatabaseConnection;
 import Model.product;
 import Model.productVariant;
 import Model.productImage;
+import java.math.BigDecimal;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class productDAO {
     final String productQuery = "SELECT * FROM products ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
     final String variantQuery = "SELECT * FROM product_variants WHERE product_id = ?";
     final String imageQuery = "SELECT * FROM product_images WHERE product_id = ?";
+    
+    final String SELECT_PRODUCT_SQL_BY_ID = "SELECT * FROM products WHERE id = ?";
+    final String SELECT_VARIANTS_SQL_BY_ID = "SELECT * FROM product_variants WHERE product_id = ?";
+    final String SELECT_IMAGES_SQL_BY_ID = "SELECT * FROM product_images WHERE product_id = ?";
     //select for user
     final String SELECT_PRODUCTS_SQL = "SELECT * FROM products WHERE status = 1 ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
     final String SELECT_VARIANTS_SQL = "SELECT * FROM product_variants WHERE product_id = ?";
@@ -178,6 +183,69 @@ public class productDAO {
         return products;
     }
 
+    public product selectProductById(int id) {
+
+        product product = null;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(SELECT_PRODUCT_SQL_BY_ID)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    product = new product();
+                    product.setId(rs.getInt("id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getBigDecimal("price"));
+                    product.setCategory(rs.getString("category"));
+                    product.setStatus(rs.getBoolean("status"));
+                    product.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+
+                    // Biến thể
+                    List<productVariant> variants = new ArrayList<>();
+                    try (PreparedStatement variantStmt = conn.prepareStatement(SELECT_VARIANTS_SQL_BY_ID)) {
+                        variantStmt.setInt(1, id);
+                        try (ResultSet vrs = variantStmt.executeQuery()) {
+                            while (vrs.next()) {
+                                productVariant variant = new productVariant();
+                                variant.setId(vrs.getInt("id"));
+                                variant.setProductId(id);
+                                variant.setSize(vrs.getString("size"));
+                                variant.setQuantity(vrs.getInt("quantity"));
+                                variants.add(variant);
+                            }
+                        }
+                    }
+
+                    // Hình ảnh
+                    List<productImage> images = new ArrayList<>();
+                    try (PreparedStatement imageStmt = conn.prepareStatement(SELECT_IMAGES_SQL_BY_ID)) {
+                        imageStmt.setInt(1, id);
+                        try (ResultSet irs = imageStmt.executeQuery()) {
+                            while (irs.next()) {
+                                productImage image = new productImage();
+                                image.setId(irs.getInt("id"));
+                                image.setProductId(id);
+                                image.setImageUrl(irs.getString("image_url"));
+                                image.setIsPrimary(irs.getBoolean("is_primary"));
+                                images.add(image);
+                            }
+                        }
+                    }
+
+                    product.setVariants(variants);
+                    product.setImages(images);
+                }
+            }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Lỗi khi lấy sản phẩm theo ID: " + id, e);
+        }
+
+        return product;
+    }
 
     
     public boolean deleteProduct(int id) throws SQLException {
@@ -355,5 +423,21 @@ public class productDAO {
 
         return success;
     }
+    
+    public static void main(String[] args) {
+        productDAO dao = new productDAO();
+        product p = dao.selectProductById(5);
 
+        if (p != null) {
+            System.out.println("Tên sản phẩm: " + p.getName());
+            for (productVariant v : p.getVariants()) {
+                System.out.println(" - Size: " + v.getSize() + ", SL: " + v.getQuantity());
+            }
+            for (productImage img : p.getImages()) {
+                System.out.println(" - Ảnh: " + img.getImageUrl() + ", Chính: " + img.isIsPrimary());
+            }
+        } else {
+            System.out.println("Không tìm thấy sản phẩm.");
+        }
+    }
 }
