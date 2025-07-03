@@ -81,7 +81,7 @@
     <!-- Logo bên trái (desktop) -->
     <a class="navbar-brand d-none d-lg-flex align-items-center" href="#">
       <span>UNITED</span>
-      <img src="../images/others/logomu.png" >
+      <img src="images/others/logomu.png" >
       <span>STORE</span>
     </a>
 

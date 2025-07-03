@@ -91,14 +91,6 @@ CREATE TABLE recommendations (
     created_at             DATETIME DEFAULT GETDATE()
 );
 
--- 9. CHATBOT_LOGS
-CREATE TABLE chatbot_logs (
-    id          INT PRIMARY KEY IDENTITY,
-    user_id     INT NOT NULL FOREIGN KEY REFERENCES users(id),
-    question    NVARCHAR(1000),
-    ai_response NVARCHAR(1000),
-    created_at  DATETIME DEFAULT GETDATE()
-);
 -- 10. REVENUE
 CREATE TABLE revenue_forecast (
   id INT IDENTITY PRIMARY KEY,

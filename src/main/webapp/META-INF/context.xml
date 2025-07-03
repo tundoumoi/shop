@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/shop"/>
+<Context path="/shop">
+  <Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" maxActive="20" maxIdle="10" maxWait="-1" name="ShopQuanAo" password="12345" type="javax.sql.DataSource" url="jdbc:sqlserver://localhost:1433;databaseName=Shop_Quan_Ao;encrypt=false" username="sa"/>
+</Context>

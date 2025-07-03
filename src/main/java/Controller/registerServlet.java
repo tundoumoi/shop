@@ -84,7 +84,7 @@ public class registerServlet extends HttpServlet {
 
             // Thành công → lưu session + chuyển trang
             req.getSession().setAttribute("user", c);
-            resp.sendRedirect("CUSTOMER/customer.jsp");
+            resp.sendRedirect("products");
           }
           catch (DuplicateAuthException dae) {
             // nếu trùng đăng ký social hoặc email đã tồn tại → báo lỗi và quay lại form

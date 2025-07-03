@@ -424,6 +424,18 @@ public class productDAO {
         return success;
     }
     
+    public int countAllActiveProducts() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM products WHERE status = 1";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        }
+    }
+    
     public static void main(String[] args) {
         productDAO dao = new productDAO();
         product p = dao.selectProductById(5);
