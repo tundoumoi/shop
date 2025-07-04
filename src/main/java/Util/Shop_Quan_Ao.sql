@@ -948,6 +948,27 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Premium Black Underwear Pack', 'Fashion', 19.99, 'Socks & Underwear'),
 ('MU Striped Detail Boxer and Socks Combo', 'Fashion', 19.99, 'Socks & Underwear'),
 ('MU Training Socks & Underwear Essentials Set', 'Fashion', 19.99, 'Socks & Underwear');
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(239, '../images/afashion/stock&underware/1.jpg', 1),
+(239, '../images/afashion/stock&underware/2.jpg', 0),
+(240, '../images/afashion/stock&underware/3.jpg', 1),
+(240, '../images/afashion/stock&underware/4.jpg', 0),
+(241, '../images/afashion/stock&underware/5.jpg', 1),
+(241, '../images/afashion/stock&underware/6.jpg', 0),
+(242, '../images/afashion/stock&underware/7.jpg', 1),
+(242, '../images/afashion/stock&underware/8.jpg', 0),
+(243, '../images/afashion/stock&underware/9.jpg', 1),
+(243, '../images/afashion/stock&underware/10.jpg', 0),
+(244, '../images/afashion/stock&underware/11.jpg', 1),
+(244, '../images/afashion/stock&underware/12.jpg', 0),
+(245, '../images/afashion/stock&underware/13.jpg', 1),
+(245, '../images/afashion/stock&underware/14.jpg', 0),
+(246, '../images/afashion/stock&underware/15.jpg', 1),
+(246, '../images/afashion/stock&underware/16.jpg', 0),
+(247, '../images/afashion/stock&underware/17.jpg', 1),
+(247, '../images/afashion/stock&underware/18.jpg', 0);
+
 
 
 INSERT INTO products (name, category, price, description) VALUES
@@ -976,6 +997,59 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Black Zip Hoodie Combo', 'Fashion', 89.99, 'Jackets & Coats'),
 ('MU Olive Utility Jacket Set', 'Fashion', 89.99, 'Jackets & Coats');
 
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(248, '../images/afashion/coat/coat01.jpg', 1),
+(248, '../images/afashion/coat/coat02.jpg', 0),
+(249, '../images/afashion/coat/coat03.jpg', 1),
+(249, '../images/afashion/coat/coat04.jpg', 0),
+(250, '../images/afashion/coat/coat05.jpg', 1),
+(250, '../images/afashion/coat/coat06.jpg', 0),
+(251, '../images/afashion/coat/coat07.jpg', 1),
+(251, '../images/afashion/coat/coat08.jpg', 0),
+(252, '../images/afashion/coat/coat09.jpg', 1),
+(252, '../images/afashion/coat/coat10.jpg', 0),
+(253, '../images/afashion/coat/coat11.jpg', 1),
+(253, '../images/afashion/coat/coat12.jpg', 0),
+(254, '../images/afashion/coat/coat13.jpg', 1),
+(254, '../images/afashion/coat/coat14.jpg', 0),
+(255, '../images/afashion/coat/coat15.jpg', 1),
+(255, '../images/afashion/coat/coat16.jpg', 0),
+(256, '../images/afashion/coat/coat17.jpg', 1),
+(256, '../images/afashion/coat/coat18.jpg', 0),
+(257, '../images/afashion/coat/coat19.jpg', 1),
+(257, '../images/afashion/coat/coat20.jpg', 0),
+(258, '../images/afashion/coat/coat21.jpg', 1),
+(258, '../images/afashion/coat/coat22.jpg', 0),
+(259, '../images/afashion/coat/coat23.jpg', 1),
+(259, '../images/afashion/coat/coat24.jpg', 0),
+(260, '../images/afashion/coat/coat25.jpg', 1),
+(260, '../images/afashion/coat/coat26.jpg', 0),
+(261, '../images/afashion/coat/coat27.jpg', 1),
+(261, '../images/afashion/coat/coat28.jpg', 0),
+(262, '../images/afashion/coat/coat29.jpg', 1),
+(262, '../images/afashion/coat/coat30.jpg', 0),
+(263, '../images/afashion/coat/coat31.jpg', 1),
+(263, '../images/afashion/coat/coat32.jpg', 0),
+(264, '../images/afashion/coat/coat33.jpg', 1),
+(264, '../images/afashion/coat/coat34.jpg', 0),
+(265, '../images/afashion/coat/coat35.jpg', 1),
+(265, '../images/afashion/coat/coat36.jpg', 0),
+(266, '../images/afashion/coat/coat37.jpg', 1),
+(266, '../images/afashion/coat/coat38.jpg', 0),
+(267, '../images/afashion/coat/coat39.jpg', 1),
+(267, '../images/afashion/coat/coat40.jpg', 0),
+(268, '../images/afashion/coat/coat41.jpg', 1),
+(268, '../images/afashion/coat/coat42.jpg', 0),
+(269, '../images/afashion/coat/coat43.jpg', 1),
+(269, '../images/afashion/coat/coat44.jpg', 0),
+(270, '../images/afashion/coat/coat45.jpg', 1),
+(270, '../images/afashion/coat/coat46.jpg', 0),
+(271, '../images/afashion/coat/coat47.jpg', 1),
+(271, '../images/afashion/coat/coat48.jpg', 0),
+(272, '../images/afashion/coat/coat49.jpg', 1),
+(272, '../images/afashion/coat/coat50.jpg', 0);
+
 INSERT INTO products (name, category, price, description) VALUES
 ('MU Black Minimalist Jacket Set', 'Fashion', 89.99, 'Jackets & Coats'),
 ('MU Street Zip Hoodie Duo', 'Fashion', 89.99, 'Jackets & Coats'),
@@ -1001,12 +1075,71 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Winter Coat with Patch Logo Set', 'Fashion', 89.99, 'Jackets & Coats'),
 ('MU Classic Hooded Fur Jacket Combo', 'Fashion', 89.99, 'Jackets & Coats'),
 ('MU Wide Hemmed Fur Coat Pair', 'Fashion', 89.99, 'Jackets & Coats');
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(273, '../images/afashion/coat2/coat01.jpg', 1),
+(273, '../images/afashion/coat2/coat02.jpg', 0),
+(274, '../images/afashion/coat2/coat03.jpg', 1),
+(274, '../images/afashion/coat2/coat04.jpg', 0),
+(275, '../images/afashion/coat2/coat05.jpg', 1),
+(275, '../images/afashion/coat2/coat06.jpg', 0),
+(276, '../images/afashion/coat2/coat07.jpg', 1),
+(276, '../images/afashion/coat2/coat08.jpg', 0),
+(277, '../images/afashion/coat2/coat09.jpg', 1),
+(277, '../images/afashion/coat2/coat10.jpg', 0),
+(278, '../images/afashion/coat2/coat11.jpg', 1),
+(278, '../images/afashion/coat2/coat12.jpg', 0),
+(279, '../images/afashion/coat2/coat13.jpg', 1),
+(279, '../images/afashion/coat2/coat14.jpg', 0),
+(280, '../images/afashion/coat2/coat15.jpg', 1),
+(280, '../images/afashion/coat2/coat16.jpg', 0),
+(281, '../images/afashion/coat2/coat17.jpg', 1),
+(281, '../images/afashion/coat2/coat18.jpg', 0),
+(282, '../images/afashion/coat2/coat19.jpg', 1),
+(282, '../images/afashion/coat2/coat20.jpg', 0),
+(283, '../images/afashion/coat2/coat21.jpg', 1),
+(283, '../images/afashion/coat2/coat22.jpg', 0),
+(284, '../images/afashion/coat2/coat23.jpg', 1),
+(284, '../images/afashion/coat2/coat24.jpg', 0),
+(285, '../images/afashion/coat2/coat25.jpg', 1),
+(285, '../images/afashion/coat2/coat26.jpg', 0),
+(286, '../images/afashion/coat2/coat27.jpg', 1),
+(286, '../images/afashion/coat2/coat28.jpg', 0),
+(287, '../images/afashion/coat2/coat29.jpg', 1),
+(287, '../images/afashion/coat2/coat30.jpg', 0),
+(288, '../images/afashion/coat2/coat31.jpg', 1),
+(288, '../images/afashion/coat2/coat32.jpg', 0),
+(289, '../images/afashion/coat2/coat33.jpg', 1),
+(289, '../images/afashion/coat2/coat34.jpg', 0),
+(290, '../images/afashion/coat2/coat35.jpg', 1),
+(290, '../images/afashion/coat2/coat36.jpg', 0),
+(291, '../images/afashion/coat2/coat37.jpg', 1),
+(291, '../images/afashion/coat2/coat38.jpg', 0),
+(292, '../images/afashion/coat2/coat39.jpg', 1),
+(292, '../images/afashion/coat2/coat40.jpg', 0),
+(293, '../images/afashion/coat2/coat41.jpg', 1),
+(293, '../images/afashion/coat2/coat42.jpg', 0),
+(294, '../images/afashion/coat2/coat43.jpg', 1),
+(294, '../images/afashion/coat2/coat44.jpg', 0),
+(295, '../images/afashion/coat2/coat45.jpg', 1),
+(295, '../images/afashion/coat2/coat46.jpg', 0);
+
 INSERT INTO products (name, category, price, description) VALUES
 ('MU White Retro Sneakers with Blue Stripes', 'Fashion', 69.99, 'Shoes'),
 ('MU Red-Black Soft Indoor Slippers', 'Fashion', 39.99, 'Shoes'),
 ('MU Black Logo Cozy Slippers', 'Fashion', 39.99, 'Shoes'),
 ('MU Classic Beige Sneakers with Red Stripes', 'Fashion', 69.99, 'Shoes');
 
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(296, '../images/afashion/footwear/1.jpg', 1),
+(296, '../images/afashion/footwear/2.jpg', 0),
+(297, '../images/afashion/footwear/3.jpg', 1),
+(297, '../images/afashion/footwear/4.jpg', 0),
+(298, '../images/afashion/footwear/5.jpg', 1),
+(298, '../images/afashion/footwear/6.jpg', 0),
+(299, '../images/afashion/footwear/7.jpg', 1),
+(299, '../images/afashion/footwear/8.jpg', 0);
 
 INSERT INTO products (name, category, price, description) VALUES
 ('MU Round Badge Keychain Set', 'Souvenir', 9.99, 'Keychain'),
@@ -1017,6 +1150,25 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Red Tassel Keychain Combo', 'Souvenir', 10.99, 'Keychain'),
 ('MU Red & Black Loop Keychain Pair', 'Souvenir', 9.99, 'Keychain'),
 ('MU Spiral Strap Keychain Duo', 'Souvenir', 8.99, 'Keychain');  
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(300, '../images/souvenirs/mockhoa/1.jpg', 1),
+(300, '../images/souvenirs/mockhoa/2.jpg', 0),
+(301, '../images/souvenirs/mockhoa/3.jpg', 1),
+(301, '../images/souvenirs/mockhoa/4.jpg', 0),
+(302, '../images/souvenirs/mockhoa/5.jpg', 1),
+(302, '../images/souvenirs/mockhoa/6.jpg', 0),
+(303, '../images/souvenirs/mockhoa/7.jpg', 1),
+(303, '../images/souvenirs/mockhoa/8.jpg', 0),
+(304, '../images/souvenirs/mockhoa/9.jpg', 1),
+(304, '../images/souvenirs/mockhoa/10.jpg', 0),
+(305, '../images/souvenirs/mockhoa/11.jpg', 1),
+(305, '../images/souvenirs/mockhoa/12.jpg', 0),
+(306, '../images/souvenirs/mockhoa/13.jpg', 1),
+(306, '../images/souvenirs/mockhoa/14.jpg', 0),
+(307, '../images/souvenirs/mockhoa/15.jpg', 1),
+(307, '../images/souvenirs/mockhoa/16.jpg', 0);
+
 INSERT INTO products (name, category, price, description) VALUES
 ('Adidas Compact Crossbody Bag', 'Souvenir', 19.99, 'Bags'),
 ('Black Classic Travel Duffel', 'Souvenir', 29.99, 'Bags'),
