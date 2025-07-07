@@ -5,7 +5,7 @@
 package Service;
 
 import DAO.registerDAO;
-import Model.customer;
+import Model.User;
 import java.sql.SQLException;
 
 /**
@@ -21,11 +21,11 @@ public class registerService {
      * @throws SQLException
      * @throws DuplicateAuthException nếu email đã tồn tại
      */
-    public customer registerEmail(customer input) throws SQLException, DuplicateAuthException {
+    public User registerEmail(User input) throws SQLException, DuplicateAuthException {
         System.out.println("[registerEmail] Bắt đầu đăng ký bằng email: " + input.getEmail());
 
         // 1. Kiểm tra email đã tồn tại?
-        customer exist = dao.findByEmail(input.getEmail());
+        User exist = dao.findByEmail(input.getEmail());
         if (exist != null) {
             System.out.println("[registerEmail] Email đã tồn tại: " + input.getEmail());
             throw new DuplicateAuthException("Email " + input.getEmail() + " đã được sử dụng.");
@@ -41,12 +41,12 @@ public class registerService {
     /**
      * Đăng ký hoặc liên kết tài khoản Google.
      */
-    public customer registerGoogle(String googleId, String email, String fullName) throws SQLException, DuplicateAuthException {
+    public User registerGoogle(String googleId, String email, String fullName) throws SQLException, DuplicateAuthException {
         System.out.println("[registerGoogle] Đăng ký/đăng nhập với Google ID: " + googleId);
         System.out.println("[registerGoogle] Email: " + email + " | FullName: " + fullName);
 
         // 1. Nếu đã có Google ID trong hệ thống
-        customer c = dao.findByGoogleId(googleId);
+        User c = dao.findByGoogleId(googleId);
         if (c != null) {
             System.out.println("[registerGoogle] Đã tồn tại googleId: " + googleId);
             throw new DuplicateAuthException("Google account already linked.");
@@ -68,7 +68,7 @@ public class registerService {
         }
 
         // 3. Chưa tồn tại → đăng ký mới
-        c = new customer();
+        c = new User();
         c.setGoogleId(googleId);
         c.setEmail(email);
         c.setFullName(fullName);
@@ -82,11 +82,11 @@ public class registerService {
     /**
      * Đăng ký hoặc liên kết tài khoản Facebook.
      */
-    public customer registerFacebook(String facebookId, String email, String fullName) throws SQLException {
+    public User registerFacebook(String facebookId, String email, String fullName) throws SQLException {
         System.out.println("[registerFacebook] Đăng ký/đăng nhập với Facebook ID: " + facebookId);
         System.out.println("[registerFacebook] Email: " + email + " | FullName: " + fullName);
 
-        customer c = dao.findByFacebookId(facebookId);
+        User c = dao.findByFacebookId(facebookId);
         if (c != null) {
             System.out.println("[registerFacebook] Đã tồn tại facebookId.");
             return c;
@@ -104,7 +104,7 @@ public class registerService {
         }
 
         // Chưa có tài khoản nào → tạo mới
-        c = new customer();
+        c = new User();
         c.setFacebookId(facebookId);
         c.setEmail(email);
         c.setFullName(fullName);
@@ -115,7 +115,7 @@ public class registerService {
         return c;
     }
 
-    public customer findByEmail(String email) throws SQLException {
+    public User findByEmail(String email) throws SQLException {
         return dao.findByEmail(email);
     }
 

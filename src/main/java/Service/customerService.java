@@ -5,7 +5,7 @@
 package Service;
 
 import DAO.registerDAO;
-import Model.customer;
+import Model.User;
 import java.sql.SQLException;
 /**
  *
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class customerService {
     private registerDAO dao = new registerDAO();
 
-    public customer loginEmail(customer c) throws SQLException {
+    public User loginEmail(User c) throws SQLException {
         if (dao.findByEmail(c.getEmail()) != null) {
             throw new IllegalArgumentException("Email already registered");
         }
@@ -22,15 +22,15 @@ public class customerService {
         return c;
     }
 
-    public customer loginEmail(String email, String password) throws SQLException {
-        customer c = dao.findByEmail(email);
+    public User loginEmail(String email, String password) throws SQLException {
+        User c = dao.findByEmail(email);
         if (c != null && c.getPassword().equals(password)) return c;
         return null;
     }
 
-    public customer registerGoogle(String googleId, String email, String fullName) throws SQLException {
+    public User registerGoogle(String googleId, String email, String fullName) throws SQLException {
         // 1. If there's already a user with this Google ID, return it
-        customer c = dao.findByGoogleId(googleId);
+        User c = dao.findByGoogleId(googleId);
         if (c != null) return c;
         
         // 2. If email exists but no Google ID, link the Google account
@@ -44,7 +44,7 @@ public class customerService {
         }
 
         // 3. New user: insert
-        c = new customer();
+        c = new User();
         c.setGoogleId(googleId);
         c.setEmail(email);
         c.setFullName(fullName);
@@ -53,9 +53,9 @@ public class customerService {
         return c;
     }
 
-    public customer registerFacebook(String facebookId, String email, String fullName) throws SQLException {
+    public User registerFacebook(String facebookId, String email, String fullName) throws SQLException {
         // 1. If there's already a user with this Facebook ID, return it
-        customer c = dao.findByFacebookId(facebookId);
+        User c = dao.findByFacebookId(facebookId);
         if (c != null) return c;
         
         // 2. If email exists but no Facebook ID, link the Facebook account
@@ -69,7 +69,7 @@ public class customerService {
         }
 
         // 3. New user: insert
-        c = new customer();
+        c = new User();
         c.setFacebookId(facebookId);
         c.setEmail(email);
         c.setFullName(fullName);
