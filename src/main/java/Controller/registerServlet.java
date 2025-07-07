@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,8 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Service.customerService;
-import Model.customer;
+
+
 import Service.registerService;
 import Service.registerService.DuplicateAuthException;
 
@@ -52,7 +53,7 @@ public class registerServlet extends HttpServlet {
         if ("register".equals(action)) {
           String provider = req.getParameter("provider");
           try {
-            customer c = null;
+            User c = null;
             if ("google".equals(provider)) {
               String idToken = req.getParameter("id_token");
               GoogleIdToken.Payload payload = verifyGoogleToken(idToken);
@@ -73,7 +74,7 @@ public class registerServlet extends HttpServlet {
             }
             else {
               // Đăng ký bằng email/password
-              customer input = new customer(
+              User input = new User(
                 req.getParameter("email"),
                 req.getParameter("password"),
                 req.getParameter("fullName"),
