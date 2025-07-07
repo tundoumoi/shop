@@ -4,11 +4,11 @@
  */
 package DAO;
 
+import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import Model.customer;
 import Util.DatabaseConnection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +24,7 @@ public class registerDAO {
     private static final String SQL_UPDATE_GOOGLE = "UPDATE users SET google_id = ? WHERE email = ?";
     private static final String SQL_UPDATE_FACEBOOK = "UPDATE users SET facebook_id = ? WHERE email = ?";
 
-    public customer findByEmail(String email) throws SQLException {
+    public User findByEmail(String email) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_SELECT_EMAIL)) {
             ps.setString(1, email);
@@ -34,7 +34,7 @@ public class registerDAO {
         return null;
     }
 
-    public customer findByGoogleId(String googleId) throws SQLException {
+    public User findByGoogleId(String googleId) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_SELECT_GOOGLE)) {
             ps.setString(1, googleId);
@@ -44,7 +44,7 @@ public class registerDAO {
         return null;
     }
 
-    public customer findByFacebookId(String facebookId) throws SQLException {
+    public User findByFacebookId(String facebookId) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_SELECT_FACEBOOK)) {
             ps.setString(1, facebookId);
@@ -54,7 +54,7 @@ public class registerDAO {
         return null;
     }
 
-    public void insert(customer c) throws SQLException {
+    public void insert(User c) throws SQLException {
         System.out.println("[registerDAO.insert] Bắt đầu insert user: " + c.getEmail());
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -104,8 +104,8 @@ public class registerDAO {
         }
     }
 
-    private customer map(ResultSet rs) throws SQLException {
-        customer c = new customer();
+    private User map(ResultSet rs) throws SQLException {
+        User c = new User();
         c.setId(rs.getInt("id"));
         c.setEmail(rs.getString("email"));
         c.setPassword(rs.getString("password"));
