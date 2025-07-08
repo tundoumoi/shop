@@ -52,7 +52,7 @@
             </table>
             <!-- Pagination Controls -->
             <br/>
-            <c:if test="${noOfPages > 1}">
+            <c:if test="${totalPages > 1}">
                 <div align="center">
                     <ul style="list-style:none; padding:0;">
                         <c:if test="${currentPage > 1}">
@@ -60,7 +60,7 @@
                                 <a href="products?action=list&page=${currentPage-1}">« Prev</a>
                             </li>
                         </c:if>
-                        <c:forEach var="i" begin="1" end="${noOfPages}">
+                        <c:forEach var="i" begin="1" end="${totalPages}">
                             <li style="display:inline; margin:0 5px;">
                                 <c:choose>
                                     <c:when test="${i == currentPage}">
@@ -72,7 +72,7 @@
                                 </c:choose>
                             </li>
                         </c:forEach>
-                        <c:if test="${currentPage < noOfPages}">
+                        <c:if test="${currentPage < totalPages}">
                             <li style="display:inline; margin:0 5px;">
                                 <a href="products?action=list&page=${currentPage+1}">Next »</a>
                             </li>

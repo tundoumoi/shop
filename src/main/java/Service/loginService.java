@@ -4,7 +4,7 @@
  */
 package Service;
 import DAO.loginDAO;
-import Model.customer;
+import Model.User;
 /**
  *
  * @author LENOVO Ideapad 3
@@ -31,7 +31,7 @@ public class loginService {
      * @param email
      * @return User object nếu tìm thấy, null nếu không tìm thấy
      */
-    public customer getUserInfo(String email) {
+    public User getUserInfo(String email) {
         return loginDAO.getUserByEmail(email);
     }
 }

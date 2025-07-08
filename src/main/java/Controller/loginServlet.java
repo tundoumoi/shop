@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.User;
 import Model.customer;
 import Service.loginService;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class loginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         boolean c = login.login(email, password);
-        customer cus = new customer();
+        User cus = new User();
         if (c == true) {
             cus=login.getUserInfo(email);
             HttpSession session = req.getSession();

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+import Model.User;
 import Model.customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,8 +35,8 @@ public class loginDAO {
     }
 
     // Có thể bổ sung thêm: lấy thông tin người dùng sacustomeru khi login thành công
-    public customer getUserByEmail(String email) {
-        customer user = null;
+    public User getUserByEmail(String email) {
+        User user = null;
         String sql = "SELECT * FROM users WHERE email = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -45,7 +46,7 @@ public class loginDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    user = new customer();
+                    user = new User();
                     user.setId(rs.getInt("id"));
                     user.setEmail(rs.getString("email"));
                     user.setFullName(rs.getString("full_name"));

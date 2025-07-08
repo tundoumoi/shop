@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.User;
 import Model.product;
 import Model.productImage;
 import Model.productVariant;
@@ -95,9 +96,10 @@ public class productServlet extends HttpServlet {
         int totalPages = productService.getTotalPages(PAGE_SIZE);
         request.setAttribute("productList", products);
         request.setAttribute("currentPage", page);
-        request.setAttribute("noOfPages", totalPages);
+        request.setAttribute("totalPages", totalPages);
 
-        String role = (String) request.getSession().getAttribute("role");
+        User user = (User) request.getSession().getAttribute("user");
+        String role = user.getRole();
         String targetPage = "user".equalsIgnoreCase(role) ? USER_LIST_PAGE : ADMIN_LIST_PAGE;
         RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
         dispatcher.forward(request, response);
