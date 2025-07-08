@@ -8,7 +8,6 @@ import Util.DatabaseConnection;
 import Model.product;
 import Model.productVariant;
 import Model.productImage;
-import java.math.BigDecimal;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class productDAO {
                     product.setPrice(rs.getBigDecimal("price"));
                     product.setCategory(rs.getString("category"));
                     product.setStatus(rs.getBoolean("status"));
-                    product.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    product.setCreatedAt(rs.getTimestamp("created_at"));
 
                     // Lấy biến thể
                     List<productVariant> variants = new ArrayList<>();
@@ -135,7 +134,7 @@ public class productDAO {
                     product.setPrice(rs.getBigDecimal("price"));
                     product.setCategory(rs.getString("category"));
                     product.setStatus(rs.getBoolean("status"));
-                    product.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    product.setCreatedAt(rs.getTimestamp("created_at"));
 
                     // Lấy biến thể
                     List<productVariant> variants = new ArrayList<>();
@@ -201,7 +200,7 @@ public class productDAO {
                     product.setPrice(rs.getBigDecimal("price"));
                     product.setCategory(rs.getString("category"));
                     product.setStatus(rs.getBoolean("status"));
-                    product.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    product.setCreatedAt(rs.getTimestamp("created_at"));
 
                     // Biến thể
                     List<productVariant> variants = new ArrayList<>();
@@ -239,7 +238,6 @@ public class productDAO {
                     product.setImages(images);
                 }
             }
-
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Lỗi khi lấy sản phẩm theo ID: " + id, e);
         }
@@ -438,7 +436,7 @@ public class productDAO {
     
     public static void main(String[] args) {
         productDAO dao = new productDAO();
-        product p = dao.selectProductById(5);
+        product p = dao.selectProductById(8);
 
         if (p != null) {
             System.out.println("Tên sản phẩm: " + p.getName());

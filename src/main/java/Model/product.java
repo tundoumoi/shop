@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class product implements Serializable{
@@ -16,7 +13,7 @@ public class product implements Serializable{
     private BigDecimal price;
     private String category;
     private boolean status;
-    private LocalDateTime createdAt;
+    private Date  createdAt;
 
     private List<productVariant> variants;
     private List<productImage> images;
@@ -24,7 +21,7 @@ public class product implements Serializable{
     public product() {}
 
     public product(int id, String name, String description, BigDecimal price,
-                   String category, boolean status, LocalDateTime createdAt,
+                   String category, boolean status, Date createdAt,
                    List<productVariant> variants, List<productImage> images) {
         this.id = id;
         this.name = name;
@@ -85,11 +82,11 @@ public class product implements Serializable{
         this.status = status;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
