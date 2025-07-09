@@ -1289,3 +1289,74 @@ SET image_url = REPLACE(image_url, '../', '');
 delete from products;
 DBCC CHECKIDENT ('products', RESEED, 0);
 delete from product_images;
+
+go
+-- 1) Sinh 100 đơn hàng
+DECLARE @i INT = 1;
+WHILE @i <= 100
+BEGIN
+  -- 1.1) Ngày order ngẫu nhiên trong 365 ngày qua
+  DECLARE @orderDate DATETIME = DATEADD(
+    DAY,
+    -CAST(RAND(CHECKSUM(NEWID())) * 365 AS INT),
+    GETDATE()
+  );
+
+  -- 1.2) Chọn user_id ngẫu nhiên từ bảng users
+  DECLARE @randomUser INT = (
+    SELECT TOP 1 id
+    FROM users
+    ORDER BY NEWID()
+  );
+
+  -- 1.3) Tạo order tạm với total_amount = 0
+  INSERT INTO orders (user_id, order_date, total_amount)
+  VALUES (@randomUser, @orderDate, 0);
+  DECLARE @orderId INT = SCOPE_IDENTITY();
+
+  -- 1.4) Sinh 1–5 items cho order
+  DECLARE @itemCount INT = CAST(RAND(CHECKSUM(NEWID())) * 5 + 1 AS INT);
+  DECLARE @j INT = 1;
+  WHILE @j <= @itemCount
+  BEGIN
+    -- a) Chọn ngẫu nhiên variant_id
+    DECLARE @variantId INT = (
+      SELECT TOP 1 id
+      FROM product_variants
+      ORDER BY NEWID()
+    );
+    -- b) Sinh quantity 1–10
+    DECLARE @qty INT = CAST(RAND(CHECKSUM(NEWID())) * 10 + 1 AS INT);
+
+    -- c) Lấy unit_price từ bảng products
+    DECLARE @unitPrice DECIMAL(10,2);
+    SELECT @unitPrice = p.price
+    FROM product_variants pv
+    JOIN products p
+      ON pv.product_id = p.id
+    WHERE pv.id = @variantId;
+
+    -- d) Insert order_item
+    INSERT INTO order_items (order_id, variant_id, quantity, unit_price)
+    VALUES (@orderId, @variantId, @qty, @unitPrice);
+
+    SET @j += 1;
+  END
+
+  -- 1.5) Cập nhật total_amount chính xác
+  UPDATE orders
+  SET total_amount = (
+    SELECT SUM(quantity * unit_price)
+    FROM order_items
+    WHERE order_id = @orderId
+  )
+  WHERE id = @orderId;
+
+  SET @i += 1;
+END
+
+go
+-- Cập nhật quantity ngẫu nhiên từ 10–20 cho mỗi product_variant
+UPDATE product_variants
+SET quantity = (ABS(CHECKSUM(NEWID())) % 11) + 10;
+
