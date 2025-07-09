@@ -4,11 +4,8 @@ Model2\ProductVariants.class
 Controller\registerServlet.class
 Util\DatabaseConnection.class
 Service\loginService.class
-<<<<<<< HEAD
-Service\inventoryService.class
-=======
 Controller\productServlet.class
->>>>>>> 4df0236bea5d1c527292d06a66b373c91a7501de
+Service\inventoryService.class
 Controller\ProductAdminServlet.class
 Model2\RevenueForecast.class
 Model2\Users.class
@@ -20,11 +17,8 @@ Model2\Orders.class
 Service\UserService.class
 com\mycompany\shop\JakartaRestConfiguration.class
 Model2\Recommendations.class
-<<<<<<< HEAD
 Service\revenueService.class
-=======
 Controller\UserServlet.class
->>>>>>> 4df0236bea5d1c527292d06a66b373c91a7501de
 Model2\ActionLogs.class
 Service\ProductService.class
 DAO\loginDAO.class

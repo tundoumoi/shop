@@ -275,7 +275,7 @@ VALUES
 
 
 DELETE FROM product_images
-WHERE product_id BETWEEN 59 AND 89;
+WHERE product_id BETWEEN 80 AND 89;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (59, 'images/training/áo01.jpg', 1),
@@ -311,33 +311,41 @@ VALUES
 (74, 'images/training/áo37.jpg', 1),
 (74, 'images/training/áo38.jpg', 0),
 (75, 'images/training/áo39.jpg', 1),
-(75, 'images/training/áo40.jpg', 0),
-(76, 'images/training/áo41.jpg', 1),
-(76, 'images/training/áo42.jpg', 0),
-(77, 'images/training/áo43.jpg', 1),
-(77, 'images/training/áo44.jpg', 0),
-(78, 'images/training/quần01.jpg', 1),
-(78, 'images/training/quần02.jpg', 0),
-(79, 'images/training/quần03.jpg', 1),
-(79, 'images/training/quần04.jpg', 0),
-(80, 'images/training/quần05.jpg', 1),
-(80, 'images/training/quần06.jpg', 0),
-(81, 'images/training/quần07.jpg', 1),
-(81, 'images/training/quần08.jpg', 0),
-(82, 'images/training/quần09.jpg', 1),
-(82, 'images/training/quần10.jpg', 0),
-(83, 'images/training/quần11.jpg', 1),
-(83, 'images/training/quần12.jpg', 0),
-(84, 'images/training/quần13.jpg', 1),
-(84, 'images/training/quần14.jpg', 0),
-(85, 'images/training/quần15.jpg', 1),
-(85, 'images/training/quần16.jpg', 0),
-(86, 'images/training/quần17.jpg', 1),
-(86, 'images/training/quần18.jpg', 0),
-(87, 'images/training/quần19.jpg', 1),
-(87, 'images/training/quần20.jpg', 0),
-(88, 'images/training/quần21.jpg', 1),
-(88, 'images/training/quần22.jpg', 0);
+(75, 'images/training/áo40.jpg', 0);
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+(76, 'images/training/áo29.jpg', 1),
+(76, 'images/training/áo30.jpg', 0),
+(77, 'images/training/áo31.jpg', 1),
+(77, 'images/training/áo33.jpg', 0);
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+(78, 'images/training/41.jpg', 1),
+(78, 'images/training/42.jpg', 0),
+(79, 'images/training/43.jpg', 1),
+(79, 'images/training/44.jpg', 0);
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+(80, 'images/training/11.jpg', 1),
+(80, 'images/training/12.jpg', 0),
+(81, 'images/training/quần05.jpg', 1),
+(81, 'images/training/quần06.jpg', 0),
+(82, 'images/training/quần07.jpg', 1),
+(82, 'images/training/quần08.jpg', 0),
+(83, 'images/training/quần09.jpg', 1),
+(83, 'images/training/quần10.jpg', 0),
+(84, 'images/training/quần11.jpg', 1),
+(84, 'images/training/quần12.jpg', 0),
+(85, 'images/training/quần13.jpg', 1),
+(85, 'images/training/quần14.jpg', 0),
+(86, 'images/training/quần15.jpg', 1),
+(86, 'images/training/quần16.jpg', 0),
+(87, 'images/training/quần17.jpg', 1),
+(87, 'images/training/quần18.jpg', 0),
+(88, 'images/training/quần19.jpg', 1),
+(88, 'images/training/quần20.jpg', 0),
+(89, 'images/training/quần21.jpg', 1),
+(89, 'images/training/quần22.jpg', 0);
 
 
 INSERT INTO product_images(product_id, image_url, is_primary)
