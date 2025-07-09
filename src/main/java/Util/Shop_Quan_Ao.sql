@@ -146,7 +146,7 @@ VALUES
     (2, '../images/jerseys/Home/man/man03 (1).jpg', 0),
 	(3, '../images/jerseys/Home/man/man09 (1).jpg', 1), 
     (3, '../images/jerseys/Home/man/man10 (1).jpg', 0),
-	(4, '../images/jerseys/Home/man/man11.jpg', 1), 
+	(4, '../images/jerseys/Home/man/man05 (1).jpg', 1), 
     (4, '../images/jerseys/Home/man/man12 (1).jpg', 0),
 	(5, '../images/jerseys/Home/man/man02.jpg', 1), 
     (5, '../images/jerseys/Home/man/man01.jpg', 0),
@@ -166,7 +166,7 @@ VALUES
 (12, '../images/jerseys/Home/man/man06.jpg', 0),
 (13, '../images/jerseys/Home/man/man16.jpg', 1), 
 (13, '../images/jerseys/Home/man/man06.jpg', 0),
-(14, '../images/jerseys/Home/man/man17.jpg', 1), 
+(14, '../images/jerseys/Home/man/amad.jpg', 1), 
 (14, '../images/jerseys/Home/man/man06.jpg', 0),
 (15, '../images/jerseys/Home/man/man18.jpg', 1), 
 (15, '../images/jerseys/Home/man/man06.jpg', 0),
@@ -1256,3 +1256,4 @@ UPDATE product_images
 SET image_url = REPLACE(image_url, '../', '');
 delete from products;
 DBCC CHECKIDENT ('products', RESEED, 0);
+delete from product_images;

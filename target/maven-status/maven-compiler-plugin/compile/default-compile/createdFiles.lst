@@ -1,9 +1,14 @@
 Model2\ProductViews.class
+Service\UserService$ServiceException.class
 Model2\ProductVariants.class
 Controller\registerServlet.class
 Util\DatabaseConnection.class
 Service\loginService.class
+<<<<<<< HEAD
 Service\inventoryService.class
+=======
+Controller\productServlet.class
+>>>>>>> 4df0236bea5d1c527292d06a66b373c91a7501de
 Controller\ProductAdminServlet.class
 Model2\RevenueForecast.class
 Model2\Users.class
@@ -12,12 +17,18 @@ Model\productVariant.class
 Service\customerService.class
 Controller\RevenueServlet.class
 Model2\Orders.class
+Service\UserService.class
 com\mycompany\shop\JakartaRestConfiguration.class
 Model2\Recommendations.class
+<<<<<<< HEAD
 Service\revenueService.class
+=======
+Controller\UserServlet.class
+>>>>>>> 4df0236bea5d1c527292d06a66b373c91a7501de
 Model2\ActionLogs.class
 Service\ProductService.class
 DAO\loginDAO.class
+DAO\UserDAO.class
 Model\customer.class
 Model2\BusinessReports.class
 Model\product.class
@@ -30,6 +41,7 @@ Model2\OrderItems.class
 com\mycompany\shop\resources\JakartaEE10Resource.class
 DAO\registerDAO.class
 Model2\Products.class
+Model\User.class
 Service\registerService$DuplicateAuthException.class
 DAO\productDAO.class
 DAO2\GenericDAO.class
