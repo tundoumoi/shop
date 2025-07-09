@@ -18,6 +18,7 @@ C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\Products.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\ProductVariants.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\DAO\revenueDAO.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\OrderItems.java
+C:\Users\HP\Documents\GitHub\shop\src\main\java\Controller\CartServlet.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\Promotions.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model\productVariant.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\DAO\loginDAO.java
@@ -27,6 +28,7 @@ C:\Users\HP\Documents\GitHub\shop\src\main\java\DAO\customerDAO.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\ProductViews.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Controller\ProductAdminServlet.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\BusinessReports.java
+C:\Users\HP\Documents\GitHub\shop\src\main\java\Controller\ProductDetailServlet.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model\User.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\RevenueForecast.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Service\customerService.java
@@ -35,6 +37,7 @@ C:\Users\HP\Documents\GitHub\shop\src\main\java\Controller\registerServlet.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model\product.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Util\DatabaseConnection.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\DAO2\GenericDAO.java
+C:\Users\HP\Documents\GitHub\shop\src\main\java\Model\CartItem.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\DAO\registerDAO.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\Model2\CartItems.java
 C:\Users\HP\Documents\GitHub\shop\src\main\java\com\mycompany\shop\resources\JakartaEE10Resource.java

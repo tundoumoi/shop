@@ -130,5 +130,10 @@ public class ProductService {
         int total = dao.countAllActiveProducts();
         return (int) Math.ceil((double) total / pageSize);
     }
+ public productVariant getVariantById(int id) {
+    productDAO dao = new productDAO();
+    return dao.getVariantById(id);
+}
+
 }
 

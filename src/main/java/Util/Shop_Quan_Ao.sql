@@ -327,25 +327,28 @@ VALUES
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (80, 'images/training/11.jpg', 1),
-(80, 'images/training/12.jpg', 0),
-(81, 'images/training/quần05.jpg', 1),
-(81, 'images/training/quần06.jpg', 0),
-(82, 'images/training/quần07.jpg', 1),
-(82, 'images/training/quần08.jpg', 0),
-(83, 'images/training/quần09.jpg', 1),
-(83, 'images/training/quần10.jpg', 0),
-(84, 'images/training/quần11.jpg', 1),
-(84, 'images/training/quần12.jpg', 0),
-(85, 'images/training/quần13.jpg', 1),
-(85, 'images/training/quần14.jpg', 0),
-(86, 'images/training/quần15.jpg', 1),
-(86, 'images/training/quần16.jpg', 0),
-(87, 'images/training/quần17.jpg', 1),
-(87, 'images/training/quần18.jpg', 0),
-(88, 'images/training/quần19.jpg', 1),
-(88, 'images/training/quần20.jpg', 0),
-(89, 'images/training/quần21.jpg', 1),
-(89, 'images/training/quần22.jpg', 0);
+(80, 'images/training/12.jpg', 0);
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES 
+
+(81, 'images/training/13.jpg', 1),
+(81, 'images/training/14.jpg', 0),
+(82, 'images/training/15.jpg', 1),
+(82, 'images/training/16.jpg', 0),
+(83, 'images/training/17.jpg', 1),
+(83, 'images/training/18.jpg', 0),
+(84, 'images/training/19.jpg', 1),
+(84, 'images/training/20.jpg', 0),
+(85, 'images/training/21.jpg', 1),
+(85, 'images/training/22.jpg', 0),
+(86, 'images/training/23.jpg', 1),
+(86, 'images/training/24.jpg', 0),
+(87, 'images/training/25.jpg', 1),
+(87, 'images/training/26.jpg', 0),
+(88, 'images/training/27.jpg', 1),
+(88, 'images/training/28.jpg', 0),
+(89, 'images/training/29.jpg', 1),
+(89, 'images/training/30.jpg', 0);
 
 
 INSERT INTO product_images(product_id, image_url, is_primary)
@@ -547,27 +550,35 @@ VALUES
 (184, 'images/afashion/hoodie/hh47.jpg', 1),
 (184, 'images/afashion/hoodie/hh48.jpg', 0);
 
-
+DELETE FROM product_images
+WHERE product_id BETWEEN 80 AND 89;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
-(185, '../images/afashion/reto/reto01.jpg', 1),
-(185, '../images/afashion/reto/reto02.jpg', 0),
-(186, '../images/afashion/reto/reto03.jpg', 1),
-(186, '../images/afashion/reto/reto04.jpg', 0),
-(187, '../images/afashion/reto/reto05.jpg', 1),
-(187, '../images/afashion/reto/reto06.jpg', 0),
-(188, '../images/afashion/reto/reto07.jpg', 1),
-(188, '../images/afashion/reto/reto08.jpg', 0),
-(189, '../images/afashion/reto/reto09.jpg', 1),
-(189, '../images/afashion/reto/reto10.jpg', 0),
-(190, '../images/afashion/reto/reto11.jpg', 1),
-(190, '../images/afashion/reto/reto12.jpg', 0),
-(191, '../images/afashion/reto/reto13.jpg', 1),
-(191, '../images/afashion/reto/reto14.jpg', 0),
-(192, '../images/afashion/reto/reto15.jpg', 1),
-(192, '../images/afashion/reto/reto16.jpg', 0),
-(193, '../images/afashion/reto/reto17.jpg', 1),
-(193, '../images/afashion/reto/reto18.jpg', 0),
+(185, 'images/afashion/reto/reto01.jpg', 1),
+(185, 'images/afashion/reto/reto02.jpg', 0),
+(186, 'images/afashion/reto/reto03.jpg', 1),
+(186, 'images/afashion/reto/reto04.jpg', 0),
+(187, 'images/afashion/reto/reto05.jpg', 1),
+(187, 'images/afashion/reto/reto06.jpg', 0),
+(188, 'images/afashion/reto/reto07.jpg', 1),
+(188, 'images/afashion/reto/reto08.jpg', 0),
+(189, 'images/afashion/reto/reto09.jpg', 1),
+(189, 'images/afashion/reto/reto10.jpg', 0);
+
+DELETE FROM product_images
+WHERE product_id BETWEEN 185 AND 189;
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
+(190, 'images/afashion/reto/r1.jpg', 1),
+(190, 'images/afashion/reto/r2.jpg', 0),
+(191, 'images/afashion/reto/r3.jpg', 1),
+(191, 'images/afashion/reto/r4.jpg', 0),
+(192, 'images/afashion/reto/r5.jpg', 1),
+(192, 'images/afashion/reto/r6.jpg', 0),
+(193, 'images/afashion/reto/r7.jpg', 1),
+(193, 'images/afashion/reto/r8.jpg', 0);
+INSERT INTO product_images(product_id, image_url, is_primary)
+VALUES
 (194, '../images/afashion/reto/reto19.jpg', 1),
 (194, '../images/afashion/reto/reto20.jpg', 0),
 (195, '../images/afashion/reto/reto21.jpg', 1),
@@ -702,31 +713,33 @@ VALUES
 
 (250, '../images/afashion/footwear/7.jpg', 1),
 (250, '../images/afashion/footwear/8.jpg', 0);
+DELETE FROM product_images
+WHERE product_id BETWEEN 251 AND 258;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
-(251, '../images/souvenirs/mockhoa/1.jpg', 1),
-(251, '../images/souvenirs/mockhoa/2.jpg', 0),
+(251, 'images/souvenirs/mockhoa/1.jpg', 1),
+(251, 'images/souvenirs/mockhoa/2.jpg', 0),
 
-(252, '../images/souvenirs/mockhoa/3.jpg', 1),
-(252, '../images/souvenirs/mockhoa/4.jpg', 0),
+(252, 'images/souvenirs/mockhoa/3.jpg', 1),
+(252, 'images/souvenirs/mockhoa/4.jpg', 0),
 
-(253, '../images/souvenirs/mockhoa/5.jpg', 1),
-(253, '../images/souvenirs/mockhoa/6.jpg', 0),
+(253, 'images/souvenirs/mockhoa/5.jpg', 1),
+(253, 'images/souvenirs/mockhoa/6.jpg', 0),
 
-(254, '../images/souvenirs/mockhoa/7.jpg', 1),
-(254, '../images/souvenirs/mockhoa/8.jpg', 0),
+(254, 'images/souvenirs/mockhoa/7.jpg', 1),
+(254, 'images/souvenirs/mockhoa/8.jpg', 0),
 
-(255, '../images/souvenirs/mockhoa/9.jpg', 1),
-(255, '../images/souvenirs/mockhoa/10.jpg', 0),
+(255, 'images/souvenirs/mockhoa/9.jpg', 1),
+(255, 'images/souvenirs/mockhoa/10.jpg', 0),
 
-(256, '../images/souvenirs/mockhoa/11.jpg', 1),
-(256, '../images/souvenirs/mockhoa/12.jpg', 0),
+(256, 'images/souvenirs/mockhoa/11.jpg', 1),
+(256, 'images/souvenirs/mockhoa/12.jpg', 0),
 
-(257, '../images/souvenirs/mockhoa/13.jpg', 1),
-(257, '../images/souvenirs/mockhoa/14.jpg', 0),
+(257, 'images/souvenirs/mockhoa/13.jpg', 1),
+(257, 'images/souvenirs/mockhoa/14.jpg', 0),
 
-(258, '../images/souvenirs/mockhoa/15.jpg', 1),
-(258, '../images/souvenirs/mockhoa/16.jpg', 0);
+(258, 'images/souvenirs/mockhoa/15.jpg', 1),
+(258, 'images/souvenirs/mockhoa/16.jpg', 0);
 
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES

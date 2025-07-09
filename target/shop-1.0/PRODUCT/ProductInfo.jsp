@@ -1,17 +1,127 @@
-<%-- 
-    Document   : ProductInfo
-    Created on : Jul 2, 2025, 12:39:03 PM
-    Author     : LENOVO Ideapad 3
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.util.*, Model.productImage, Model.product" %>
+<%@ include file="/HOMES/header.jsp" %>
+
+<%
+    // Lấy danh sách ảnh và encode phần tên file (giữ nguyên thư mục)
+    product p = (product) request.getAttribute("product");
+    List<productImage> imgList = p.getImages();
+    List<String> encodedImageUrls = new ArrayList<>();
+
+    for (productImage img : imgList) {
+        String url = img.getImageUrl();
+        int lastSlash = url.lastIndexOf('/');
+        String prefix = url.substring(0, lastSlash + 1);
+        String fileName = url.substring(lastSlash + 1);
+        String encodedFileName = URLEncoder.encode(fileName, "UTF-8").replace("+", "%20");
+        encodedImageUrls.add(prefix + encodedFileName);
+    }
+
+    request.setAttribute("encodedImageUrls", encodedImageUrls);
+%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm</title>
+    <style>
+        .product-container {
+            display: flex;
+            gap: 30px;
+            margin: 40px;
+        }
+        .product-images img {
+            width: 300px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .product-details {
+            max-width: 400px;
+        }
+        .product-details h2 {
+            margin-top: 0;
+        }
+        .product-details form {
+            margin-top: 20px;
+        }
+        select, input[type="number"] {
+            margin-bottom: 15px;
+            padding: 5px;
+            width: 100%;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button-group button,
+        .button-group .btn-link {
+            flex: 1;
+            padding: 10px 20px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .button-group .btn-link:hover,
+        .button-group button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body style="padding-top: 80px;">
+<body>
+
+<div class="product-container">
+    <!-- Ảnh sản phẩm -->
+    <div class="product-images">
+        <c:forEach var="url" items="${encodedImageUrls}" varStatus="status">
+            <c:if test="${status.index < 2}">
+                <img src="${pageContext.request.contextPath}/${url}" alt="Ảnh ${status.index + 1}" />
+            </c:if>
+        </c:forEach>
+    </div>
+
+    <!-- Thông tin sản phẩm -->
+    <div class="product-details">
+        <h2>${product.name}</h2>
+        <p><strong>Giá:</strong> ${product.price} VND</p>
+        <p><strong>Mô tả:</strong> ${product.description}</p>
+
+        <!-- Form thêm vào giỏ hàng -->
+        <form action="cart" method="post">
+            <input type="hidden" name="productId" value="${product.id}" />
+
+            <label for="variantId">Chọn size:</label>
+            <select name="variantId" required>
+                <c:forEach var="v" items="${variants}">
+                    <option value="${v.id}">
+                        ${v.size} (Còn ${v.quantity} cái)
+                    </option>
+                </c:forEach>
+            </select>
+
+            <label for="quantity">Số lượng:</label>
+            <input type="number" name="quantity" value="1" min="1" required />
+
+            <!-- Nhóm nút -->
+            <div class="button-group">
+                <button type="submit">Thêm vào giỏ hàng</button>
+                <a href="${pageContext.request.contextPath}/products?action=list" class="btn-link">
+                    🛒 Tiếp tục mua hàng
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
 </html>

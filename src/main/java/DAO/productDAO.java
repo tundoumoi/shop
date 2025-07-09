@@ -450,4 +450,24 @@ public class productDAO {
             System.out.println("Không tìm thấy sản phẩm.");
         }
     }
+    public productVariant getVariantById(int id) {
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM product_variants WHERE id = ?")) {
+
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            productVariant v = new productVariant();
+            v.setId(rs.getInt("id"));
+            v.setProductId(rs.getInt("product_id"));
+            v.setSize(rs.getString("size"));
+            v.setQuantity(rs.getInt("quantity"));
+            return v;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
 }

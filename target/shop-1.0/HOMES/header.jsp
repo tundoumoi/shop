@@ -55,7 +55,7 @@
 <body>
 
 <!-- HEADER / NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3 py-2 position-relative">
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3 py-2 fixed-top shadow">
   
   <!-- Toggle button (left) -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks">
@@ -68,12 +68,15 @@
   </a>
 
   <!-- Icons bên phải (mobile) -->
-  <div class="d-flex d-lg-none ml-auto">
-    <span class="nav-icon"><i class="fas fa-search"></i></span>
-    <span class="nav-icon"><i class="fas fa-user"></i></span>
-    <span class="nav-icon"><i class="fas fa-heart"></i></span>
-    <span class="nav-icon"><i class="fas fa-bag-shopping"></i></span>
-  </div>
+<div class="d-flex d-lg-none ml-auto">
+  <span class="nav-icon"><i class="fas fa-search"></i></span>
+  <span class="nav-icon"><i class="fas fa-user"></i></span>
+  <span class="nav-icon"><i class="fas fa-heart"></i></span>
+  <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
+    <i class="fas fa-bag-shopping"></i>
+  </a>
+</div>
+
 
   <!-- Full navbar desktop -->
   <div class="collapse navbar-collapse justify-content-between" id="navLinks">
@@ -94,12 +97,15 @@
     </ul>
 
     <!-- Icons desktop -->
-    <div class="d-none d-lg-flex align-items-center">
-      <span class="nav-icon"><i class="fas fa-search"></i></span>
-      <span class="nav-icon"><i class="fas fa-user"></i></span>
-      <span class="nav-icon"><i class="fas fa-heart"></i></span>
-      <span class="nav-icon"><i class="fas fa-bag-shopping"></i></span>
-    </div>
+  <div class="d-none d-lg-flex align-items-center">
+  <span class="nav-icon"><i class="fas fa-search"></i></span>
+  <span class="nav-icon"><i class="fas fa-user"></i></span>
+  <span class="nav-icon"><i class="fas fa-heart"></i></span>
+  <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
+    <i class="fas fa-bag-shopping"></i>
+  </a>
+</div>
+
   </div>
 </nav>
 
