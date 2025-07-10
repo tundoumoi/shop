@@ -59,7 +59,8 @@ public class loginServlet extends HttpServlet {
             cus=login.getUserInfo(email);
             HttpSession session = req.getSession();
             session.setAttribute("user", cus);
-            resp.sendRedirect("products");
+            if(cus.getRole().equalsIgnoreCase("admin")) resp.sendRedirect("admin.jsp");
+            else resp.sendRedirect("products");
         }else {
             resp.sendRedirect("LOGIN/Login.jsp?error=invalid");
         }

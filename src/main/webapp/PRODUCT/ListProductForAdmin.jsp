@@ -12,7 +12,8 @@
         <h1>Product Management</h1>
         <h2>Product List</h2>
         <div align="center">
-            <a href="products?action=create">Add New Product</a>
+            <a href="products?action=create">Add New Product</a><br>
+            <a href="admin.jsp">Quay lại</a>
             <br/><br/>
             <table border="1" cellpadding="5" cellspacing="0">
                 <thead>
