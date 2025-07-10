@@ -33,6 +33,13 @@ public class ConfirmServlet extends HttpServlet {
             return;
         }
 
+        String paymentMethod = request.getParameter("paymentMethod");
+        if (paymentMethod == null || paymentMethod.isEmpty()) {
+            request.setAttribute("error", "Vui lòng chọn phương thức thanh toán.");
+            request.getRequestDispatcher("payment.jsp").forward(request, response);
+            return;
+        }
+
         double total = 0;
 
         // Trừ kho từng sản phẩm
@@ -46,18 +53,23 @@ public class ConfirmServlet extends HttpServlet {
                 return;
             }
 
-            // Cập nhật tồn kho mới
             int newQuantity = variant.getQuantity() - item.getQuantity();
             productService.updateVariantQuantity(variant.getId(), newQuantity);
 
             total += item.getQuantity() * item.getProduct().getPrice().doubleValue();
         }
 
-        // Gửi email xác nhận
+        // Soạn nội dung email
         StringBuilder body = new StringBuilder();
         body.append("Cảm ơn bạn đã đặt hàng tại United Store!\n\n");
         body.append("Địa chỉ giao hàng:\n").append(user.getAddress()).append("\n\n");
-        body.append("Chi tiết đơn hàng:\n");
+        body.append("Phương thức thanh toán: ");
+        if ("momo".equals(paymentMethod)) {
+            body.append("Ví điện tử Momo\n");
+        } else {
+            body.append("Thanh toán khi nhận hàng (COD)\n");
+        }
+        body.append("\nChi tiết đơn hàng:\n");
 
         for (CartItem item : cart) {
             body.append("- ").append(item.getProduct().getName())
@@ -69,6 +81,7 @@ public class ConfirmServlet extends HttpServlet {
 
         body.append("\nTổng cộng: ").append(total).append(" VND");
 
+        // Gửi email
         try {
             EmailUtil.send(user.getEmail(), "Xác nhận đơn hàng - United Store", body.toString());
         } catch (Exception e) {
@@ -78,7 +91,7 @@ public class ConfirmServlet extends HttpServlet {
             return;
         }
 
-        // Xoá giỏ hàng sau khi đặt hàng thành công
+        // Xoá giỏ hàng
         session.removeAttribute("cart");
 
         // Chuyển đến trang cảm ơn

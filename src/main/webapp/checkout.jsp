@@ -16,8 +16,6 @@
         response.sendRedirect("cart.jsp");
         return;
     }
-
-    boolean missingAddress = (user.getAddress() == null || user.getAddress().trim().isEmpty());
 %>
 
 <!DOCTYPE html>
@@ -74,7 +72,7 @@
         <p><strong>Email:</strong> ${user.email}</p>
     </div>
 
-    <form action="confirm" method="post">
+    <form action="payment.jsp" method="post">
         <div class="address-form">
             <label><strong>Địa chỉ giao hàng:</strong></label><br/>
             <input type="text" name="address" value="${user.address}" required />
@@ -115,7 +113,7 @@
         </table>
 
         <div class="confirm-btn">
-            <button type="submit">Xác nhận đặt hàng</button>
+            <button type="submit">Tiếp tục chọn phương thức thanh toán</button>
         </div>
     </form>
 </div>
