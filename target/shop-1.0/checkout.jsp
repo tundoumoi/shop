@@ -7,7 +7,6 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Model.User, Model.CartItem" %>
-<%@ include file="HOMES/header.jsp" %>
 
 <%
     User user = (User) session.getAttribute("user");
@@ -17,8 +16,6 @@
         response.sendRedirect("cart.jsp");
         return;
     }
-
-    request.setAttribute("user", user);
 %>
 
 <!DOCTYPE html>
@@ -41,7 +38,7 @@
             padding: 10px;
             text-align: center;
         }
-        .info {
+        .info, .address-form {
             margin-bottom: 20px;
         }
         .confirm-btn {
@@ -59,9 +56,12 @@
         .confirm-btn button:hover {
             background-color: darkgreen;
         }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+        }
     </style>
 </head>
-<body style="padding-top: 80px;">
 <body>
 
 <div class="checkout-container">
@@ -70,45 +70,51 @@
     <div class="info">
         <p><strong>Khách hàng:</strong> ${user.fullName}</p>
         <p><strong>Email:</strong> ${user.email}</p>
-        <p><strong>Địa chỉ giao hàng:</strong> ${user.address}</p>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Sản phẩm</th>
-                <th>Size</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:set var="total" value="0" />
-            <c:forEach var="item" items="${cart}">
-                <tr>
-                    <td>${item.product.name}</td>
-                    <td>${item.variant.size}</td>
-                    <td>${item.product.price} VND</td>
-                    <td>${item.quantity}</td>
-                    <td>
-                        <c:set var="subtotal" value="${item.product.price * item.quantity}" />
-                        ${subtotal} VND
-                        <c:set var="total" value="${total + subtotal}" />
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th colspan="4">Tổng cộng</th>
-                <th>${total} VND</th>
-            </tr>
-        </tfoot>
-    </table>
+    <form action="payment.jsp" method="post">
+        <div class="address-form">
+            <label><strong>Địa chỉ giao hàng:</strong></label><br/>
+            <input type="text" name="address" value="${user.address}" required />
+        </div>
 
-    <form action="confirm" method="post" class="confirm-btn">
-        <button type="submit">Xác nhận đặt hàng</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Size</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:set var="total" value="0" />
+                <c:forEach var="item" items="${cart}">
+                    <tr>
+                        <td>${item.product.name}</td>
+                        <td>${item.variant.size}</td>
+                        <td>${item.product.price} VND</td>
+                        <td>${item.quantity}</td>
+                        <td>
+                            <c:set var="subtotal" value="${item.product.price * item.quantity}" />
+                            ${subtotal} VND
+                            <c:set var="total" value="${total + subtotal}" />
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Tổng cộng</th>
+                    <th>${total} VND</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="confirm-btn">
+            <button type="submit">Tiếp tục chọn phương thức thanh toán</button>
+        </div>
     </form>
 </div>
 
