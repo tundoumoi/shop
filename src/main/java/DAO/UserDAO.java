@@ -113,22 +113,23 @@ public class UserDAO {
             }
         }
     }
-
-    public void updateUser(User user) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(UPDATE_USER_SQL)) {
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getFullName());
-            ps.setString(4, user.getRole());
-            ps.setString(5, user.getFacebookId());
-            ps.setString(6, user.getGoogleId());
-            ps.setString(7, user.getAddress());
-            ps.setBoolean(8, user.isStatus());
-            ps.setInt(9, user.getId());
-            ps.executeUpdate();
-        }
+public boolean updateUser(User user) throws SQLException {
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(UPDATE_USER_SQL)) {
+        ps.setString(1, user.getEmail());
+        ps.setString(2, user.getPassword());
+        ps.setString(3, user.getFullName());
+        ps.setString(4, user.getRole());
+        ps.setString(5, user.getFacebookId());
+        ps.setString(6, user.getGoogleId());
+        ps.setString(7, user.getAddress());
+        ps.setBoolean(8, user.isStatus());
+        ps.setInt(9, user.getId());
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected > 0;
     }
+}
+
 
     public void deleteUser(int userId) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();

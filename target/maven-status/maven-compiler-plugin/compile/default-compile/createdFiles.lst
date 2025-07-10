@@ -37,6 +37,7 @@ Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class
 Model2\ActionLogs.class
+Controller\ViewTrackerSevlet.class
 DAO\loginDAO.class
 DAO\UserDAO.class
 Model2\BusinessReports.class
@@ -47,5 +48,6 @@ Model\productImage.class
 Model2\OrderItems.class
 com\mycompany\shop\resources\JakartaEE10Resource.class
 Model2\Products.class
+Controller\UpdateProfileServlet.class
 Model\User.class
 Model2\Promotions.class

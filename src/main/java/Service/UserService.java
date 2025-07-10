@@ -100,14 +100,18 @@ public class UserService {
      * @param user the User with updated information
      * @throws ServiceException if validation fails or database error occurs
      */
-    public void updateUser(User user) throws ServiceException {
+ public boolean updateUser(User user) {
+    try {
         validateUser(user, true);
-        try {
-            userDao.updateUser(user);
-        } catch (SQLException e) {
-            throw new ServiceException("Error updating user", e);
-        }
+        userDao.updateUser(user);
+        return true;
+    } catch (SQLException e) {
+        System.err.println("Database error: " + e.getMessage());
+    } catch (ServiceException e) {
+        System.err.println("Validation error: " + e.getMessage());
     }
+    return false;
+}
 
     /**
      * Soft-deletes a user by setting status to inactive.
@@ -192,4 +196,5 @@ public class UserService {
             super(message, cause);
         }
     }
+    
 }

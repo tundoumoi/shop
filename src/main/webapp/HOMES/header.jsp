@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +49,25 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
+    /* Thanh tìm kiếm */
+    #search-bar {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      z-index: 2000;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #search-bar input {
+      padding: 5px 10px;
+      width: 250px;
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
@@ -68,14 +86,11 @@
   </a>
 
   <!-- Icons bên phải (mobile) -->
-<div class="d-flex d-lg-none ml-auto">
-  <span class="nav-icon"><i class="fas fa-search"></i></span>
-  <span class="nav-icon"><i class="fas fa-user"></i></span>
-  <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
-    <i class="fas fa-bag-shopping"></i>
-  </a>
-</div>
-
+  <div class="d-flex d-lg-none ml-auto">
+    <span class="nav-icon" onclick="toggleSearchBar()"><i class="fas fa-search"></i></span>
+    <a href="edit-profile.jsp" class="nav-icon"><i class="fas fa-user"></i></a>
+    <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp"><i class="fas fa-bag-shopping"></i></a>
+  </div>
 
   <!-- Full navbar desktop -->
   <div class="collapse navbar-collapse justify-content-between" id="navLinks">
@@ -96,17 +111,34 @@
     </ul>
 
     <!-- Icons desktop -->
-  <div class="d-none d-lg-flex align-items-center">
-  <span class="nav-icon"><i class="fas fa-search"></i></span>
-  <span class="nav-icon"><i class="fas fa-user"></i></span>
-  <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
-    <i class="fas fa-bag-shopping"></i>
-  </a>
-</div>
+    <div class="d-none d-lg-flex align-items-center">
+      <span class="nav-icon" onclick="toggleSearchBar()"><i class="fas fa-search"></i></span>
+      <a href="edit-profile.jsp" class="nav-icon"><i class="fas fa-user"></i></a>
+      <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp"><i class="fas fa-bag-shopping"></i></a>
+    </div>
 
   </div>
 </nav>
 
+<!-- 🔍 Thanh tìm kiếm -->
+<div id="search-bar">
+  <form action="search" method="get" class="form-inline">
+    <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." class="form-control">
+    <button type="submit" class="btn btn-dark ml-2">Tìm</button>
+  </form>
+</div>
+
+<!-- JS Toggle -->
+<script>
+  function toggleSearchBar() {
+    var bar = document.getElementById("search-bar");
+    if (bar.style.display === "none" || bar.style.display === "") {
+      bar.style.display = "block";
+    } else {
+      bar.style.display = "none";
+    }
+  }
+</script>
+
 </body>
 </html>
-
