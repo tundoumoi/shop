@@ -64,14 +64,13 @@
 
   <!-- Logo giữa (mobile) -->
   <a class="navbar-brand d-lg-none center-logo" href="#">
-      <img src="../images/others/logomu.png" >
+      <img src="images/others/logomu.png" >
   </a>
 
   <!-- Icons bên phải (mobile) -->
 <div class="d-flex d-lg-none ml-auto">
   <span class="nav-icon"><i class="fas fa-search"></i></span>
   <span class="nav-icon"><i class="fas fa-user"></i></span>
-  <span class="nav-icon"><i class="fas fa-heart"></i></span>
   <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
     <i class="fas fa-bag-shopping"></i>
   </a>
@@ -100,7 +99,6 @@
   <div class="d-none d-lg-flex align-items-center">
   <span class="nav-icon"><i class="fas fa-search"></i></span>
   <span class="nav-icon"><i class="fas fa-user"></i></span>
-  <span class="nav-icon"><i class="fas fa-heart"></i></span>
   <a class="nav-icon" href="${pageContext.request.contextPath}/cart.jsp">
     <i class="fas fa-bag-shopping"></i>
   </a>

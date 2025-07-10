@@ -469,5 +469,18 @@ public class productDAO {
     }
     return null;
 }
+public void updateVariantQuantity(int variantId, int newQuantity) {
+    String sql = "UPDATE product_variants SET quantity = ? WHERE id = ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, newQuantity);
+        ps.setInt(2, variantId);
+        ps.executeUpdate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
 }

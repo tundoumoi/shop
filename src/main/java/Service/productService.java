@@ -134,6 +134,9 @@ public class ProductService {
     productDAO dao = new productDAO();
     return dao.getVariantById(id);
 }
+ public void updateVariantQuantity(int variantId, int newQuantity) {
+    dao.updateVariantQuantity(variantId, newQuantity);
+}
 
 }
 
