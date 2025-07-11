@@ -9,6 +9,7 @@ import Model.product;
 import Model.productImage;
 import Model.productVariant;
 import Service.ProductService;
+import DAO.ProductViewDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,10 +26,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
- * @author LENOVO Ideapad 3
+ * @HP
  */
 @WebServlet(name = "productServlet", urlPatterns = {"/products"})
 public class productServlet extends HttpServlet {
@@ -57,6 +57,7 @@ public class productServlet extends HttpServlet {
                 case "create": showCreateForm(request, response); break;
                 case "edit":   showEditForm(request, response);   break;
                 case "delete": deleteProduct(request, response);  break;
+                case "view":   recordProductView(request, response); break;
                 default:        listProducts(request, response);   break;
             }
         } catch (SQLException ex) {
@@ -105,6 +106,35 @@ public class productServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+        private void recordProductView(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        int productId = Integer.parseInt(request.getParameter("id"));
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null) {
+            ProductViewDAO viewDAO = new ProductViewDAO();
+            long viewTimeInSeconds = 5L;
+            viewDAO.recordView(user.getId(), productId, viewTimeInSeconds);
+        }
+
+        // Lấy sản phẩm và danh sách variant
+        product p = productService.getProductById(productId);
+        List<productVariant> variants = productService.getVariantsByProductId(productId);
+
+        // Gán vào request để JSP dùng
+        request.setAttribute("product", p);
+        request.setAttribute("variants", variants);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("PRODUCT/ProductInfo.jsp");
+        dispatcher.forward(request, response);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi ghi nhận lượt xem sản phẩm.");
+    }
+}
+
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("PRODUCT/CreateProduct.jsp");
@@ -146,7 +176,7 @@ public class productServlet extends HttpServlet {
         // --- parse images bằng radio primaryImage ---
         String[] urls       = request.getParameterValues("imageUrl");
         String primaryIndex = request.getParameter("primaryImage");
-        
+
         List<productImage> images = new ArrayList<>();
         if (urls != null) {
             for (int i = 0; i < urls.length; i++) {

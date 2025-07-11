@@ -3,6 +3,7 @@ Model2\ProductVariants.class
 Controller\registerServlet.class
 Service\loginService.class
 Controller\productServlet.class
+DAO\ProductViewDAO.class
 Model2\Users.class
 Model2\CartItems.class
 Model\productVariant.class
@@ -37,7 +38,6 @@ Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class
 Model2\ActionLogs.class
-Controller\ViewTrackerSevlet.class
 DAO\loginDAO.class
 DAO\UserDAO.class
 Model2\BusinessReports.class

@@ -482,5 +482,31 @@ public void updateVariantQuantity(int variantId, int newQuantity) {
         e.printStackTrace();
     }
 }
+public List<productVariant> getVariantsByProductId(int productId) {
+    List<productVariant> variants = new ArrayList<>();
+    String sql = "SELECT * FROM product_variants WHERE product_id = ?";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, productId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            productVariant variant = new productVariant();
+            variant.setId(rs.getInt("id"));
+            variant.setProductId(rs.getInt("product_id"));
+            variant.setSize(rs.getString("size"));
+            variant.setQuantity(rs.getInt("quantity"));
+            variants.add(variant);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return variants;
+}
+
 
 }

@@ -62,7 +62,8 @@
   <c:forEach var="p" items="${productList}">
     <div class="product-item">
       <!-- Sửa ở đây: gọi servlet /product -->
-      <a href="${pageContext.request.contextPath}/product?id=${p.id}">
+     <a href="${pageContext.request.contextPath}/products?action=view&id=${p.id}">
+
         <c:choose>
           <c:when test="${not empty p.images}">
             <c:forEach var="img" items="${p.images}">
