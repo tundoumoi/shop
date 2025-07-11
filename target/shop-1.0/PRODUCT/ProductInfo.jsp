@@ -7,9 +7,8 @@
 <%@ include file="/HOMES/header.jsp" %>
 
 <%
-    // Lấy danh sách ảnh và encode phần tên file (giữ nguyên thư mục)
     product p = (product) request.getAttribute("product");
-    List<productImage> imgList = p.getImages();
+    List<productImage> imgList = (p != null && p.getImages() != null) ? p.getImages() : new ArrayList<>();
     List<String> encodedImageUrls = new ArrayList<>();
 
     for (productImage img : imgList) {
@@ -23,6 +22,7 @@
 
     request.setAttribute("encodedImageUrls", encodedImageUrls);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,6 +123,22 @@
         </form>
     </div>
 </div>
+
+                    <script>
+let startTime = Date.now();
+
+// Gửi thời gian khi người dùng rời trang
+window.addEventListener("beforeunload", function () {
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000); // thời gian tính bằng giây
+
+    if (timeSpent > 0) {
+        navigator.sendBeacon(
+            "${pageContext.request.contextPath}/products?action=viewTime&id=${product.id}",
+            new Blob([new URLSearchParams({ time: timeSpent })], { type: 'application/x-www-form-urlencoded' })
+        );
+    }
+});
+</script>
 
 </body>
 </html>

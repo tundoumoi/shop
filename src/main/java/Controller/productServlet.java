@@ -53,13 +53,15 @@ public class productServlet extends HttpServlet {
             action = "list";
         }
         try {
-            switch (action) {
-                case "create": showCreateForm(request, response); break;
-                case "edit":   showEditForm(request, response);   break;
-                case "delete": deleteProduct(request, response);  break;
-                case "view":   recordProductView(request, response); break;
-                default:        listProducts(request, response);   break;
-            }
+          switch (action) {
+    case "create": showCreateForm(request, response); break;
+    case "edit":   showEditForm(request, response);   break;
+    case "delete": deleteProduct(request, response);  break;
+    case "view":   recordProductView(request, response); break;
+    case "viewTime": recordViewTime(request, response); break;
+    default:        listProducts(request, response);   break;
+}
+
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error processing request", ex);
             throw new ServletException(ex);
@@ -67,24 +69,26 @@ public class productServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "list";
-        }
-        try {
-            switch (action) {
-                case "create": insertProduct(request, response); break;
-                case "update": updateProduct(request, response); break;
-                case "delete": deleteProduct(request, response); break;
-                default:        listProducts(request, response); break;
-            }
-        } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error processing form", ex);
-            throw new ServletException(ex);
-        }
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String action = request.getParameter("action");
+    if (action == null) {
+        action = "list";
     }
+    try {
+        switch (action) {
+            case "create": insertProduct(request, response); break;
+            case "update": updateProduct(request, response); break;
+            case "delete": deleteProduct(request, response); break;
+            case "viewTime": recordViewTime(request, response); break; // ✅ THÊM DÒNG NÀY
+            default:        listProducts(request, response); break;
+        }
+    } catch (SQLException ex) {
+        LOGGER.log(Level.SEVERE, "Error processing form", ex);
+        throw new ServletException(ex);
+    }
+}
+
 
     private void listProducts(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
@@ -105,35 +109,27 @@ public class productServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
         dispatcher.forward(request, response);
     }
-
-        private void recordProductView(HttpServletRequest request, HttpServletResponse response)
+private void recordViewTime(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     try {
         int productId = Integer.parseInt(request.getParameter("id"));
+        int viewTime = Integer.parseInt(request.getParameter("time"));
         User user = (User) request.getSession().getAttribute("user");
 
-        if (user != null) {
+        if (user != null && viewTime > 0) {
             ProductViewDAO viewDAO = new ProductViewDAO();
-            long viewTimeInSeconds = 5L;
-            viewDAO.recordView(user.getId(), productId, viewTimeInSeconds);
+            viewDAO.recordView(user.getId(), productId, viewTime);
         }
 
-        // Lấy sản phẩm và danh sách variant
-        product p = productService.getProductById(productId);
-        List<productVariant> variants = productService.getVariantsByProductId(productId);
-
-        // Gán vào request để JSP dùng
-        request.setAttribute("product", p);
-        request.setAttribute("variants", variants);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("PRODUCT/ProductInfo.jsp");
-        dispatcher.forward(request, response);
+        // Không cần trả về gì
+        response.setStatus(HttpServletResponse.SC_OK);
 
     } catch (Exception e) {
         e.printStackTrace();
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi ghi nhận lượt xem sản phẩm.");
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 }
+
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -247,4 +243,33 @@ public class productServlet extends HttpServlet {
         String page = request.getParameter("page");
         response.sendRedirect("products?action=list&page=" + (page != null ? page : "1"));
     }
+    private void recordProductView(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        int productId = Integer.parseInt(request.getParameter("id"));
+
+        // Ghi lượt xem mặc định là 1 giây nếu muốn
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            ProductViewDAO dao = new ProductViewDAO();
+            dao.recordView(user.getId(), productId, 1); // hoặc 0 nếu bạn chỉ tính bằng beacon
+        }
+
+        // Lấy dữ liệu sản phẩm
+        product p = productService.getProductById(productId);
+        List<productVariant> variants = productService.getVariantsByProductId(productId);
+
+        // Gán vào request
+        request.setAttribute("product", p);
+        request.setAttribute("variants", variants);
+
+        // Forward đến trang chi tiết
+        request.getRequestDispatcher("PRODUCT/ProductInfo.jsp").forward(request, response);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi hiển thị sản phẩm.");
+    }
+}
+
 }

@@ -10,5 +10,14 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list> 
+    <servlet>
+    <servlet-name>MomoPaymentServlet</servlet-name>
+    <servlet-class>Controller.MomoPaymentServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>MomoPaymentServlet</servlet-name>
+    <url-pattern>/MomoPaymentServlet</url-pattern>
+</servlet-mapping>
+
 </web-app>

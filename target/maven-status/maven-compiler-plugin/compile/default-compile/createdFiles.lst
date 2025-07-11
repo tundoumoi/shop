@@ -20,6 +20,7 @@ Model2\ProductImages.class
 Controller\ConfirmServlet.class
 Model\CartItem.class
 DAO\revenueDAO.class
+Controller\MomoReturnServlet.class
 DAO\registerDAO.class
 Service\registerService$DuplicateAuthException.class
 DAO\productDAO.class
@@ -34,6 +35,7 @@ Service\inventoryService.class
 Model2\RevenueForecast.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
+Controller\MomoPaymentServlet.class
 Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class
