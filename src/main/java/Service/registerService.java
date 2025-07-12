@@ -109,6 +109,7 @@ public class registerService {
         c.setEmail(email);
         c.setFullName(fullName);
         c.setPassword("");  // không cần mật khẩu
+        c.setRole("user");
         dao.insert(c);
         System.out.println("[registerFacebook] Đã tạo tài khoản mới cho Facebook ID.");
 
@@ -128,17 +129,3 @@ public class registerService {
         }
     }
 }
-
-
-//    public void createNewUser(customer user) {
-//        // Insert user và sinh user_code
-//        int generatedId = dao.insertUser(user);
-//        String code = String.format("%04d", generatedId);
-//        dao.updateUserCode(generatedId, code);
-//        user.setId(generatedId);
-//        user.setId(code);
-//    }
-//
-//    public void updateSocialId(customer user) {
-//        dao.updateSocialId(user.getId(), user.getFacebookId(), user.getGoogleId());
-//    }

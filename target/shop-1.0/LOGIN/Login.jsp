@@ -14,9 +14,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="google-signin-client_id" content="415815610320-dlhsbb2a2183s8psfbb3rou7pamen143.apps.googleusercontent.com">
     
 
     <!-- Google Web Fonts -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap" rel="stylesheet"> 
@@ -34,7 +36,7 @@
 
     <!-- Template Stylesheet -->
     
-
+</head>
 <body>
     
     <div class="container" id="container">
@@ -46,10 +48,6 @@
               <!-- Facebook Login -->
                 <a href="javascript:void(0)" class="social" id="fbSignUpBtn">
                   <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Google Login -->
-                <a href="javascript:void(0)" class="social" id="googleSignUpBtn">
-                  <i class="fab fa-google"></i>
                 </a>
             </div>
 
@@ -68,10 +66,6 @@
                     <!-- Facebook Login -->
                     <a href="javascript:void(0)" class="social" id="fbLoginBtn">
                       <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <!-- Google Login -->
-                    <a href="javascript:void(0)" class="social" id="googleLoginBtn">
-                      <i class="fab fa-google"></i>
                     </a>
                 </div>
                 <span>or use your account</span>
@@ -139,36 +133,29 @@
       }
     }, { scope: 'email' });
       });
+      
+    document.getElementById('fbLoginBtn').addEventListener('click', function() {
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        // Lấy token đúng
+        var accessToken = response.authResponse.accessToken;
+        console.log("FB Access Token:", accessToken);  // <-- debug xem token
+        // Gửi lên servlet
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '${pageContext.request.contextPath}/login?action=facebook';
+        form.innerHTML = 
+          '<input type="hidden" name="provider" value="facebook">' +
+          '<input type="hidden" name="access_token" value="' + accessToken + '">';
+        document.body.appendChild(form);
+        form.submit();
+      } else {
+        alert('Facebook login không thành công.');
+      }
+    }, { scope: 'email' });
+      });
     </script>
 
-    <script>
-        const contextPath = '<%= request.getContextPath() %>';
-
-        function onGoogleLibraryLoad() {
-          gapi.load('auth2', function () {
-            const auth2 = gapi.auth2.init({
-              client_id: '415815610320-qel0575b0g2stu3iscopdiut6acfej5u.apps.googleusercontent.com',
-              scope: 'profile email'
-            });
-
-            document.getElementById('googleSignUpBtn').addEventListener('click', function () {
-              auth2.signIn().then(googleUser => {
-                const id_token = googleUser.getAuthResponse().id_token;
-
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = contextPath + '/register?action=register';
-                form.innerHTML = `
-                  <input type="hidden" name="provider" value="google">
-                  <input type="hidden" name="id_token"  value="${id_token}">
-                `;
-                document.body.appendChild(form);
-                form.submit();
-              });
-            });
-          });
-        }
-    </script>
     <script src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=onGoogleLibraryLoad" async defer></script>
 </body>

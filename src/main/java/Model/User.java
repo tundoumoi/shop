@@ -82,4 +82,10 @@ public class User implements Serializable{
 
     public Date getCreatedAt() { return createdAt; }
     public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName + ", role=" + role + ", facebookId=" + facebookId + ", googleId=" + googleId + ", address=" + address + ", status=" + status + ", createdAt=" + createdAt + '}';
+    }
+    
 }

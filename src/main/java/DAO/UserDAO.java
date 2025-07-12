@@ -8,6 +8,8 @@ import Model.User;
 import Util.DatabaseConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author LENOVO Ideapad 3
@@ -177,5 +179,15 @@ public boolean updateUser(User user) throws SQLException {
         user.setStatus(rs.getBoolean("status"));
         user.setCreatedAt(rs.getTimestamp("created_at"));
         return user;
+    }
+    
+    public static void main(String[] args) {
+        try {
+            UserDAO dao = new UserDAO();
+            User u = dao.findByFacebookId("1258256292582871");
+            System.out.println(u.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

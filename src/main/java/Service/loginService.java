@@ -3,17 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Service;
+import DAO.UserDAO;
 import DAO.loginDAO;
 import Model.User;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author LENOVO Ideapad 3
  */
 public class loginService {
     private loginDAO loginDAO;
+    private UserDAO userDAO;
 
     public loginService() {
         loginDAO = new loginDAO();
+        userDAO = new UserDAO();
     }
 
     /**
@@ -33,5 +39,24 @@ public class loginService {
      */
     public User getUserInfo(String email) {
         return loginDAO.getUserByEmail(email);
+    }
+    
+    public User loginWithFacebook(String facebookId) {
+        try {
+            return userDAO.findByFacebookId(facebookId);
+        } catch (SQLException ex) {
+            Logger.getLogger(loginService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public User loginWithGoogle(String googleId) {
+        try {
+            return userDAO.findByGoogleId(googleId);
+        } catch (SQLException ex) {
+            Logger.getLogger(loginService.class.getName())
+                  .log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

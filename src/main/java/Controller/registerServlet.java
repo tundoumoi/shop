@@ -96,11 +96,10 @@ public class registerServlet extends HttpServlet {
             throw new ServletException(e);
           }
         }
-        // ... có thể có login/update khác
       }
     
     // 1. verifyGoogleToken
-    private GoogleIdToken.Payload verifyGoogleToken(String idTokenString)
+    GoogleIdToken.Payload verifyGoogleToken(String idTokenString)
             throws GeneralSecurityException, IOException {
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                 new NetHttpTransport(),
@@ -130,72 +129,3 @@ public class registerServlet extends HttpServlet {
     
     
 }
-
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String action = req.getParameter("action");
-//        try {
-//            switch (action) {
-//                case "google": doGoogle(req, resp); break;
-//                case "facebook": doFacebook(req, resp); break;
-//                // other cases...
-//                default: resp.sendRedirect("login.jsp");
-//            }
-//        } catch (Exception e) {
-//            throw new ServletException(e);
-//        }
-//    }
-//
-//    private void doGoogle(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//        String idTokenString = req.getParameter("id_token");
-//        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
-//                GoogleNetHttpTransport.newTrustedTransport(),
-//                JSON_FACTORY)
-//            .setAudience(Collections.singletonList(GOOGLE_CLIENT_ID))
-//            .build();
-//
-//        GoogleIdToken idToken = verifier.verify(idTokenString);
-//        if (idToken != null) {
-//            var payload = idToken.getPayload();
-//            customer c = service.registerGoogle(
-//                payload.getSubject(),
-//                payload.getEmail(),
-//                (String) payload.get("name")
-//            );
-//            HttpSession session = req.getSession();
-//            session.setAttribute("user", c);
-//            resp.sendRedirect("customer.jsp");
-//        } else {
-//            resp.sendRedirect("login.jsp?error=invalid_token");
-//        }
-//    }
-//
-//    private void doFacebook(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//        String token = req.getParameter("access_token");
-//        String url = "https://graph.facebook.com/me?fields=id,name,email&access_token=" + token;
-//        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-//        conn.setRequestMethod("GET");
-//        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//        StringBuilder sb = new StringBuilder();
-//        String line;
-//        while ((line = in.readLine()) != null) sb.append(line);
-//        in.close();
-//        JSONObject obj = new JSONObject(sb.toString());
-//
-//        customer c = service.registerFacebook(
-//            obj.getString("id"), obj.optString("email"), obj.getString("name")
-//        );
-//        HttpSession session = req.getSession();
-//        session.setAttribute("user", c);
-//        resp.sendRedirect("customer.jsp");
-//    }
-//   
-//}
-/**
- 1. customer đăng kí bằng facebook hoặc google
- 2. Lấy dữ liệu đăng kí kiểm tra trong database nếu chưa có thì thêm vào bảng user và ID : xxxx(xxxx là số và tự động tăng dần),
- nếu đã có trong databáe thì thì kiểm tra phương thức đăng kí đã có chưa nếu chưa thì cập nhật vào ID đó , nếu đã có phhuonwg thức
- đăng kí rồi thì kiểm tra có bị trùng không nếu bị trùng thì quay lại trang Login.jsp, nếu không trùng thì thêm mới một customer và
- chuyển hướng và dữ kiệu dữ liệu của customer đó sang trang customer.
- * 
- */

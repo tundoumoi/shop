@@ -91,15 +91,6 @@ CREATE TABLE recommendations (
     algorithm              VARCHAR(50) DEFAULT 'collaborative',
     created_at             DATETIME DEFAULT GETDATE()
 );
-
--- 10. REVENUE
-CREATE TABLE revenue_forecast (
-  id INT IDENTITY PRIMARY KEY,
-  month VARCHAR(7) NOT NULL,          -- '2025-06'
-  predicted_revenue DECIMAL(12,2) NOT NULL,
-  method VARCHAR(20)   NOT NULL,      -- 'MA3'
-  created_at DATETIME DEFAULT GETDATE()
-);
 -- 11. PROMOTION
 CREATE TABLE promotions (
   id INT PRIMARY KEY IDENTITY,
