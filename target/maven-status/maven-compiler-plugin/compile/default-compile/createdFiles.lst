@@ -27,6 +27,7 @@ DAO\productDAO.class
 DAO2\GenericDAO.class
 DAO\inventoryDAO.class
 Service\registerService.class
+Controller\SearchServlet.class
 DAO2\GenericDAOImpl.class
 Service\UserService$ServiceException.class
 Util\DatabaseConnection.class
@@ -35,11 +36,7 @@ Service\inventoryService.class
 Model2\RevenueForecast.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
-<<<<<<< Updated upstream
 Controller\MomoPaymentServlet.class
-=======
-Controller\GoogleLogin.class
->>>>>>> Stashed changes
 Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class

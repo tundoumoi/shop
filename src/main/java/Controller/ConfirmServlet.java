@@ -95,6 +95,6 @@ public class ConfirmServlet extends HttpServlet {
         session.removeAttribute("cart");
 
         // Chuyển đến trang cảm ơn
-        response.sendRedirect("thankyou.jsp");
+response.sendRedirect("thankyou.jsp?resultCode=0");
     }
 }
