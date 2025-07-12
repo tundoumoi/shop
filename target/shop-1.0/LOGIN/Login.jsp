@@ -71,6 +71,8 @@
                 <span>or use your account</span>
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
+                <span>Remember</span>
+                <input type="checkbox" name="remember" ${remember == 'checked' ? 'checked' : ''} />
                 <button type="submit">Sign In</button>
             </form>
         </div>
