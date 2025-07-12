@@ -36,7 +36,11 @@ Service\inventoryService.class
 Model2\RevenueForecast.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
+<<<<<<< Updated upstream
 Controller\MomoPaymentServlet.class
+=======
+Controller\GoogleLogin.class
+>>>>>>> Stashed changes
 Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class
