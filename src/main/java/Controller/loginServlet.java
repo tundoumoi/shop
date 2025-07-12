@@ -103,9 +103,3 @@ public class loginServlet extends HttpServlet {
         }
     }
 }
-
-
-/*
-    1258256292582871
-    1258256292582871
-*/
