@@ -1,6 +1,8 @@
 create DATABASE  Shop_Quan_Ao; 
 USE Shop_Quan_Ao;
 GO
+UPDATE products
+SET price = price * 1000;
 
 -- 1. USERS
 CREATE TABLE users (
