@@ -37,7 +37,11 @@ Model2\RevenueForecast.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Controller\MomoPaymentServlet.class
+=======
+Controller\GoogleLogin.class
+>>>>>>> Stashed changes
 =======
 Controller\GoogleLogin.class
 >>>>>>> Stashed changes

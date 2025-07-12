@@ -103,6 +103,7 @@ public class loginServlet extends HttpServlet {
         }
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 =======
     
@@ -137,10 +138,48 @@ public class loginServlet extends HttpServlet {
         }
     }
 }
+=======
+    
+    private void doGoogle(HttpServletRequest req, HttpServletResponse resp)
+        throws Exception {
+        resp.setContentType("text/html;charset=UTF-8");
+        String code = req.getParameter("code");
+        String error = req.getParameter("error");
+        //neu nguoi dung huy uy quyen
+        if(error != null) {
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
+        GoogleLogin gg = new GoogleLogin();
+        String accessToken = gg.getToken(code);
+        User acc = gg.getUserInfo(accessToken);
+
+        // 2. Đăng nhập với Google ID
+        User user = login.loginWithGoogle(acc.getGoogleId());
+        if (user != null) {
+            user.setStatus(true);
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+            // 3. Chuyển trang theo role
+            if ("admin".equalsIgnoreCase(user.getRole())) {
+                resp.sendRedirect("admin.jsp");
+            } else {
+                resp.sendRedirect("products");
+            }
+        } else {
+            // Nếu user chưa tồn tại → báo lỗi hoặc chuyển hướng
+            resp.sendRedirect("LOGIN/Login.jsp?error=google_not_registered");
+        }
+    }
+}
+>>>>>>> Stashed changes
 
 
 /*
     1258256292582871
     1258256292582871
+<<<<<<< Updated upstream
+*/
+>>>>>>> Stashed changes
+=======
 */
 >>>>>>> Stashed changes
