@@ -58,12 +58,16 @@ public class loginServlet extends HttpServlet {
     private void doLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String remember  = req.getParameter("remember"); // null nếu không check
         boolean c = login.login(email, password);
         User cus = new User();
         if (c == true) {
             cus=login.getUserInfo(email);
             HttpSession session = req.getSession();
             session.setAttribute("user", cus);
+            session.setAttribute("email",    email);
+            session.setAttribute("password", password);
+            session.setAttribute("remember", "on".equals(remember));
             if(cus.getRole().equalsIgnoreCase("admin")) resp.sendRedirect("admin.jsp");
             else resp.sendRedirect("products");
         }else {

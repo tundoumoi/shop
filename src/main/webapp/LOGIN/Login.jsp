@@ -59,6 +59,22 @@
             <button type="submit">Sign Up</button>
         </form>
       </div>
+            
+        <%
+            String email    = "";
+            String password = "";
+            jakarta.servlet.http.Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie c : cookies) {
+                    if ("email".equals(c.getName())) {
+                        email = java.net.URLDecoder.decode(c.getValue(), "UTF-8");
+                    } else if ("password".equals(c.getName())) {
+                        password = java.net.URLDecoder.decode(c.getValue(), "UTF-8");
+                    }
+                }
+            }
+        %>
+            
         <div class="form-container sign-in-container">
             <form id="signInForm" action="${pageContext.request.contextPath}/login?action=login" method="post">
                 <h1>Sign in</h1>
@@ -69,8 +85,8 @@
                     </a>
                 </div>
                 <span>or use your account</span>
-                <input type="email" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Password" />
+                <input type="email" name="email" value="<%=email%>" placeholder="Email" />
+                <input type="password" name="password" value="<%=password%>" placeholder="Password" />
                 <span>Remember</span>
                 <input type="checkbox" name="remember" ${remember == 'checked' ? 'checked' : ''} />
                 <button type="submit">Sign In</button>

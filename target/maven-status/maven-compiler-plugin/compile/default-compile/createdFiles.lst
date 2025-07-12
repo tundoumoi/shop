@@ -18,6 +18,7 @@ Model\customer.class
 Util\EmailUtil.class
 Model2\ProductImages.class
 Controller\ConfirmServlet.class
+Controller\LogOutServlet.class
 Model\CartItem.class
 DAO\revenueDAO.class
 Controller\MomoReturnServlet.class
@@ -36,15 +37,8 @@ Service\inventoryService.class
 Model2\RevenueForecast.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+Controller\GoogleLogin.class
 Controller\MomoPaymentServlet.class
-=======
-Controller\GoogleLogin.class
->>>>>>> Stashed changes
-=======
-Controller\GoogleLogin.class
->>>>>>> Stashed changes
 Service\customerService.class
 Service\UserService.class
 Controller\UserServlet.class
