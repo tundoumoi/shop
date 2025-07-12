@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/HOMES/header.jsp" %>
 
 <!DOCTYPE html>
@@ -21,25 +22,51 @@
       text-align: center;
       border-radius: 6px;
       background-color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
     }
     .product-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: opacity 0.3s ease;
+    }
+    .hover-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+    }
+    .product-item:hover .hover-img {
+      opacity: 1;
+    }
+    .product-item:hover .main-img {
+      opacity: 0;
     }
     .product-item h3 {
       margin: 10px 0 5px;
+      font-size: 1.1rem;
+      color: #007bff;
     }
     .product-item p {
       margin: 0;
+      font-weight: bold;
+      color: #333;
     }
     .pagination {
-      margin-top: 20px;
+      margin: 30px 0;
       text-align: center;
     }
     .pagination a, .pagination span {
       margin: 0 4px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       text-decoration: none;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -56,28 +83,31 @@
   </style>
 </head>
 <body style="padding-top: 80px;">
-<body>
 
 <div class="product-grid">
   <c:forEach var="p" items="${productList}">
     <div class="product-item">
-      <!-- Sửa ở đây: gọi servlet /product -->
-     <a href="${pageContext.request.contextPath}/products?action=view&id=${p.id}">
+      <a href="${pageContext.request.contextPath}/products?action=view&id=${p.id}">
+        <!-- ✅ Lấy ảnh chính và phụ -->
+        <c:set var="mainImage" value="" />
+        <c:set var="hoverImage" value="" />
 
-        <c:choose>
-          <c:when test="${not empty p.images}">
-            <c:forEach var="img" items="${p.images}">
-              <c:if test="${img.isPrimary}">
-                <img src="${img.imageUrl}" alt="${p.name}" />
-              </c:if>
-            </c:forEach>
-          </c:when>
-          <c:otherwise>
-            <img src="resources/images/default.jpg" alt="${p.name}" />
-          </c:otherwise>
-        </c:choose>
+        <c:forEach var="img" items="${p.images}">
+          <c:if test="${img.isPrimary and empty mainImage}">
+            <c:set var="mainImage" value="${img.imageUrl}" />
+          </c:if>
+          <c:if test="${not img.isPrimary and empty hoverImage}">
+            <c:set var="hoverImage" value="${img.imageUrl}" />
+          </c:if>
+        </c:forEach>
+
+        <img src="${mainImage}" class="main-img" alt="${p.name}" />
+        <c:if test="${not empty hoverImage}">
+          <img src="${hoverImage}" class="hover-img" alt="${p.name} phụ" />
+        </c:if>
+
         <h3>${p.name}</h3>
-        <p>${p.price} VND</p>
+        <p><fmt:formatNumber value="${p.price}" type="number" groupingUsed="true" /> đ</p>
       </a>
     </div>
   </c:forEach>

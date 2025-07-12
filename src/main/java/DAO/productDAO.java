@@ -507,6 +507,86 @@ public List<productVariant> getVariantsByProductId(int productId) {
 
     return variants;
 }
+public List<product> searchProductsByName(String keyword, int offset, int limit) {
+    List<product> list = new ArrayList<>();
+    String sql = "SELECT * FROM products WHERE status = 1 AND name LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, "%" + keyword + "%");
+        ps.setInt(2, offset);
+        ps.setInt(3, limit);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            product p = new product();
+            int productId = rs.getInt("id");
+            p.setId(productId);
+            p.setName(rs.getString("name"));
+            p.setDescription(rs.getString("description"));
+            p.setPrice(rs.getBigDecimal("price"));
+            p.setCategory(rs.getString("category"));
+            p.setStatus(rs.getBoolean("status"));
+            p.setCreatedAt(rs.getTimestamp("created_at"));
+
+            // Hình ảnh
+            List<productImage> images = new ArrayList<>();
+            try (PreparedStatement imgStmt = conn.prepareStatement("SELECT * FROM product_images WHERE product_id = ?")) {
+                imgStmt.setInt(1, productId);
+                ResultSet imgRs = imgStmt.executeQuery();
+                while (imgRs.next()) {
+                    productImage img = new productImage();
+                    img.setId(imgRs.getInt("id"));
+                    img.setProductId(productId);
+                    img.setImageUrl(imgRs.getString("image_url"));
+                    img.setIsPrimary(imgRs.getBoolean("is_primary"));
+                    images.add(img);
+                }
+            }
+            p.setImages(images);
+
+            // Biến thể
+            List<productVariant> variants = new ArrayList<>();
+            try (PreparedStatement varStmt = conn.prepareStatement("SELECT * FROM product_variants WHERE product_id = ?")) {
+                varStmt.setInt(1, productId);
+                ResultSet varRs = varStmt.executeQuery();
+                while (varRs.next()) {
+                    productVariant v = new productVariant();
+                    v.setId(varRs.getInt("id"));
+                    v.setProductId(productId);
+                    v.setSize(varRs.getString("size"));
+                    v.setQuantity(varRs.getInt("quantity"));
+                    variants.add(v);
+                }
+            }
+            p.setVariants(variants);
+
+            list.add(p);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+public int countSearchResults(String keyword) {
+    String sql = "SELECT COUNT(*) FROM products WHERE status = 1 AND name LIKE ?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, "%" + keyword + "%");
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return 0;
+}
 
 
 }

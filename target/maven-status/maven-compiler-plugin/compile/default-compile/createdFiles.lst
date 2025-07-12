@@ -27,6 +27,7 @@ DAO\productDAO.class
 DAO2\GenericDAO.class
 DAO\inventoryDAO.class
 Service\registerService.class
+Controller\SearchServlet.class
 DAO2\GenericDAOImpl.class
 Service\UserService$ServiceException.class
 Util\DatabaseConnection.class

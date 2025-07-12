@@ -271,5 +271,6 @@ private void recordViewTime(HttpServletRequest request, HttpServletResponse resp
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi hiển thị sản phẩm.");
     }
 }
+    
 
 }
