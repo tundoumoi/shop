@@ -15,7 +15,7 @@ public class MomoPaymentServlet extends HttpServlet {
     private static final String partnerCode = "MOMO";
     private static final String accessKey = "F8BBA842ECF85";
     private static final String secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-private static final String redirectUrl = "http://localhost:8080/shop/momo-return";
+    private static final String redirectUrl = "http://localhost:8080/shop/momo-return";
     private static final String ipnUrl = "http://localhost:8080/shop/ipn";
 
     @Override

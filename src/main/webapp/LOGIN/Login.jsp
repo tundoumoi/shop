@@ -32,7 +32,7 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="CSS/login.css" rel="stylesheet">
+    <link href="../CSS/login.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     

@@ -49,8 +49,8 @@ Model\Order.class
 agentai\recommend\db\ProductDAO.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
-Controller\GoogleLogin.class
 agentai\recommend\llm\LlmClient.class
+Filter\AuthenFilter.class
 Controller\MomoPaymentServlet.class
 Service\customerService.class
 Service\UserService.class

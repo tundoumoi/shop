@@ -58,6 +58,6 @@ public class LogOutServlet extends HttpServlet {
         }
 
         // Chuyển về trang login
-        response.sendRedirect("login");
+        response.sendRedirect("login.jsp");
     }
 }

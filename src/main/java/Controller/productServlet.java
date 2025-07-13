@@ -53,15 +53,14 @@ public class productServlet extends HttpServlet {
             action = "list";
         }
         try {
-          switch (action) {
-    case "create": showCreateForm(request, response); break;
-    case "edit":   showEditForm(request, response);   break;
-    case "delete": deleteProduct(request, response);  break;
-    case "view":   recordProductView(request, response); break;
-    case "viewTime": recordViewTime(request, response); break;
-    default:        listProducts(request, response);   break;
-}
-
+            switch (action) {
+                case "create": showCreateForm(request, response); break;
+                case "edit":   showEditForm(request, response);   break;
+                case "delete": deleteProduct(request, response);  break;
+                case "view":   recordProductView(request, response); break;
+                case "viewTime": recordViewTime(request, response); break;
+                default:        listProducts(request, response);   break;
+            }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error processing request", ex);
             throw new ServletException(ex);

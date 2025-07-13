@@ -3,7 +3,6 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Contr
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\db\DBConnection.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\ProductDetailServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\loginDAO.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\GoogleLogin.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\SearchServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\revenueDAO.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Util\DatabaseConnection.java
@@ -28,6 +27,7 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Contr
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\Users.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\llm\LlmClient.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\ProductViewDAO.java
+C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Filter\AuthenFilter.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\ProductViews.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\Orders.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO2\GenericDAO.java
