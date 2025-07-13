@@ -217,4 +217,7 @@
 </body>
 </html>
 
+<jsp:include page="/recommendation.jsp" />
 <%@ include file="/HOMES/footer.jsp" %>
+
+

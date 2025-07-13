@@ -52,6 +52,7 @@ Controller\ProductDetailServlet.class
 agentai\recommend\llm\LlmClient.class
 Filter\AuthenFilter.class
 Controller\MomoPaymentServlet.class
+Controller\RecommendationServlet.class
 Service\customerService.class
 Service\UserService.class
 agentai\recommend\db\UserDAO.class
@@ -66,6 +67,7 @@ Model\product.class
 Controller\loginServlet.class
 agentai\recommend\tools\RecommendationCalculator.class
 DAO\customerDAO.class
+DAO\RecommendationDAO.class
 Model\productImage.class
 Model2\OrderItems.class
 com\mycompany\shop\resources\JakartaEE10Resource.class

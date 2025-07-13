@@ -1,6 +1,7 @@
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\ViewedDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\CartItems.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Util\EmailUtil.java
+C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\RecommendationServlet.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Service\revenueService.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\ProductDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\DAO\loginDAO.java
@@ -49,6 +50,7 @@ C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\Users.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\OrderedDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\product.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\CheckoutServlet.java
+C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\DAO\RecommendationDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\Products.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\OrderItems.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\UserDAO.java
