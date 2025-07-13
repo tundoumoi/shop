@@ -82,7 +82,9 @@
 <!--  Nút logout -->
 <div class="header">
     <div><strong>Xin chào, <%= user.getFullName() %></strong></div>
-    <div><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></div>
+    <div><a href="${pageContext.request.contextPath}/logout" class="nav-link">
+        <i class="fa-solid fa-sign-out-alt me-2"></i> Đăng xuất</a>
+    </div>
 </div>
 
 <div class="container">
