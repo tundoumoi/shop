@@ -29,6 +29,7 @@ DAO\revenueDAO.class
 Controller\MomoReturnServlet.class
 agentai\recommend\db\ViewedDAO.class
 DAO\registerDAO.class
+Model\OrderItem.class
 Service\registerService$DuplicateAuthException.class
 DAO\productDAO.class
 DAO2\GenericDAO.class
@@ -43,6 +44,7 @@ Util\DatabaseConnection.class
 Controller\CartServlet.class
 Service\inventoryService.class
 Model2\RevenueForecast.class
+Model\Order.class
 agentai\recommend\db\ProductDAO.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
@@ -59,7 +61,6 @@ DAO\loginDAO.class
 DAO\UserDAO.class
 Model2\BusinessReports.class
 agentai\recommend\model\Recommendation.class
-DAO\OrderItemsDAO.class
 Model\product.class
 Controller\loginServlet.class
 agentai\recommend\tools\RecommendationCalculator.class

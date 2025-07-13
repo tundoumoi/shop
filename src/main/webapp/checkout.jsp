@@ -13,9 +13,15 @@
     List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
     if (user == null || cart == null || cart.isEmpty()) {
-        response.sendRedirect("cart.jsp");
-        return;
-    }
+    response.sendRedirect("cart.jsp");
+    return;
+}
+
+    if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+    response.sendRedirect("edit-profile.jsp?requireEmail=true");
+    return;
+}
+
 %>
 
 <!DOCTYPE html>
@@ -62,7 +68,11 @@
         }
     </style>
 </head>
-<body>
+<body> 
+    <c:if test="${param.requireEmail == 'true'}">
+    <p style="color: red;">Vui lòng cập nhật email để tiếp tục thanh toán.</p>
+</c:if>
+
 
 <div class="checkout-container">
     <h2>Xác nhận thông tin đơn hàng</h2>

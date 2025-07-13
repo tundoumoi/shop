@@ -20,7 +20,6 @@ public class customer implements Serializable{
 
     public customer() {}
 
-    // Constructor for registration
     public customer(String email, String password, String fullName, String address) {
         this.email = email;
         this.password = password;
@@ -38,7 +37,6 @@ public class customer implements Serializable{
         this.address = address;
     }
 
-    // Getters and setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

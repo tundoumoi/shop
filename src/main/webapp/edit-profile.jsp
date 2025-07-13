@@ -20,12 +20,26 @@
     <meta charset="UTF-8">
     <title>Chỉnh sửa thông tin cá nhân</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .header {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
         .container {
             max-width: 500px;
             margin: 50px auto;
-            font-family: Arial, sans-serif;
         }
         label {
             font-weight: bold;
@@ -61,6 +75,12 @@
 </head>
 <body>
 
+<!-- ✅ Nút logout -->
+<div class="header">
+    <div><strong>Xin chào, <%= user.getFullName() %></strong></div>
+    <div><a href="logout">Đăng xuất</a></div>
+</div>
+
 <div class="container">
     <h2>Chỉnh sửa thông tin cá nhân</h2>
     <form action="update-profile" method="post">
@@ -88,7 +108,7 @@
 
         <div>
             <button type="submit">Cập nhật</button>
-            <a href="${pageContext.request.contextPath}/products?action=list"><button type="button" class="back-button">Quay về trang chủ</button></a>
+            <a href="${pageContext.request.contextPath}/products?action=list"><button type="button">Quay về trang chủ</button></a>
         </div>
     </form>
 </div>

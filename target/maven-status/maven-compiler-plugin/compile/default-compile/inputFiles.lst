@@ -8,6 +8,7 @@ C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\m
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\registerServlet.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\productVariant.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\CartItem.java
+C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\OrderItem.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\Orders.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\UserServlet.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\ProductImages.java
@@ -48,7 +49,6 @@ C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\Users.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\OrderedDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\product.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\CheckoutServlet.java
-C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\DAO\OrderItemsDAO.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\Products.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\OrderItems.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\db\UserDAO.java
@@ -68,3 +68,4 @@ C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\productImage.
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model2\ProductViews.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\agentai\recommend\model\RecommendationInput.java
 C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Controller\MomoReturnServlet.java
+C:\Users\HP\OneDrive\Tài liệu\GitHub\shop\src\main\java\Model\Order.java

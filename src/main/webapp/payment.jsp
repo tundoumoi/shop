@@ -4,7 +4,7 @@
     Author     : HP
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Model.User" %>
+    <%@ page import="Model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Model.CartItem" %>
 <%
