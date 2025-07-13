@@ -59,6 +59,7 @@ DAO\loginDAO.class
 DAO\UserDAO.class
 Model2\BusinessReports.class
 agentai\recommend\model\Recommendation.class
+DAO\OrderItemsDAO.class
 Model\product.class
 Controller\loginServlet.class
 agentai\recommend\tools\RecommendationCalculator.class

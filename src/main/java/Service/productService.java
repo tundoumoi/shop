@@ -70,6 +70,17 @@ public class ProductService {
             throw new SQLException("Failed to insert product");
         }
     }
+// Lấy danh sách sản phẩm theo category có phân trang
+public List<product> getProductsByCategory(String category, int page, int pageSize) {
+    int offset = (page - 1) * pageSize;
+    return new productDAO().getProductsByCategory(category, offset, pageSize);
+}
+
+// Tính tổng số trang dựa trên số lượng sản phẩm trong category
+public int getTotalPagesByCategory(String category, int pageSize) {
+    int totalProducts = new productDAO().countProductsByCategory(category);
+    return (int) Math.ceil((double) totalProducts / pageSize);
+}
 
     /**
      * Cập nhật sản phẩm kèm variants và images
@@ -142,6 +153,15 @@ public class ProductService {
     return dao.getVariantsByProductId(productId);
 }
 
+public List<product> getProductsByCategoryAndDescription(String category, String description, int page, int pageSize) {
+    int offset = (page - 1) * pageSize;
+    return dao.getProductsByCategoryAndDescription(category, description, offset, pageSize);
+}
+
+public int getTotalPagesByCategoryAndDescription(String category, String description, int pageSize) {
+    int total = dao.countProductsByCategoryAndDescription(category, description);
+    return (int) Math.ceil((double) total / pageSize);
+}
 
 }
 

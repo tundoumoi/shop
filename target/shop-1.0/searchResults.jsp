@@ -89,7 +89,7 @@
     }
   </style>
 </head>
-<body style="padding-top: 80px;">
+<body style="padding-top: 90px;">
   <div class="container">
     <h2>Kết quả tìm kiếm cho: "<%= request.getAttribute("keyword") %>"</h2>
 

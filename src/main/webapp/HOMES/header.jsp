@@ -81,9 +81,10 @@
   </button>
 
   <!-- Logo giữa (mobile) -->
-  <a class="navbar-brand d-lg-none center-logo" href="#">
-      <img src="images/others/logomu.png" >
-  </a>
+<a class="navbar-brand d-lg-none center-logo" href="${pageContext.request.contextPath}/products">
+    <img src="images/others/logomu.png" >
+</a>
+
 
   <!-- Icons bên phải (mobile) -->
   <div class="d-flex d-lg-none ml-auto">
@@ -96,19 +97,29 @@
   <div class="collapse navbar-collapse justify-content-between" id="navLinks">
     
     <!-- Logo bên trái (desktop) -->
-    <a class="navbar-brand d-none d-lg-flex align-items-center" href="#">
+    <a class="navbar-brand d-none d-lg-flex align-items-center" href="${pageContext.request.contextPath}/products">
       <span>UNITED</span>
       <img src="images/others/logomu.png" >
       <span>STORE</span>
     </a>
 
     <!-- Menu chính -->
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="#">Jerseys</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Trainingwear</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Fashion</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Gifts</a></li>
-    </ul>
+ <ul class="navbar-nav">
+  <li class="nav-item">
+<a class="nav-link" href="${pageContext.request.contextPath}/products?category=Jersey">Jerseys</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath}/products?category=Trainingwear">Trainingwear</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath}/products?category=Fashion">Fashion</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath}/products?category=Souvenir">Souvenir</a>
+  </li>
+</ul>
+
+
 
     <!-- Icons desktop -->
     <div class="d-none d-lg-flex align-items-center">
