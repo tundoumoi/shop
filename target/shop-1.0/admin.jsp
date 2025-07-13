@@ -42,6 +42,7 @@
         <li><a href="#" id="revenueLink" class="nav-link active"><i class="fa-solid fa-chart-line me-2"></i> Doanh thu</a></li>
         <li><a href="#" id="productLink" class="nav-link"><i class="fa-solid fa-box-open me-2"></i> Sản phẩm</a></li>
         <li><a href="#" id="userLink" class="nav-link"><i class="fa-solid fa-user me-2"></i> Người dùng</a></li>
+        <li><a href="#" id="agentLink" class="nav-link"><i class="fa-solid fa-robot me-2"></i> Chạy Agent</a></li>
       </ul>
       <div class="mt-auto mb-3 px-3">
         <a href="logout" class="nav-link"><i class="fa-solid fa-sign-out-alt me-2"></i> Đăng xuất</a>
@@ -80,6 +81,19 @@
 
       // Load mặc định "Doanh thu"
       $('#revenueLink').trigger('click');
+    });
+  </script>
+  
+  <script>
+    document.getElementById("agentLink").addEventListener("click", function(e) {
+      e.preventDefault();
+      fetch("${pageContext.request.contextPath}/runrecommendationagent")
+        .then(resp => {
+          if (!resp.ok) throw new Error("HTTP " + resp.status);
+          return resp.text();
+        })
+        .then(msg => alert("Agent đã chạy thành công!"))
+        .catch(err => alert("Lỗi khi chạy Agent: " + err));
     });
   </script>
 </body>

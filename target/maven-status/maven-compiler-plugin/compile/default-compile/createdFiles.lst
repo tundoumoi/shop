@@ -27,6 +27,7 @@ Controller\LogOutServlet.class
 Model\CartItem.class
 DAO\revenueDAO.class
 Controller\MomoReturnServlet.class
+Controller\RecommendationAgentServlet.class
 agentai\recommend\db\ViewedDAO.class
 DAO\registerDAO.class
 Model\OrderItem.class
