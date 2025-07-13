@@ -3,6 +3,9 @@ USE Shop_Quan_Ao;
 GO
 UPDATE products
 SET price = price * 1000;
+UPDATE products
+SET description = REPLACE(description, '&', 'and')
+WHERE description LIKE '%&%';
 
 -- 1. USERS
 CREATE TABLE users (
@@ -1353,3 +1356,13 @@ go
 UPDATE product_variants
 SET quantity = (ABS(CHECKSUM(NEWID())) % 11) + 10;
 
+INSERT INTO recommendations (user_id, recommended_product_id, score)
+VALUES
+(7, 1, 3),
+(7, 2, 5),
+(7, 3, 1),
+(7, 4, 4),
+(7, 5, 2),
+(7, 6, 3),
+(7, 7, 5);
+SELECT * FROM products WHERE category = 'Jersey' AND status = 1

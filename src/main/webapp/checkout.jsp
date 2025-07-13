@@ -13,15 +13,9 @@
     List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
     if (user == null || cart == null || cart.isEmpty()) {
-    response.sendRedirect("cart.jsp");
-    return;
-}
-
-    if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
-    response.sendRedirect("edit-profile.jsp?requireEmail=true");
-    return;
-}
-
+        response.sendRedirect("cart.jsp");
+        return;
+    }
 %>
 
 <!DOCTYPE html>
@@ -62,30 +56,32 @@
         .confirm-btn button:hover {
             background-color: darkgreen;
         }
-        input[type="text"] {
+        input[type="text"], input[type="email"] {
             width: 100%;
             padding: 8px;
+            box-sizing: border-box;
         }
     </style>
 </head>
-<body> 
-    <c:if test="${param.requireEmail == 'true'}">
-    <p style="color: red;">Vui lòng cập nhật email để tiếp tục thanh toán.</p>
-</c:if>
-
+<body>
 
 <div class="checkout-container">
     <h2>Xác nhận thông tin đơn hàng</h2>
 
-    <div class="info">
-        <p><strong>Khách hàng:</strong> ${user.fullName}</p>
-        <p><strong>Email:</strong> ${user.email}</p>
-    </div>
+    <form action="confirm" method="post">
+        <div class="info">
+            <p><strong>Khách hàng:</strong> ${user.fullName}</p>
 
-    <form action="payment.jsp" method="post">
+            <label for="email"><strong>Email:</strong></label>
+            <input type="email" name="email" value="${user.email}"
+                   pattern="^[a-zA-Z0-9._%+-]+@gmail\\.com$"
+                   title="Vui lòng nhập địa chỉ Gmail hợp lệ" required />
+        </div>
+
         <div class="address-form">
             <label><strong>Địa chỉ giao hàng:</strong></label><br/>
-            <input type="text" name="address" value="${user.address}" required />
+            <input type="text" name="address" value="${user.address}"
+                   title="Bạn có thể thay đổi địa chỉ cho đơn này (không ảnh hưởng hồ sơ)" required />
         </div>
 
         <table>

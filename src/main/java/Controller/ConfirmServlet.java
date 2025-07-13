@@ -2,12 +2,14 @@ package Controller;
 
 import Model.*;
 import Service.ProductService;
+import Service.UserService;
 import Util.EmailUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ConfirmServlet", urlPatterns = {"/confirm"})
@@ -33,6 +35,22 @@ public class ConfirmServlet extends HttpServlet {
             return;
         }
 
+        // Lấy email và địa chỉ mới từ form checkout.jsp
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+
+        // ️ Cập nhật tạm thời để dùng cho đơn hàng
+        if (email != null && email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$")) {
+            user.setEmail(email);
+        }
+        if (address != null && !address.trim().isEmpty()) {
+            user.setAddress(address);
+        }
+
+        //  Lưu lại vào DB nếu bạn muốn (tuỳ chọn)
+       new UserService().updateUser(user);
+        session.setAttribute("user", user);
+
         String paymentMethod = request.getParameter("paymentMethod");
         if (paymentMethod == null || paymentMethod.isEmpty()) {
             request.setAttribute("error", "Vui lòng chọn phương thức thanh toán.");
@@ -42,7 +60,7 @@ public class ConfirmServlet extends HttpServlet {
 
         double total = 0;
 
-        // Trừ kho từng sản phẩm
+        //  Trừ kho từng sản phẩm
         for (CartItem item : cart) {
             productVariant variant = productService.getVariantById(item.getVariant().getId());
 
@@ -59,29 +77,31 @@ public class ConfirmServlet extends HttpServlet {
             total += item.getQuantity() * item.getProduct().getPrice().doubleValue();
         }
 
-        // Soạn nội dung email
+        //  Soạn nội dung email xác nhận
         StringBuilder body = new StringBuilder();
-        body.append("Cảm ơn bạn đã đặt hàng tại United Store!\n\n");
-        body.append("Địa chỉ giao hàng:\n").append(user.getAddress()).append("\n\n");
-        body.append("Phương thức thanh toán: ");
-        if ("momo".equals(paymentMethod)) {
-            body.append("Ví điện tử Momo\n");
-        } else {
-            body.append("Thanh toán khi nhận hàng (COD)\n");
-        }
-        body.append("\nChi tiết đơn hàng:\n");
+        body.append("XÁC NHẬN THÔNG TIN ĐƠN HÀNG\n\n");
+        body.append("Khách hàng: ").append(user.getFullName()).append("\n");
+        body.append("Email: ").append(user.getEmail()).append("\n");
+        body.append("Địa chỉ giao hàng: ").append(user.getAddress()).append("\n\n");
 
+        body.append("Chi tiết đơn hàng:\n");
         for (CartItem item : cart) {
+            double lineTotal = item.getQuantity() * item.getProduct().getPrice().doubleValue();
             body.append("- ").append(item.getProduct().getName())
                 .append(" (Size: ").append(item.getVariant().getSize())
                 .append(") x").append(item.getQuantity())
-                .append(" = ").append(item.getQuantity() * item.getProduct().getPrice().doubleValue())
-                .append(" VND\n");
+                .append(" = ").append(lineTotal).append(" VND\n");
         }
 
-        body.append("\nTổng cộng: ").append(total).append(" VND");
+        body.append("\nTổng cộng: ").append(total).append(" VND\n");
+        body.append("Hình thức thanh toán: ");
+        if ("momo".equals(paymentMethod)) {
+            body.append("Ví điện tử Momo");
+        } else {
+            body.append("Thanh toán khi nhận hàng (COD)");
+        }
 
-        // Gửi email
+        //  Gửi email
         try {
             EmailUtil.send(user.getEmail(), "Xác nhận đơn hàng - United Store", body.toString());
         } catch (Exception e) {
@@ -91,10 +111,10 @@ public class ConfirmServlet extends HttpServlet {
             return;
         }
 
-        // Xoá giỏ hàng
+        //  Xoá giỏ hàng
         session.removeAttribute("cart");
 
-        // Chuyển đến trang cảm ơn
-response.sendRedirect("thankyou.jsp?resultCode=0");
+        //  Chuyển đến trang cảm ơn
+        response.sendRedirect("thankyou.jsp?resultCode=0");
     }
 }

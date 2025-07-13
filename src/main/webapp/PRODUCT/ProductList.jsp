@@ -111,7 +111,7 @@
     }
   </style>
 </head>
-<body style="padding-top: 90    px;">
+<body style="padding-top: 90px;">
 
 <!-- 🔍 Bộ lọc theo description -->
 <c:if test="${category == 'Jersey'}">

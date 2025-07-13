@@ -26,38 +26,40 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
         if (session != null) {
-            Boolean remember = (Boolean) session.getAttribute("remember");
+            // Lấy thông tin từ session
+            Object rememberObj = session.getAttribute("remember");
+            boolean remember = rememberObj != null && Boolean.parseBoolean(rememberObj.toString());
+
             String email    = (String) session.getAttribute("email");
             String password = (String) session.getAttribute("password");
 
-            if (Boolean.TRUE.equals(remember) && email != null && password != null) {
-                // Tạo cookie mới
-                Cookie emailCookie = new Cookie("email", URLEncoder.encode(email, "UTF-8"));
-                Cookie pwdCookie   = new Cookie("password", URLEncoder.encode(password, "UTF-8"));
+            // Tạo hoặc xóa cookie tùy thuộc "remember"
+            Cookie emailCookie = new Cookie("email", "");
+            Cookie pwdCookie   = new Cookie("password", "");
+
+            if (remember && email != null && password != null) {
+                emailCookie.setValue(URLEncoder.encode(email, "UTF-8"));
+                pwdCookie.setValue(URLEncoder.encode(password, "UTF-8"));
 
                 emailCookie.setMaxAge(COOKIE_MAX_AGE);
                 pwdCookie.setMaxAge(COOKIE_MAX_AGE);
-
-                response.addCookie(emailCookie);
-                response.addCookie(pwdCookie);
             } else {
-                // Xóa cookie (nếu tồn tại)
-                Cookie emailCookie = new Cookie("email", "");
-                Cookie pwdCookie   = new Cookie("password", "");
-
                 emailCookie.setMaxAge(0);
                 pwdCookie.setMaxAge(0);
-
-                response.addCookie(emailCookie);
-                response.addCookie(pwdCookie);
             }
+
+            emailCookie.setPath("/");
+            pwdCookie.setPath("/");
+
+            response.addCookie(emailCookie);
+            response.addCookie(pwdCookie);
 
             session.invalidate();
         }
 
-        // Chuyển về trang login
         response.sendRedirect("login.jsp");
     }
 }

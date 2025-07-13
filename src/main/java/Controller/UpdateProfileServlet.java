@@ -38,13 +38,17 @@ public class UpdateProfileServlet extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String password = request.getParameter("password");
         String address  = request.getParameter("address");
+        String email    = request.getParameter("email");
 
         // Cập nhật thông tin
         currentUser.setFullName(fullName);
+        currentUser.setAddress(address);
+        if (email != null && !email.trim().isEmpty()) {
+            currentUser.setEmail(email);
+        }
         if (password != null && !password.trim().isEmpty()) {
             currentUser.setPassword(password);
         }
-        currentUser.setAddress(address);
 
         // Gọi service để cập nhật vào DB
         boolean updated = userService.updateUser(currentUser);
@@ -58,4 +62,3 @@ public class UpdateProfileServlet extends HttpServlet {
         }
     }
 }
-
