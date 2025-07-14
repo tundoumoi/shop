@@ -87,7 +87,7 @@ USER_FUNC.add("thankyou.jsp");
 USER_FUNC.add("header.jsp");
 USER_FUNC.add("footer.jsp");
 
-USER_FUNC.add("search");         // ✅ đã sửa đúng từ "searh" thành "search"
+USER_FUNC.add("search");         
 USER_FUNC.add("MomoPaymentServlet");
 USER_FUNC.add("cart");
 USER_FUNC.add("checkout");
