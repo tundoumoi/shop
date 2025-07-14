@@ -70,15 +70,6 @@ CREATE TABLE order_items (
     unit_price DECIMAL(10,2) NOT NULL
 );
 
--- 6. CART_ITEMS
-CREATE TABLE cart_items (
-    id         INT PRIMARY KEY IDENTITY,
-    user_id    INT NOT NULL FOREIGN KEY REFERENCES users(id) ON DELETE CASCADE,
-	variant_id INT FOREIGN KEY REFERENCES product_variants(id),
-    quantity   INT NOT NULL,
-    added_at   DATETIME DEFAULT GETDATE()
-);
-
 -- 7. PRODUCT_VIEWS
 CREATE TABLE product_views (
     id INT PRIMARY KEY IDENTITY,
@@ -111,27 +102,6 @@ CREATE TABLE promotions (
   status          VARCHAR(20)      DEFAULT 'active',  -- 'active', 'expired', 'pending'
   created_at      DATETIME         DEFAULT GETDATE()
 );
--- 12. business_reports
-CREATE TABLE business_reports (
-  id            INT PRIMARY KEY IDENTITY,
-  report_date   DATE         NOT NULL,      -- Ngày agent chạy và tạo report
-  report_type   VARCHAR(50)  NOT NULL,      -- 'weekly', 'monthly', 'advice'
-  content       NVARCHAR(MAX) NOT NULL,     -- JSON hoặc text tóm tắt đề xuất
-  generated_by  VARCHAR(50)  DEFAULT 'advisor_agent',
-  status        VARCHAR(20)  DEFAULT 'new', -- 'new', 'reviewed', 'executed'
-  created_at    DATETIME     DEFAULT GETDATE()
-);
--- 13. action_log
-CREATE TABLE action_logs (
-  id          INT PRIMARY KEY IDENTITY,
-  report_id   INT     NOT NULL FOREIGN KEY REFERENCES business_reports(id),
-  action_type VARCHAR(50) NOT NULL,         -- 'create_facebook_campaign', 'apply_discount', v.v.
-  status      VARCHAR(20) DEFAULT 'pending', -- 'pending', 'success', 'failed'
-  payload     NVARCHAR(MAX) NOT NULL,        -- JSON input cho hành động
-  response    NVARCHAR(MAX) NULL,            -- JSON phản hồi từ API (nếu có)
-  executed_at DATETIME DEFAULT GETDATE()
-);
-
 go
 
 INSERT INTO product_images(product_id, image_url, is_primary)
@@ -204,12 +174,6 @@ VALUES
     (33, 'images/jerseys/away/manaway/awaym06.jpg', 0),
     (34, 'images/jerseys/away/manaway/awaym08.jpg', 1),
     (34, 'images/jerseys/away/manaway/awaym06.jpg', 0);
-    UPDATE product_images
-SET is_primary = CASE
-    WHEN is_primary = 1 THEN 0
-    WHEN is_primary = 0 THEN 1
-END
-WHERE product_id = 41;
 
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
@@ -251,7 +215,6 @@ VALUES
 ( 51, 'images/jerseys/Thirdd/manT/a10 (1).jpg', 1 ),
 ( 51, 'images/jerseys/Thirdd/manT/a01.jpg', 0 );
 
-
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 ( 52, 'images/jerseys/GK/degea.jpg', 1 ),
@@ -269,9 +232,6 @@ VALUES
 ( 58, 'images/jerseys/GK/a1.jpg', 1 ),
 ( 58, 'images/jerseys/GK/a2.jpg', 0 );
 
-
-DELETE FROM product_images
-WHERE product_id BETWEEN 80 AND 89;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (59, 'images/training/áo01.jpg', 1),
@@ -308,22 +268,26 @@ VALUES
 (74, 'images/training/áo38.jpg', 0),
 (75, 'images/training/áo39.jpg', 1),
 (75, 'images/training/áo40.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (76, 'images/training/áo29.jpg', 1),
 (76, 'images/training/áo30.jpg', 0),
 (77, 'images/training/áo31.jpg', 1),
 (77, 'images/training/áo33.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (78, 'images/training/41.jpg', 1),
 (78, 'images/training/42.jpg', 0),
 (79, 'images/training/43.jpg', 1),
 (79, 'images/training/44.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 (80, 'images/training/11.jpg', 1),
 (80, 'images/training/12.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES 
 
@@ -546,8 +510,6 @@ VALUES
 (184, 'images/afashion/hoodie/hh47.jpg', 1),
 (184, 'images/afashion/hoodie/hh48.jpg', 0);
 
-DELETE FROM product_images
-WHERE product_id BETWEEN 80 AND 89;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (185, 'images/afashion/reto/reto01.jpg', 1),
@@ -561,8 +523,6 @@ VALUES
 (189, 'images/afashion/reto/reto09.jpg', 1),
 (189, 'images/afashion/reto/reto10.jpg', 0);
 
-DELETE FROM product_images
-WHERE product_id BETWEEN 185 AND 189;
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (190, 'images/afashion/reto/r1.jpg', 1),
@@ -573,6 +533,7 @@ VALUES
 (192, 'images/afashion/reto/r6.jpg', 0),
 (193, 'images/afashion/reto/r7.jpg', 1),
 (193, 'images/afashion/reto/r8.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (194, '../images/afashion/reto/reto19.jpg', 1),
@@ -668,6 +629,7 @@ VALUES
 (236, '../images/afashion/short/quan8.jpg', 0),
 (237, '../images/afashion/short/quan49.jpg', 1),
 (237, '../images/afashion/short/quan50.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (238, '../images/afashion/stock&underware/1.jpg', 1),
@@ -696,6 +658,7 @@ VALUES
 
 (246, '../images/afashion/stock&underware/17.jpg', 1),
 (246, '../images/afashion/stock&underware/18.jpg', 0);
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (247, '../images/afashion/footwear/1.jpg', 1),
@@ -709,8 +672,7 @@ VALUES
 
 (250, '../images/afashion/footwear/7.jpg', 1),
 (250, '../images/afashion/footwear/8.jpg', 0);
-DELETE FROM product_images
-WHERE product_id BETWEEN 251 AND 258;
+
 INSERT INTO product_images(product_id, image_url, is_primary)
 VALUES
 (251, 'images/souvenirs/mockhoa/1.jpg', 1),
@@ -927,7 +889,6 @@ VALUES
 ('MU Training Leggings Black', 'Shorts & Trousers', 49.99, 'Trainingwear');
 
 
-
 INSERT INTO products (name, category, price, description) VALUES
 ('Essential Black Tee', 'Fashion', 24.99, 'Tshirt'),
 ('Classic White Polo', 'Fashion', 24.99, 'Tshirt'),
@@ -976,7 +937,6 @@ INSERT INTO products (name, category, price, description) VALUES
 ('Vintage Gradient Tee', 'Fashion', 24.99, 'Tshirt'),
 ('Minimal Clay Tee', 'Fashion', 24.99, 'Tshirt'),
 ('Backline Clay Tee', 'Fashion', 24.99, 'Tshirt');    
- 
  
 
  INSERT INTO products (name, category, price, description) VALUES
@@ -1047,10 +1007,6 @@ INSERT INTO products (name, category, price, description) VALUES
 ('MU Red-White Training Jacket', 'Fashion', 49.99, 'Retro'),
 ('MU Black-White Panel Jacket', 'Fashion', 49.99, 'Retro'),
 ('MU White Zip Hoodie with Red Stripe', 'Fashion', 49.99, 'Retro');
-
-
-
-
 
 
 INSERT INTO products (name, category, price, description) VALUES
