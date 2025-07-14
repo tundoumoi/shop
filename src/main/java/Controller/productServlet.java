@@ -10,6 +10,7 @@
     import Model.productVariant;
     import Service.ProductService;
     import DAO.ProductViewDAO;
+import DAO.RecommendationDAO;
     import jakarta.servlet.ServletException;
     import jakarta.servlet.annotation.WebServlet;
     import jakarta.servlet.http.HttpServlet;
@@ -88,51 +89,57 @@
         }
     }
 
-    private void listProducts(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
-        int page = 1;
-        String pageParam = request.getParameter("page");
-        if (pageParam != null) {
-            try {
-                page = Integer.parseInt(pageParam);
-            } catch (NumberFormatException ignored) {}
-        }
-
-        String category = request.getParameter("category");
-        String description = request.getParameter("description");
-
-        List<product> products;
-        int totalPages;
-
-        if (category != null && !category.isEmpty()) {
-            if (description != null && !description.isEmpty()) {
-                // ✅ Lọc theo cả category và description
-                products = productService.getProductsByCategoryAndDescription(category, description, page, PAGE_SIZE);
-                totalPages = productService.getTotalPagesByCategoryAndDescription(category, description, PAGE_SIZE);
-            } else {
-                // ✅ Chỉ lọc theo category
-                products = productService.getProductsByCategory(category, page, PAGE_SIZE);
-                totalPages = productService.getTotalPagesByCategory(category, PAGE_SIZE);
-            }
-            request.setAttribute("category", category);
-            request.setAttribute("description", description);
-        } else {
-            // ✅ Không lọc, lấy tất cả
-            products = productService.getProductsByPage(page, PAGE_SIZE);
-            totalPages = productService.getTotalPages(PAGE_SIZE);
-        }
-
-        request.setAttribute("productList", products);
-        request.setAttribute("currentPage", page);
-        request.setAttribute("totalPages", totalPages);
-
-        User user = (User) request.getSession().getAttribute("user");
-        String role = user.getRole();
-        String targetPage = "user".equalsIgnoreCase(role) ? USER_LIST_PAGE : ADMIN_LIST_PAGE;
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
-        dispatcher.forward(request, response);
+   private void listProducts(HttpServletRequest request, HttpServletResponse response)
+        throws SQLException, ServletException, IOException {
+    int page = 1;
+    String pageParam = request.getParameter("page");
+    if (pageParam != null) {
+        try {
+            page = Integer.parseInt(pageParam);
+        } catch (NumberFormatException ignored) {}
     }
+
+    String category = request.getParameter("category");
+    String description = request.getParameter("description");
+
+    List<product> products;
+    int totalPages;
+
+    if (category != null && !category.isEmpty()) {
+        if (description != null && !description.isEmpty()) {
+            products = productService.getProductsByCategoryAndDescription(category, description, page, PAGE_SIZE);
+            totalPages = productService.getTotalPagesByCategoryAndDescription(category, description, PAGE_SIZE);
+        } else {
+            products = productService.getProductsByCategory(category, page, PAGE_SIZE);
+            totalPages = productService.getTotalPagesByCategory(category, PAGE_SIZE);
+        }
+        request.setAttribute("category", category);
+        request.setAttribute("description", description);
+    } else {
+        products = productService.getProductsByPage(page, PAGE_SIZE);
+        totalPages = productService.getTotalPages(PAGE_SIZE);
+    }
+
+    request.setAttribute("productList", products);
+    request.setAttribute("currentPage", page);
+    request.setAttribute("totalPages", totalPages);
+
+    User user = (User) request.getSession().getAttribute("user");
+
+    // ✅ Thêm đoạn này để truyền danh sách gợi ý
+    if (user != null && "user".equalsIgnoreCase(user.getRole())) {
+        RecommendationDAO rdao = new RecommendationDAO();
+        List<product> recList = rdao.getTopRecommendedProducts(user.getId());
+        request.setAttribute("recommended", recList);
+    }
+
+    String role = user.getRole();
+    String targetPage = "user".equalsIgnoreCase(role) ? USER_LIST_PAGE : ADMIN_LIST_PAGE;
+
+    RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
+    dispatcher.forward(request, response);
+}
+
 
 
     private void recordViewTime(HttpServletRequest request, HttpServletResponse response)
