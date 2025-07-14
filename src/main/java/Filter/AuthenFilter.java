@@ -67,34 +67,31 @@ public class AuthenFilter implements Filter{
         
         ADMIN_FUNC.add("admin.jsp");
         
-        // User: xem sản phẩm, giỏ hàng
-        USER_FUNC.add("products");       // ProductServlet
-        USER_FUNC.add("product");       // ProductDetailServlet
-        USER_FUNC.add("ProductList.jsp");
-        USER_FUNC.add("ProductInfor.jsp");
-        USER_FUNC.add("cart.jsp");
-        USER_FUNC.add("checkout.jsp");
-        USER_FUNC.add("searchResults.jsp");
-        
-        USER_FUNC.add("update-profile"); // UpdateProfileServlet
-        USER_FUNC.add("edit-profile.jsp");
-        
-        USER_FUNC.add("confirm");        // comfirmServlet
-        USER_FUNC.add("momo-return");        // MomoReturnServlet
-        USER_FUNC.add("payment.jsp");
-        
-        USER_FUNC.add("register");        // RegisterServlet
-        USER_FUNC.add("payment.jsp");
-        
-        USER_FUNC.add("thankyou.jsp");
-        USER_FUNC.add("header.jsp");
-        USER_FUNC.add("footer.jsp");
-        
-        USER_FUNC.add("searh");         // SearchServlet
-        USER_FUNC.add("MomoPaymentServlet");         // MomoPaymentServlet
-        USER_FUNC.add("cart");          // CartServlet
-        USER_FUNC.add("checkout");       // CheckOutServlet
-        
+         USER_FUNC.add("products");       // ProductServlet
+USER_FUNC.add("product");        // ProductDetailServlet
+USER_FUNC.add("ProductList.jsp");
+USER_FUNC.add("ProductInfor.jsp");
+USER_FUNC.add("cart.jsp");
+USER_FUNC.add("checkout.jsp");
+USER_FUNC.add("searchResults.jsp");
+
+USER_FUNC.add("update-profile"); // UpdateProfileServlet
+USER_FUNC.add("edit-profile.jsp");
+
+USER_FUNC.add("confirm");        // ConfirmServlet
+USER_FUNC.add("momo-return");    // MomoReturnServlet
+USER_FUNC.add("payment.jsp");
+
+USER_FUNC.add("register");       
+USER_FUNC.add("thankyou.jsp");
+USER_FUNC.add("header.jsp");
+USER_FUNC.add("footer.jsp");
+
+USER_FUNC.add("search");         // ✅ đã sửa đúng từ "searh" thành "search"
+USER_FUNC.add("MomoPaymentServlet");
+USER_FUNC.add("cart");
+USER_FUNC.add("checkout");
+
     }
 
     @Override

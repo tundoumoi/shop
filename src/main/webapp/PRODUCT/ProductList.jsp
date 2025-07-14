@@ -126,7 +126,49 @@
 </head>
 <body style="padding-top: 90px;">
 
-<%-- Bộ lọc giữ nguyên --%>
+
+<!-- 🔍 Bộ lọc theo description -->
+<c:if test="${category == 'Jersey'}">
+  <div class="description-filters">
+    <a href="products?category=Jersey" class="description-btn ${empty param.description ? 'active' : ''}">ALL</a>
+    <a href="products?category=Jersey&description=Home" class="description-btn ${param.description == 'Home' ? 'active' : ''}">HOME</a>
+    <a href="products?category=Jersey&description=Away" class="description-btn ${param.description == 'Away' ? 'active' : ''}">AWAY</a>
+    <a href="products?category=Jersey&description=Third" class="description-btn ${param.description == 'Third' ? 'active' : ''}">THIRD</a>
+    <a href="products?category=Jersey&description=Goalkeeper" class="description-btn ${param.description == 'Goalkeeper' ? 'active' : ''}">GOALKEEPER</a>
+  </div>
+</c:if>
+<c:if test="${category == 'Trainingwear'}">
+  <div class="description-filters">
+    <a href="products?category=Trainingwear" class="description-btn ${empty param.description ? 'active' : ''}">ALL</a>
+    <a href="products?category=Trainingwear&description=Top" class="description-btn ${param.description == 'Top' ? 'active' : ''}">TOP</a>
+    <a href="products?category=Trainingwear&description=Jackets and Coats" class="description-btn ${param.description == 'Jackets and Coats' ? 'active' : ''}">JACKETS & COATS</a>
+    <a href="products?category=Trainingwear&description=Shorts and Trousers" class="description-btn ${param.description == 'Shorts and Trousers' ? 'active' : ''}">SHORTS & TROUSERS</a>
+  </div>
+</c:if>
+
+<c:if test="${category == 'Fashion'}">
+  <div class="description-filters">
+    <a href="products?category=Fashion" class="description-btn ${empty param.description ? 'active' : ''}">ALL</a>
+    <a href="products?category=Fashion&description=Tshirt" class="description-btn ${param.description == 'Tshirt' ? 'active' : ''}">Tshirt</a>
+    <a href="products?category=Fashion&description=Hoodie" class="description-btn ${param.description == 'Hoodie' ? 'active' : ''}">Hoodie</a>
+    <a href="products?category=Fashion&description=Retro" class="description-btn ${param.description == 'Retro' ? 'active' : ''}">Retro</a>
+    <a href="products?category=Fashion&description=Nightwear" class="description-btn ${param.description == 'Nightwear' ? 'active' : ''}">Nightwear</a>
+    <a href="products?category=Fashion&description=Shorts and pants" class="description-btn ${param.description == 'Shorts and pants' ? 'active' : ''}">Shorts & pants</a>
+    <a href="products?category=Fashion&description=Socks and Underwear" class="description-btn ${param.description == 'Socks and Underwear' ? 'active' : ''}">Socks & Underwear</a>
+    <a href="products?category=Fashion&description=Shoes" class="description-btn ${param.description == 'Shoes' ? 'active' : ''}">Shoes</a>
+  </div>
+</c:if>
+
+<c:if test="${category == 'Souvenir'}">
+  <div class="description-filters">
+    <a href="products?category=Souvenir" class="description-btn ${empty param.description ? 'active' : ''}">ALL</a>
+    <a href="products?category=Souvenir&description=Keychain" class="description-btn ${param.description == 'Keychain' ? 'active' : ''}">Keychain</a>
+    <a href="products?category=Souvenir&description=Balls" class="description-btn ${param.description == 'Balls' ? 'active' : ''}">Balls</a>
+    <a href="products?category=Souvenir&description=Bottles" class="description-btn ${param.description == 'Bottles' ? 'active' : ''}">Bottles</a>
+  </div>
+</c:if>
+
+
 
 <!-- Danh sách sản phẩm -->
 <div class="product-grid">
