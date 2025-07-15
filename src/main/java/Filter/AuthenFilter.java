@@ -67,30 +67,30 @@ public class AuthenFilter implements Filter{
         
         ADMIN_FUNC.add("admin.jsp");
         
-         USER_FUNC.add("products");       // ProductServlet
-USER_FUNC.add("product");        // ProductDetailServlet
-USER_FUNC.add("ProductList.jsp");
-USER_FUNC.add("ProductInfor.jsp");
-USER_FUNC.add("cart.jsp");
-USER_FUNC.add("checkout.jsp");
-USER_FUNC.add("searchResults.jsp");
+        USER_FUNC.add("products");       // ProductServlet
+        USER_FUNC.add("product");        // ProductDetailServlet
+        USER_FUNC.add("ProductList.jsp");
+        USER_FUNC.add("ProductInfor.jsp");
+        USER_FUNC.add("cart.jsp");
+        USER_FUNC.add("checkout.jsp");
+        USER_FUNC.add("searchResults.jsp");
 
-USER_FUNC.add("update-profile"); // UpdateProfileServlet
-USER_FUNC.add("edit-profile.jsp");
+        USER_FUNC.add("update-profile"); // UpdateProfileServlet
+        USER_FUNC.add("edit-profile.jsp");
 
-USER_FUNC.add("confirm");        // ConfirmServlet
-USER_FUNC.add("momo-return");    // MomoReturnServlet
-USER_FUNC.add("payment.jsp");
+        USER_FUNC.add("confirm");        // ConfirmServlet
+        USER_FUNC.add("momo-return");    // MomoReturnServlet
+        USER_FUNC.add("payment.jsp");
 
-USER_FUNC.add("register");       
-USER_FUNC.add("thankyou.jsp");
-USER_FUNC.add("header.jsp");
-USER_FUNC.add("footer.jsp");
+        USER_FUNC.add("register");       
+        USER_FUNC.add("thankyou.jsp");
+        USER_FUNC.add("header.jsp");
+        USER_FUNC.add("footer.jsp");
 
-USER_FUNC.add("search");         
-USER_FUNC.add("MomoPaymentServlet");
-USER_FUNC.add("cart");
-USER_FUNC.add("checkout");
+        USER_FUNC.add("search");         
+        USER_FUNC.add("MomoPaymentServlet");
+        USER_FUNC.add("cart");
+        USER_FUNC.add("checkout");
 
     }
 
@@ -110,7 +110,7 @@ USER_FUNC.add("checkout");
             HttpServletResponse res = (HttpServletResponse) response;
             String uri = req.getRequestURI();
             // Cho phép truy cập các tài nguyên tĩnh và trang login
-            if (isStaticResource(uri) || uri.endsWith(LOGIN_PAGE) || uri.endsWith("/login")) {
+            if (isStaticResource(uri) || uri.endsWith(LOGIN_PAGE) || uri.endsWith("/login") || uri.endsWith("/register")) {
                 chain.doFilter(request, response);
                 return;
             }

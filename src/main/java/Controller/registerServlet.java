@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Logger;
 
 
 import Service.registerService;
@@ -33,6 +34,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.json.JSONObject;
 
@@ -44,14 +46,20 @@ import org.json.JSONObject;
 public class registerServlet extends HttpServlet {
     
     private registerService service = new registerService();
+    private static final Logger LOGGER = Logger.getLogger(registerServlet.class.getName());
     private static final String GOOGLE_CLIENT_ID = "415815610320-qel0575b0g2stu3iscopdiut6acfej5u.apps.googleusercontent.com";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
         String action = req.getParameter("action");
+        String provider = req.getParameter("provider");
+        String accessToken = req.getParameter("access_token");
+        System.out.println("[DEBUG-REGISTER] doPost called: action=" + action
+                  + ", provider=" + provider
+                  + ", access_token=" + (accessToken != null ? "[PROVIDED]" : "[NULL]"));
+        // =================================
         if ("register".equals(action)) {
-          String provider = req.getParameter("provider");
           try {
             User c = null;
             if ("google".equals(provider)) {
@@ -64,8 +72,10 @@ public class registerServlet extends HttpServlet {
               );
             }
             else if ("facebook".equals(provider)) {
-              String accessToken = req.getParameter("access_token");
+                LOGGER.info("[DEBUG-REGISTER] Facebook registration flow");
+                LOGGER.log(Level.FINE, "[DEBUG-REGISTER] Facebook access_token={0}", accessToken);
               JSONObject fb = fetchFacebookProfile(accessToken);
+              System.out.println("▶️ [DEBUG-REGISTER] Facebook profile: " + fb.toString());
               c = service.registerFacebook(
                   fb.getString("id"), 
                   fb.optString("email"), 
@@ -123,6 +133,7 @@ public class registerServlet extends HttpServlet {
         conn.setRequestMethod("GET");
         try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
             String json = in.lines().collect(Collectors.joining());
+            System.out.println("▶️ [DEBUG-FB] fetchFacebookProfile trả về: " + json);
             return new JSONObject(json);
         }
     }

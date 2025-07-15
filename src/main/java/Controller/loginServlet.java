@@ -153,6 +153,7 @@ public class loginServlet extends HttpServlet {
 
         try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
             String json = in.lines().collect(Collectors.joining());
+            System.out.println("▶️ [DEBUG-FB] fetchFacebookProfile trả về: " + json);
             return new JSONObject(json);
         }
     }
