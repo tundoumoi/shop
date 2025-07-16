@@ -89,6 +89,7 @@
                 <input type="password" name="password" value="<%=password%>" placeholder="Password" />
                 <span>Remember</span>
                 <input type="checkbox" name="remember" ${remember == 'checked' ? 'checked' : ''} />
+                <a href="http://localhost:8080/shop/requestPassword">Forgot password</a>
                 <button type="submit">Sign In</button>
             </form>
         </div>
@@ -124,7 +125,7 @@
     // Facebook SDK init (ví dụ)
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1033293561707776',
+        appId      : '1236332391006082',
         cookie     : true,
         xfbml      : false,
         version    : 'v12.0'

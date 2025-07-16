@@ -47,8 +47,6 @@ public class ProductVariants implements Serializable {
     @Column(name = "quantity")
     private int quantity;
     @OneToMany(mappedBy = "variantId")
-    private Collection<CartItems> cartItemsCollection;
-    @OneToMany(mappedBy = "variantId")
     private Collection<OrderItems> orderItemsCollection;
 
     private static final long serialVersionUID = 1L;
@@ -130,15 +128,6 @@ public class ProductVariants implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    @XmlTransient
-    public Collection<CartItems> getCartItemsCollection() {
-        return cartItemsCollection;
-    }
-
-    public void setCartItemsCollection(Collection<CartItems> cartItemsCollection) {
-        this.cartItemsCollection = cartItemsCollection;
     }
 
     @XmlTransient

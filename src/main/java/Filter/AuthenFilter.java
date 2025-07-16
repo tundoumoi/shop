@@ -63,9 +63,13 @@ public class AuthenFilter implements Filter{
         
         ADMIN_FUNC.add("login");
         ADMIN_FUNC.add("logout");
+        ADMIN_FUNC.add("resetPassword");
+        ADMIN_FUNC.add("requestPassword");
         ADMIN_FUNC.add("runrecommendationagent");
         
         ADMIN_FUNC.add("admin.jsp");
+        ADMIN_FUNC.add("requestPassword.jsp");
+        ADMIN_FUNC.add("resetPassword.jsp");
         
         USER_FUNC.add("products");       // ProductServlet
         USER_FUNC.add("product");        // ProductDetailServlet
@@ -86,11 +90,15 @@ public class AuthenFilter implements Filter{
         USER_FUNC.add("thankyou.jsp");
         USER_FUNC.add("header.jsp");
         USER_FUNC.add("footer.jsp");
+        USER_FUNC.add("resetPassword.jsp");
+        USER_FUNC.add("requestPassword.jsp");
 
         USER_FUNC.add("search");         
         USER_FUNC.add("MomoPaymentServlet");
         USER_FUNC.add("cart");
         USER_FUNC.add("checkout");
+        USER_FUNC.add("resetPassword");
+        USER_FUNC.add("requestPassword");
 
     }
 
@@ -110,7 +118,7 @@ public class AuthenFilter implements Filter{
             HttpServletResponse res = (HttpServletResponse) response;
             String uri = req.getRequestURI();
             // Cho phép truy cập các tài nguyên tĩnh và trang login
-            if (isStaticResource(uri) || uri.endsWith(LOGIN_PAGE) || uri.endsWith("/login") || uri.endsWith("/register")) {
+            if (isStaticResource(uri) || uri.endsWith(LOGIN_PAGE) || uri.endsWith("/login") || uri.endsWith("/register") || uri.endsWith("/resetPassword") || uri.endsWith("/requestPassword")) {
                 chain.doFilter(request, response);
                 return;
             }

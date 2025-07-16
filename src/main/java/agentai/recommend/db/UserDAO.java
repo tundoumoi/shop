@@ -13,7 +13,7 @@ import java.util.List;
 public class UserDAO {
     public List<Integer> getAllUserIds() throws Exception {
         List<Integer> list = new ArrayList<>();
-        String sql = "SELECT id FROM users where role='user'";
+        String sql = "SELECT id FROM users where role='user' and status='1' ";
         try (Connection conn = DBConnection.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {

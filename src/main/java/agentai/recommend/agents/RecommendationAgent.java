@@ -21,6 +21,7 @@ public class RecommendationAgent {
 
     public static void main(String[] args) {
         // Chạy ngay khi khởi động
+        System.out.println("đang chạy Agent");
         runAllUsers();
         // Lên lịch chạy lại mỗi 24 giờ
         SCHEDULER.scheduleAtFixedRate(

@@ -181,6 +181,20 @@ public boolean updateUser(User user) throws SQLException {
         return user;
     }
     
+    public void updatePassword(String email, String password) {
+        String sql = "UPDATE users "
+                + "   SET password = ?"
+                + " WHERE email = ?";
+        try {
+            PreparedStatement st = DatabaseConnection.getConnection().prepareStatement(sql);
+            st.setString(1, password);
+            st.setString(2, email);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
     public static void main(String[] args) {
         try {
             UserDAO dao = new UserDAO();

@@ -3,11 +3,11 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Contr
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\db\DBConnection.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\ProductDetailServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\loginDAO.java
+C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model\TokenForgetPassword.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\SearchServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\revenueDAO.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Util\DatabaseConnection.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\RecommendationDAO.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\ActionLogs.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\agents\RecommendationAgent.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\db\OrderedDAO.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\Recommendations.java
@@ -19,9 +19,11 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\ProductVariants.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\model\ViewedProduct.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Service\ProductService.java
+C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\requestPassword.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\CheckoutServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\RevenueServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\db\ProductDAO.java
+C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\resetPassword.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\db\RecommendationDAO.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\model\RecommendationInput.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\ConfirmServlet.java
@@ -32,14 +34,13 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Filte
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\ProductViews.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\Orders.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO2\GenericDAO.java
+C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\DAOTokenForget.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\inventoryDAO.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\CartItems.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Service\registerService.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\model\OrderedProduct.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\registerServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\productServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\OrderItems.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\Promotions.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\registerDAO.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\MomoReturnServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Service\revenueService.java
@@ -53,7 +54,6 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\com\m
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\CartServlet.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\model\Recommendation.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\customerDAO.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\BusinessReports.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\agentai\recommend\model\Product.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model\CartItem.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model\productVariant.java
@@ -62,7 +62,6 @@ C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model\User.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\com\mycompany\shop\resources\JakartaEE10Resource.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\DAO\UserDAO.java
-C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model2\RevenueForecast.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Model\Order.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Util\EmailUtil.java
 C:\Users\LENOVO Ideapad 3\Documents\NetBeansProjects\MU\shop\src\main\java\Controller\MomoPaymentServlet.java

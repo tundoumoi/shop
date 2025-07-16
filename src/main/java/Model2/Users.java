@@ -73,8 +73,6 @@ private String email;
     @Column(name = "address")
     private String address;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<CartItems> cartItemsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Recommendations> recommendationsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Orders> ordersCollection;

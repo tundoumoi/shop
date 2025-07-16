@@ -7,7 +7,6 @@ Service\loginService.class
 Controller\productServlet.class
 DAO\ProductViewDAO.class
 Model2\Users.class
-Model2\CartItems.class
 agentai\recommend\agents\RecommendationAgent.class
 Model\productVariant.class
 Controller\RevenueServlet.class
@@ -30,6 +29,7 @@ Controller\MomoReturnServlet.class
 Controller\RecommendationAgentServlet.class
 agentai\recommend\db\ViewedDAO.class
 DAO\registerDAO.class
+Model\TokenForgetPassword.class
 Model\OrderItem.class
 Service\registerService$DuplicateAuthException.class
 DAO\productDAO.class
@@ -44,12 +44,12 @@ agentai\recommend\model\RecommendationInput.class
 Util\DatabaseConnection.class
 Controller\CartServlet.class
 Service\inventoryService.class
-Model2\RevenueForecast.class
 Model\Order.class
 agentai\recommend\db\ProductDAO.class
 Controller\CheckoutServlet.class
 Controller\ProductDetailServlet.class
 agentai\recommend\llm\LlmClient.class
+Controller\requestPassword.class
 Filter\AuthenFilter.class
 Controller\MomoPaymentServlet.class
 Controller\RecommendationServlet.class
@@ -58,11 +58,11 @@ Service\UserService.class
 agentai\recommend\db\UserDAO.class
 agentai\recommend\model\ViewedProduct.class
 Controller\UserServlet.class
-Model2\ActionLogs.class
 DAO\loginDAO.class
 DAO\UserDAO.class
-Model2\BusinessReports.class
 agentai\recommend\model\Recommendation.class
+Controller\resetPassword.class
+DAO\DAOTokenForget.class
 Model\product.class
 Controller\loginServlet.class
 agentai\recommend\tools\RecommendationCalculator.class
@@ -72,6 +72,6 @@ Model\productImage.class
 Model2\OrderItems.class
 com\mycompany\shop\resources\JakartaEE10Resource.class
 Model2\Products.class
+Util\EmailUtil$2.class
 Controller\UpdateProfileServlet.class
 Model\User.class
-Model2\Promotions.class
