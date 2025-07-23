@@ -53,18 +53,18 @@ public class CartServlet extends HttpServlet {
         int variantId = Integer.parseInt(request.getParameter("variantId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-      ProductService productService = new ProductService();
-product p = null;
-productVariant v = null;
+        ProductService productService = new ProductService();
+        product p = null;
+        productVariant v = null;
 
-try {
-    p = productService.getProductById(productId);
-    v = productService.getVariantById(variantId);
-} catch (Exception e) {
-    e.printStackTrace();
-    response.sendRedirect("error.jsp"); // hoặc bạn có thể forward đến trang lỗi tùy ý
-    return;
-}
+        try {
+            p = productService.getProductById(productId);
+            v = productService.getVariantById(variantId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("error.jsp"); // hoặc bạn có thể forward đến trang lỗi tùy ý
+            return;
+        }
 
         // Kiểm tra trùng size
         boolean found = false;

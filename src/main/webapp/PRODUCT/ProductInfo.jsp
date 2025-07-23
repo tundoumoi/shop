@@ -101,18 +101,17 @@
         <form action="cart" method="post">
             <input type="hidden" name="productId" value="${product.id}" />
 
-            <label for="variantId">Chọn size:</label>
-            <select name="variantId" required>
+            <select id="variantSelect" name="variantId" required>
                 <c:forEach var="v" items="${variants}">
-                    <option value="${v.id}">
+                    <option value="${v.id}" data-quantity="${v.quantity}">
                         ${v.size} (Còn ${v.quantity} cái)
                     </option>
                 </c:forEach>
             </select>
 
             <label for="quantity">Số lượng:</label>
-            <input type="number" name="quantity" value="1" min="1" required />
-
+            <input type="number" id="quantityInput" name="quantity" value="1" min="1" max="${maxQuantity.getQuantity()}" required />
+            
             <!-- Nhóm nút -->
             <div class="button-group">
                 <button type="submit">Thêm vào giỏ hàng</button>
@@ -124,7 +123,7 @@
     </div>
 </div>
 
-                    <script>
+<script>
 let startTime = Date.now();
 
 // Gửi thời gian khi người dùng rời trang
@@ -138,6 +137,33 @@ window.addEventListener("beforeunload", function () {
         );
     }
 });
+</script>
+
+<!-- Script để cập nhật max ngay khi load và khi đổi variant -->
+<script>
+  // Lấy DOM
+  const variantSelect = document.getElementById('variantSelect');
+  const qtyInput      = document.getElementById('quantityInput');
+
+  // Hàm cập nhật thuộc tính max của qtyInput
+  function updateMaxQty() {
+    // từ <option> đang chọn, đọc data-quantity
+    const available = variantSelect
+      .selectedOptions[0]
+      .dataset
+      .quantity;
+    // gán max
+    qtyInput.max = available;
+    // nếu giá trị hiện tại > max thì hạ xuống max
+    if (+qtyInput.value > +available) {
+      qtyInput.value = available;
+    }
+  }
+  
+  // Khi trang load lần đầu, set tức thì
+  document.addEventListener('DOMContentLoaded', updateMaxQty);
+  // Khi user chọn biến thể khác
+  variantSelect.addEventListener('change', updateMaxQty);
 </script>
 
 </body>
