@@ -102,8 +102,19 @@ import DAO.RecommendationDAO;
     String category = request.getParameter("category");
     String description = request.getParameter("description");
 
+    StringBuilder queryParams = new StringBuilder();
+    if (category != null && !category.isEmpty()) {
+        queryParams.append("&category=").append(category);
+    }
+    if (description != null && !description.isEmpty()) {
+        queryParams.append("&description=").append(description);
+    }
+
     List<product> products;
     int totalPages;
+
+    User user = (User) request.getSession().getAttribute("user");
+    boolean isAdmin = user != null && "admin".equalsIgnoreCase(user.getRole());
 
     if (category != null && !category.isEmpty()) {
         if (description != null && !description.isEmpty()) {
@@ -116,15 +127,19 @@ import DAO.RecommendationDAO;
         request.setAttribute("category", category);
         request.setAttribute("description", description);
     } else {
-        products = productService.getProductsByPage(page, PAGE_SIZE);
-        totalPages = productService.getTotalPages(PAGE_SIZE);
+        if (isAdmin) {
+            products = productService.getProductsByPage(page, PAGE_SIZE);
+            totalPages = productService.getTotalPagesForAdmin(PAGE_SIZE);
+        } else {
+            products = productService.getProductsByPageForUser(page, PAGE_SIZE);
+            totalPages = productService.getTotalPages(PAGE_SIZE);
+        }
     }
 
     request.setAttribute("productList", products);
     request.setAttribute("currentPage", page);
     request.setAttribute("totalPages", totalPages);
-
-    User user = (User) request.getSession().getAttribute("user");
+    request.setAttribute("queryParams", queryParams.toString());
 
     // ✅ Thêm đoạn này để truyền danh sách gợi ý
     if (user != null && "user".equalsIgnoreCase(user.getRole())) {
@@ -133,8 +148,7 @@ import DAO.RecommendationDAO;
         request.setAttribute("recommended", recList);
     }
 
-    String role = user.getRole();
-    String targetPage = "user".equalsIgnoreCase(role) ? USER_LIST_PAGE : ADMIN_LIST_PAGE;
+    String targetPage = isAdmin ? ADMIN_LIST_PAGE : USER_LIST_PAGE;
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
     dispatcher.forward(request, response);

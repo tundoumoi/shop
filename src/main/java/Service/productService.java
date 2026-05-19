@@ -121,7 +121,7 @@ public int getTotalPagesByCategory(String category, int pageSize) {
     }
 
     /**
-     * Lấy danh sách phân trang
+     * Lấy danh sách phân trang (cho Admin - bao gồm cả ẩn)
      */
     public List<product> getProductsByPage(int page, int pageSize) throws SQLException {
         if (page < 1 || pageSize < 1) {
@@ -132,13 +132,35 @@ public int getTotalPagesByCategory(String category, int pageSize) {
     }
 
     /**
-     * Tính tổng số trang
+     * Lấy danh sách phân trang (cho User - chỉ sản phẩm active)
+     */
+    public List<product> getProductsByPageForUser(int page, int pageSize) throws SQLException {
+        if (page < 1 || pageSize < 1) {
+            throw new IllegalArgumentException("Page and pageSize must be >= 1");
+        }
+        int offset = (page - 1) * pageSize;
+        return dao.selectAllActiveProducts(offset, pageSize);
+    }
+
+    /**
+     * Tính tổng số trang (cho User - chỉ sản phẩm active)
      */
     public int getTotalPages(int pageSize) throws SQLException {
         if (pageSize < 1) {
             throw new IllegalArgumentException("pageSize must be >= 1");
         }
         int total = dao.countAllActiveProducts();
+        return (int) Math.ceil((double) total / pageSize);
+    }
+
+    /**
+     * Tính tổng số trang (cho Admin - tất cả sản phẩm)
+     */
+    public int getTotalPagesForAdmin(int pageSize) throws SQLException {
+        if (pageSize < 1) {
+            throw new IllegalArgumentException("pageSize must be >= 1");
+        }
+        int total = dao.countAllProducts();
         return (int) Math.ceil((double) total / pageSize);
     }
  public productVariant getVariantById(int id) {
