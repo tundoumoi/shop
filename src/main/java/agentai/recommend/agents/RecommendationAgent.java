@@ -36,24 +36,27 @@ public class RecommendationAgent {
      * Quét tất cả userId, tính recommendation, xóa cũ và lưu mới.
      */
     public static void runAllUsers() {
+        System.out.println("Starting recommendation for all users...");
         try {
             UserDAO userDao = new UserDAO();
             RecommendationDAO recDao = new RecommendationDAO();
             List<Integer> userIds = userDao.getAllUserIds();
+            System.out.println("Found " + userIds.size() + " users to process.");
             for (int userId : userIds) {
                 try {
+                    System.out.println("Processing recommendation for userId: " + userId);
                     // Tính recommendation
                     List<Recommendation> recs = recommend.calculateForUser(userId);
-                    // Xóa recommendation cũ
-                    recDao.deleteByUser(userId);
-                    // Lưu batch recommendation mới
-                    recDao.insertBatch(userId, recs);
+                    System.out.println("Generated " + (recs != null ? recs.size() : 0) + " recommendations for userId: " + userId);
+                    // Lưu batch recommendation mới (nếu calculateForUser chưa lưu)
+                    // recDao.saveRecommendations(userId, recs); // calculateForUser đã gọi cái này
                 } catch (Exception e) {
                     // Log lỗi cho từng user nhưng tiếp tục với user khác
                     System.err.println("Error processing user " + userId + ": " + e.getMessage());
                     e.printStackTrace();
                 }
             }
+            System.out.println("Finished recommendation for all users.");
         } catch (Exception e) {
             // Log lỗi chung
             System.err.println("Failed to run recommendation for all users: " + e.getMessage());

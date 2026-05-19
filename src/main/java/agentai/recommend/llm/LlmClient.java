@@ -69,7 +69,7 @@ public class LlmClient {
 
         // 6) Gọi Gemini
         GenerateContentResponse resp = GEMINI_CLIENT.models.generateContent(
-            "gemini-2.5-flash",
+            "gemini-1.5-flash",
             inputJson,
             config
         );

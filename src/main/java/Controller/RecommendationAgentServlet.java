@@ -27,11 +27,12 @@ public class RecommendationAgentServlet extends HttpServlet {
         try {
             // Gọi cơ chế tính recommendation
             RecommendationAgent.runAllUsers();
-            resp.getWriter().write("Success");
+            resp.getWriter().write("Success: Recommendation system finished running. Check console for details.");
         } catch (Exception e) {
             // Trả về lỗi 500 nếu có exception
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.getWriter().write("Error: " + e.getMessage());
+            System.err.println("RecommendationAgentServlet error: " + e.getMessage());
             e.printStackTrace();
         }
     }

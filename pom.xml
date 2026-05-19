@@ -10,7 +10,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakartaee.version>10.0.0</jakartaee.version>
-        <java.version>22</java.version>
+        <java.version>21</java.version>
         <google.api.client.version>2.0.0</google.api.client.version>
         <google.oauth.client.version>1.39.0</google.oauth.client.version>
     </properties>
@@ -191,13 +191,16 @@
 
     <build>
         <plugins>
-            <!-- Compiler plugin: Java 22 -->
+            <!-- Compiler plugin: Java 221 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
                     <release>${java.version}</release>
+                    <compilerArgs>
+                        <arg>-Xlint</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <!-- WAR packaging -->

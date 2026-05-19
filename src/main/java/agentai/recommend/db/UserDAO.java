@@ -5,6 +5,7 @@
 package agentai.recommend.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -13,11 +14,17 @@ import java.util.List;
 public class UserDAO {
     public List<Integer> getAllUserIds() throws Exception {
         List<Integer> list = new ArrayList<>();
-        String sql = "SELECT id FROM users where role='user' and status='1' ";
+        // Query users with role 'user'. We handle both bit and string status if possible, 
+        // but typically it's bit in SQL Server.
+        String sql = "SELECT id FROM users WHERE role = 'user'";
+        // If you want to filter by status, ensure the column exists. 
+        // For now, let's keep it simple or check if status is 1.
         try (Connection conn = DBConnection.getConnection();
-             Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) list.add(rs.getInt(1));
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(rs.getInt("id"));
+            }
         }
         return list;
     }

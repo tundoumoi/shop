@@ -30,6 +30,18 @@ public class ViewedDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 List<ViewedProduct> list = new ArrayList<>();
                 while (rs.next()) {
+                    java.math.BigDecimal viewTime;
+                    Object vtObj = rs.getObject("view_time");
+                    if (vtObj instanceof java.sql.Timestamp) {
+                        viewTime = java.math.BigDecimal.valueOf(((java.sql.Timestamp) vtObj).getTime());
+                    } else if (vtObj instanceof java.math.BigDecimal) {
+                        viewTime = (java.math.BigDecimal) vtObj;
+                    } else if (vtObj instanceof Number) {
+                        viewTime = java.math.BigDecimal.valueOf(((Number) vtObj).doubleValue());
+                    } else {
+                        viewTime = java.math.BigDecimal.ZERO;
+                    }
+
                     ViewedProduct vp = new ViewedProduct(
                         rs.getInt("id"),
                         rs.getString("name"),
@@ -37,7 +49,7 @@ public class ViewedDAO {
                         rs.getBigDecimal("price"),
                         rs.getString("category"),
                         rs.getString("size"),
-                        rs.getBigDecimal("view_time")
+                        viewTime
                     );
                     list.add(vp);
                 }

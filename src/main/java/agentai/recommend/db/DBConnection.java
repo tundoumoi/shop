@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class DBConnection {
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Shop_Quan_Ao;encrypt=false";
     private static final String USER = "sa";
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "123456";
     public static Connection getConnection() {
         Connection conn = null;
         try {
